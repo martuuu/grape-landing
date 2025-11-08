@@ -1,0 +1,121 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Contact from '~/components/widgets/Contact.astro';
+
+const metadata = {
+  title: 'Presupuestos - Grape',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <HeroText
+    tagline="Solicita tu Presupuesto"
+    title="Cotiza tu Proyecto sin Compromiso"
+    subtitle="Cuéntanos sobre tu proyecto y te enviaremos una propuesta personalizada en menos de 48 horas hábiles."
+  />
+
+  <!-- Tipos de Proyectos -->
+  <Features2
+    title="¿Qué tipo de proyecto necesitas?"
+    subtitle="Selecciona el servicio que mejor se adapte a tus necesidades"
+    items={[
+      {
+        title: 'Marketing & Landing Pages',
+        description:
+          'Landing pages de alta conversión, sitios web corporativos, portfolios y páginas de marketing digital.',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Sistemas para PyMEs',
+        description:
+          'Software de gestión para pequeñas y medianas empresas, eventos, clubes deportivos y organizaciones.',
+        icon: 'tabler:building-store',
+      },
+      {
+        title: 'Desarrollo a Medida',
+        description:
+          'Aplicaciones web personalizadas, sistemas complejos y soluciones tecnológicas 100% adaptadas a tu negocio.',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'Consultoría Técnica',
+        description:
+          'Asesoramiento tecnológico, auditorías de código, optimización de performance y arquitectura de software.',
+        icon: 'tabler:bulb',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- Formulario de Contacto -->
+  <Contact
+    id="form"
+    title="Completa el formulario de presupuesto"
+    subtitle="Cuéntanos más sobre tu proyecto para poder preparar una propuesta ajustada a tus necesidades."
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Nombre completo',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'Email',
+      },
+      {
+        type: 'text',
+        name: 'phone',
+        label: 'Teléfono (opcional)',
+      },
+      {
+        type: 'text',
+        name: 'company',
+        label: 'Empresa (opcional)',
+      },
+    ]}
+    textarea={{
+      label: 'Descripción del proyecto',
+      placeholder: 'Cuéntanos qué necesitas: objetivos, funcionalidades deseadas, plazos estimados, presupuesto aproximado, etc.',
+    }}
+    disclaimer={{
+      label:
+        'Al enviar este formulario, aceptas que procesemos tu información para enviarte una propuesta comercial.',
+    }}
+    description="Nos pondremos en contacto contigo en menos de 48 horas hábiles con una propuesta personalizada."
+  />
+
+  <!-- Info adicional -->
+  <Features2
+    title="Proceso de cotización"
+    subtitle="Así trabajamos para darte el mejor presupuesto"
+    items={[
+      {
+        title: 'Análisis de requerimientos',
+        description: 'Revisamos tu solicitud y te contactamos si necesitamos más detalles.',
+        icon: 'tabler:search',
+      },
+      {
+        title: 'Propuesta personalizada',
+        description: 'Preparamos una cotización detallada con alcances, tiempos y costos.',
+        icon: 'tabler:file-text',
+      },
+      {
+        title: 'Reunión de presentación',
+        description: 'Te presentamos la propuesta y respondemos todas tus dudas.',
+        icon: 'tabler:presentation',
+      },
+      {
+        title: 'Inicio del proyecto',
+        description: 'Una vez aprobado, comenzamos a trabajar en tu proyecto.',
+        icon: 'tabler:rocket',
+      },
+    ]}
+  />
+</Layout>

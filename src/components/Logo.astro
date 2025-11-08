@@ -1,0 +1,14 @@
+---
+import { SITE } from 'astrowind:config';
+import { Image } from 'astro:assets';
+import logoImage from '~/assets/images/logo.png';
+---
+
+<div class="flex items-center gap-2">
+  <Image 
+    src={logoImage} 
+    alt={SITE?.name || 'Logo'} 
+    class="h-10 md:h-12 w-auto"
+   
+  />
+</div>

@@ -1,0 +1,36 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  iconClass?: string;
+}
+
+const { iconClass = 'w-6 h-6' } = Astro.props;
+---
+
+<button
+  type="button"
+  class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+  aria-label="Cambiar idioma"
+  data-aw-toggle-language
+>
+  <Icon name="tabler:language" class:list={[iconClass]} />
+</button>
+
+<script>
+  function attachEvent() {
+    const button = document.querySelector('[data-aw-toggle-language]');
+    if (!button) return;
+
+    button.addEventListener('click', () => {
+      // Aquí irá la lógica para cambiar el idioma
+      // Por ahora solo mostramos un alert
+      const currentLang = document.documentElement.lang === 'es' ? 'en' : 'es';
+      alert(`Cambiando idioma a: ${currentLang === 'es' ? 'Español' : 'English'}`);
+      // TODO: Implementar cambio real de idioma cuando se configure i18n
+    });
+  }
+
+  attachEvent();
+  document.addEventListener('astro:after-swap', attachEvent);
+</script>

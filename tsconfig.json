@@ -1,0 +1,13 @@
+{
+  "extends": "astro/tsconfigs/base",
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  },
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist/", "src/pages/index-new-backup.astro", "src/pages/index-new-reordered.astro", "src/pages/index-new.astro"]
+}

@@ -1,0 +1,414 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+// Import all necessary widgets
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import Contact from '~/components/widgets/Contact.astro';
+import Steps from '~/components/widgets/Steps.astro';
+
+const metadata = {
+  title: 'Grape - Agencia de Desarrollo de Software',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- ========================================
+       SECCIÓN 1: Hero Principal
+       Fuente: homes/startup.astro
+       ======================================== -->
+  
+  <Hero
+    tagline="Grape - Software Development Agency"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Contactanos',
+        href: '#contact',
+      },
+      { text: 'Conoce más', href: '#features' },
+    ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Grape Hero Image' }}
+  >
+    <Fragment slot="title">
+      Mejora <span class="hidden sm:inline">la presencia online de</span> tu <span
+        class="text-accent dark:text-white">Startup</span
+      > con Grape
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Entra en el centro de atención con <span class="font-semibold">Grape</span>, tu camino para fortalecer
+      la huella digital de tu startup, fomentar la credibilidad y expandir tu alcance.
+    </Fragment>
+  </Hero>
+
+  <!-- ========================================
+       SECCIÓN 2: ¿Qué hacemos en GRAPE?
+       Fuente: homes/saas.astro (Features)
+       ======================================== -->
+
+  <Features
+    id="features"
+    title="¿Qué hacemos en GRAPE?"
+    subtitle="Cada una de las siguientes características mejora nuestra propuesta de valor."
+    columns={2}
+    items={[
+      {
+        title: 'Desarrollo Web Moderno',
+        description:
+          'Ofrecemos una combinación poderosa que mejora tanto el proceso de desarrollo como la experiencia del usuario final. Construimos sitios web dinámicos y visualmente impresionantes con rendimiento optimizado.',
+        icon: 'tabler:layers-union',
+      },
+      {
+        title: 'Diseño versátil para startups, pequeñas empresas y más',
+        description: `Personalizamos fácilmente nuestras soluciones para armonizar con la identidad única de tu marca. Nuestro diseño versátil se adapta a tus necesidades.`,
+        icon: 'tabler:artboard',
+      },
+      {
+        title: 'Personalización sin esfuerzo para portafolios y sitios de marketing',
+        description:
+          'Con personalización intuitiva, mostramos fácilmente piezas de portafolio, casos de estudio, aspectos destacados de proyectos y contenido relevante. Ideal para profesionales creativos y empresas que buscan destacar su experiencia.',
+        icon: 'tabler:writing',
+      },
+      {
+        title: 'Landing pages optimizadas y blogs atractivos',
+        description: `Las landing pages están estratégicamente diseñadas para cautivar a los visitantes y provocar acciones específicas. Además, la función de creación de blogs empodera para compartir ideas y atraer a la audiencia.`,
+        icon: 'tabler:podium',
+      },
+      {
+        title: 'Tiempos de carga rápidos y código listo para producción',
+        description: `Utilizamos las mejores tecnologías para garantizar una carga rápida y renderizado fluido, mejorando la navegación. El código sigue las mejores prácticas, mejorando la experiencia del usuario, SEO y reduciendo las tasas de rebote.`,
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Estructura optimizada para SEO para mayor visibilidad',
+        description: `Seguimos las mejores prácticas de SEO con código limpio, marcado HTML semántico y carga rápida, mejorando las clasificaciones en los motores de búsqueda. Nuestra estructura SEO garantiza visibilidad para clientes potenciales.`,
+        icon: 'tabler:eyeglass',
+      },
+    ]}
+  />
+
+  <!-- ========================================
+       SECCIÓN 3: Servicios (3 bloques Content)
+       Fuente: Nuevo contenido personalizado
+       ======================================== -->
+
+  <!-- Content 1: Marketing Landings - Webapps -->
+  <Content
+    isReversed
+    tagline="Presencia Digital"
+    title="Marketing Landings & Webapps"
+    items={[
+      {
+        title: 'Landing pages de alto impacto',
+        description:
+          'Diseñamos y desarrollamos landing pages optimizadas para conversión que capturan la atención de tus visitantes y los guían hacia la acción.',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Web applications modernas',
+        description:
+          'Creamos aplicaciones web escalables y performantes utilizando las últimas tecnologías como React, Next.js, Astro y más.',
+        icon: 'tabler:apps',
+      },
+      {
+        title: 'Diseño centrado en conversión',
+        description:
+          'Cada elemento está estratégicamente ubicado para maximizar las conversiones, desde CTAs efectivos hasta formularios optimizados.',
+        icon: 'tabler:target',
+      },
+      {
+        title: 'SEO y Analytics integrados',
+        description:
+          'Implementamos las mejores prácticas de SEO desde el inicio y configuramos analytics para que puedas medir el éxito de tu sitio.',
+        icon: 'tabler:chart-line',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80',
+      alt: 'Marketing Digital',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Tu presencia digital que convierte
+      </h3>
+      Transformamos visitantes en clientes con diseño estratégico y tecnología de punta
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content 2: Sistemas para pymes, eventos, clubes, etc. -->
+  <Content
+    isAfterContent
+    tagline="Soluciones Empresariales"
+    title="Sistemas para PyMEs, Eventos y Clubes"
+    items={[
+      {
+        title: 'Gestión para PyMEs',
+        description:
+          'Desarrollamos sistemas de gestión adaptados a las necesidades específicas de pequeñas y medianas empresas: inventarios, facturación, CRM y más.',
+        icon: 'tabler:building-store',
+      },
+      {
+        title: 'Plataformas para eventos',
+        description:
+          'Soluciones completas para la gestión de eventos: registro de asistentes, venta de entradas, acreditaciones y seguimiento en tiempo real.',
+        icon: 'tabler:calendar-event',
+      },
+      {
+        title: 'Software para clubes deportivos',
+        description:
+          'Sistemas especializados para la administración de socios, reservas de instalaciones, pagos de cuotas y comunicación con miembros.',
+        icon: 'tabler:ball-football',
+      },
+      {
+        title: 'Integración con herramientas existentes',
+        description:
+          'Conectamos tu nuevo sistema con las herramientas que ya usas: contabilidad, email marketing, pasarelas de pago y más.',
+        icon: 'tabler:plug-connected',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Gestión Empresarial',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Software que se adapta a tu negocio
+      </h3>
+      Soluciones prácticas y eficientes para simplificar tu gestión diaria
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content 3: Desarrollo de sistemas 100% a medida -->
+  <Content
+    isReversed
+    isAfterContent
+    tagline="Desarrollo Personalizado"
+    title="Sistemas 100% a Medida"
+    items={[
+      {
+        title: 'Análisis profundo de requerimientos',
+        description:
+          'Comenzamos con un discovery exhaustivo para entender a fondo tus procesos, desafíos y objetivos de negocio.',
+        icon: 'tabler:search',
+      },
+      {
+        title: 'Arquitectura escalable',
+        description:
+          'Diseñamos la arquitectura de tu sistema pensando en el crecimiento futuro, utilizando tecnologías robustas y probadas.',
+        icon: 'tabler:building-arch',
+      },
+      {
+        title: 'Desarrollo ágil e iterativo',
+        description:
+          'Trabajamos en sprints cortos con entregas frecuentes, permitiéndote ver el progreso y hacer ajustes en el camino.',
+        icon: 'tabler:refresh',
+      },
+      {
+        title: 'Soporte y mantenimiento continuo',
+        description:
+          'No terminamos con el lanzamiento. Ofrecemos soporte técnico, actualizaciones y nuevas funcionalidades según evolucionen tus necesidades.',
+        icon: 'tabler:lifebuoy',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Desarrollo a Medida',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Tu visión, nuestro código
+      </h3>
+      Construimos el software que tu negocio necesita, exactamente como lo necesitas
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- ========================================
+       SECCIÓN 4: Diferenciación (Content)
+       Fuente: pages/index.astro (Content - original Sec 4)
+       ======================================== -->
+
+  <Content
+    id="diferenciacion"
+    isReversed
+    tagline="Por qué elegirnos"
+    title="Lo que nos hace diferentes"
+    items={[
+      {
+        title: 'Diseños de alta calidad',
+        description:
+          'Nuestras soluciones cuentan con diseños de primer nivel que aseguran una apariencia profesional y pulida para tus proyectos.',
+        icon: 'tabler:wand',
+      },
+      {
+        title: 'Herramientas de personalización',
+        description:
+          'Adapta cada solución a tus necesidades únicas con herramientas de personalización fáciles de usar que te permiten personalizar colores, fuentes y contenido.',
+        icon: 'tabler:settings',
+      },
+      {
+        title: 'Elementos prediseñados',
+        description:
+          'Ahorra tiempo y esfuerzo con nuestros elementos listos para usar, incluidos gráficos, iconos y diseños que mejoran el atractivo visual de tus creaciones.',
+        icon: 'tabler:presentation',
+      },
+      {
+        title: 'Vistas previas y mockups',
+        description:
+          'Visualiza el resultado final antes de realizar cualquier cambio utilizando nuestras vistas previas y mockups, asegurando que tus proyectos cumplan con tus expectativas.',
+        icon: 'tabler:carousel-horizontal',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+      alt: 'Diferenciación',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Calidad que marca la diferencia
+      </h3>
+      Nuestras soluciones están diseñadas para maximizar tu productividad y creatividad
+    </Fragment>
+  </Content>
+
+  <!-- ========================================
+       SECCIÓN 5: About Us (Sobre Nosotros)
+       Fuente: homes/startup.astro (Features2)
+       ======================================== -->
+
+  <Features2
+    title="Sobre nosotros"
+    subtitle="Creemos en la magia de convertir sueños en realidades impresionantes. Fundada por desarrolladores apasionados con una visión compartida, nos propusimos simplificar el proceso de creación de sitios web. Nuestras soluciones reúnen la innovación de las tecnologías más modernas y la versatilidad del diseño contemporáneo, permitiéndote expresar tu identidad de marca única como nunca antes."
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- ========================================
+       SECCIÓN 6: Cómo Trabajamos (Steps)
+       Fuente: pages/index.astro (Steps)
+       ======================================== -->
+
+  <Steps
+    title="Consigue el sitio web de tus sueños en poco tiempo con Grape."
+    items={[
+      {
+        title: 'Paso 1: <span class="font-medium">Planificación</span>',
+        description:
+          "¡Arrancamos con una reunión! Ya sea por Zoom o presencial, entendemos tu visión y objetivos. Tu lienzo te espera, listo para tu obra maestra digital. En solo unos clics, ya habrás sentado las bases.",
+        icon: 'tabler:package',
+      },
+      {
+        title: 'Paso 2: <span class="font-medium">Desarrollo</span>',
+        description:
+          "Vertemos tu visión en código. Agregamos diseño, funcionalidad y todo ese jazz para dar vida a tu espacio digital. Recuerda, es el contenido lo que cuenta tu historia, así que lo hacemos cautivador.",
+        icon: 'tabler:letter-case',
+      },
+      {
+        title: 'Paso 3: <span class="font-medium">Personalización</span>',
+        description:
+          'Dale tu toque personal. Ajustamos colores, fuentes y diseños hasta que se sienta perfecto. ¡Tu estilo único, amplificado por Grape! La precisión en el diseño garantiza una experiencia de usuario perfecta.',
+        icon: 'tabler:paint',
+      },
+      {
+        title: '¡Listo!',
+        icon: 'tabler:check',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      alt: 'Pasos de trabajo',
+    }}
+  />
+
+  <!-- ========================================
+       SECCIÓN 7: Contact Form
+       Fuente: pages/contact.astro (Contact)
+       ======================================== -->
+
+  <Contact
+    id="contact"
+    title="¡Envíanos un mensaje hoy!"
+    subtitle="Para respuestas más rápidas, explora nuestra sección de preguntas frecuentes. ¡Puedes encontrar la solución que buscas allí mismo! Si no, nuestro equipo de soporte estará encantado de ayudarte."
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Nombre',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'Email',
+      },
+    ]}
+    textarea={{
+      label: 'Mensaje',
+    }}
+    disclaimer={{
+      label:
+        'Al enviar este formulario de contacto, reconoces y aceptas la recopilación de tu información personal.',
+    }}
+    description="Nuestro equipo de soporte generalmente responde dentro de las 24 horas hábiles."
+  />
+
+  <!-- ========================================
+       SECCIÓN 8: Contact Support Info
+       Fuente: pages/contact.astro (Features2)
+       ======================================== -->
+
+  <Features2
+    title="¡Estamos aquí para ayudarte!"
+    items={[
+      {
+        title: 'Soporte general',
+        description: `Chatea con nosotros para consultas relacionadas con la gestión de cuentas, navegación del sitio web, problemas de pago, acceso a plantillas compradas o preguntas generales sobre la funcionalidad del sitio web.`,
+      },
+      {
+        title: 'Contactar ventas',
+        description:
+          'Chatea con nosotros para preguntas sobre compras, opciones de personalización, licencias para uso comercial, consultas sobre plantillas específicas, etc.',
+      },
+      {
+        title: 'Soporte técnico',
+        description:
+          'Chatea con nosotros cuando enfrentes problemas como instalación de plantillas, dificultades de edición, problemas de compatibilidad con software o errores de descarga, u otros desafíos técnicos relacionados con el uso de las plantillas.',
+      },
+      {
+        title: 'Teléfono',
+        description: '+1 (234) 567-890',
+        icon: 'tabler:headset',
+      },
+      {
+        title: 'Email',
+        description: 'contact@grape.dev',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Ubicación',
+        description: 'Buenos Aires, Argentina',
+        icon: 'tabler:map-pin',
+      },
+    ]}
+  />
+</Layout>
