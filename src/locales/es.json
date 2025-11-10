@@ -1,0 +1,255 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "contact": "Contacto",
+    "pricing": "Precios",
+    "blog": "Blog",
+    "know_more": "Conoce más"
+  },
+  "hero": {
+    "tagline": "Agencia de Desarrollo",
+    "title": "Creamos soluciones digitales para impulsar tu negocio",
+    "title_part1": "Creamos soluciones digitales",
+    "title_part2": "para",
+    "title_highlight": "impulsar tu negocio",
+    "subtitle": "Somos una Agencia de Desarrollo que tiene por objetivo proveer soluciones que ayuden a nuestros clientes a mejorar sus negocios digitales.",
+    "cta_primary": "Conoce más",
+    "cta_secondary": "Contáctanos"
+  },
+  "features": {
+    "title": "¿Qué hacemos en GRAPE?",
+    "subtitle": "Combinamos experiencia, tecnología y atención personalizada para entregar soluciones que realmente marcan la diferencia.",
+    "items": {
+      "boutique": {
+        "title": "Agencia Boutique",
+        "description": "Equipo selecto de especialistas que trabajan directamente en tu proyecto. Sin intermediarios, con atención personalizada y dedicación completa a tus objetivos."
+      },
+      "experience": {
+        "title": "Experiencia Senior en Desarrollo Web y Mobile",
+        "description": "Más de 10 años creando aplicaciones web y móviles de alto rendimiento. Dominamos las tecnologías más demandadas: React, Next.js, React Native, Node.js y más."
+      },
+      "processes": {
+        "title": "Procesos Claros y Eficientes",
+        "description": "Metodologías ágiles que garantizan entregas rápidas sin sacrificar calidad. Sprints cortos, comunicación constante y resultados visibles desde la primera semana."
+      },
+      "tech": {
+        "title": "Tecnologías Modernas y Escalables",
+        "description": "Stack tecnológico de vanguardia preparado para crecer con tu negocio. Infraestructura cloud, arquitecturas robustas y código mantenible para el largo plazo."
+      },
+      "attention": {
+        "title": "Atención Personalizada",
+        "description": "Cada proyecto es único. Te asignamos un equipo dedicado que entiende tu visión y trabaja como una extensión de tu empresa. Respuestas rápidas, feedback continuo."
+      },
+      "support": {
+        "title": "Soporte y Monitoreo Continuo",
+        "description": "No desaparecemos después del lanzamiento. Monitoreo 24/7, actualizaciones regulares y soporte técnico para que tu aplicación funcione perfectamente siempre."
+      }
+    }
+  },
+  "common": {
+    "learnMore": "Saber más",
+    "getStarted": "Comenzar",
+    "contactUs": "Contáctanos",
+    "readMore": "Leer más",
+    "viewAll": "Ver todo"
+  },
+  "services": {
+    "web": {
+      "tagline": "Presencia Digital",
+      "title": "Marketing Landings & Webapps",
+      "content_title": "Tu presencia digital que convierte",
+      "content_subtitle": "Transformamos visitantes en clientes con diseño estratégico y tecnología de punta",
+      "items": {
+        "landing": {
+          "title": "Landing pages de alto impacto",
+          "description": "Diseñamos y desarrollamos landing pages optimizadas para conversión que capturan la atención de tus visitantes y los guían hacia la acción."
+        },
+        "webapps": {
+          "title": "Web applications modernas",
+          "description": "Creamos aplicaciones web escalables y performantes utilizando las últimas tecnologías como React, Next.js, Astro y más."
+        },
+        "conversion": {
+          "title": "Diseño centrado en conversión",
+          "description": "Cada elemento está estratégicamente ubicado para maximizar las conversiones, desde CTAs efectivos hasta formularios optimizados."
+        },
+        "seo": {
+          "title": "SEO y Analytics integrados",
+          "description": "Implementamos las mejores prácticas de SEO desde el inicio y configuramos analytics para que puedas medir el éxito de tu sitio."
+        }
+      }
+    },
+    "business": {
+      "tagline": "Soluciones Empresariales",
+      "title": "Sistemas para PyMEs, Eventos y Clubes",
+      "content_title": "Software que se adapta a tu negocio",
+      "content_subtitle": "Soluciones prácticas y eficientes para simplificar tu gestión diaria",
+      "items": {
+        "pyme": {
+          "title": "Gestión para PyMEs",
+          "description": "Desarrollamos sistemas de gestión adaptados a las necesidades específicas de pequeñas y medianas empresas: inventarios, facturación, CRM y más."
+        },
+        "events": {
+          "title": "Plataformas para eventos",
+          "description": "Soluciones completas para la gestión de eventos: registro de asistentes, venta de entradas, acreditaciones y seguimiento en tiempo real."
+        },
+        "clubs": {
+          "title": "Software para clubes deportivos",
+          "description": "Sistemas especializados para la administración de socios, reservas de instalaciones, pagos de cuotas y comunicación con miembros."
+        },
+        "integration": {
+          "title": "Integración con herramientas existentes",
+          "description": "Conectamos tu nuevo sistema con las herramientas que ya usas: contabilidad, email marketing, pasarelas de pago y más."
+        }
+      }
+    },
+    "custom": {
+      "tagline": "Desarrollo Personalizado",
+      "title": "Sistemas 100% a Medida",
+      "content_title": "Tu visión, nuestro código",
+      "content_subtitle": "Construimos el software que tu negocio necesita, exactamente como lo necesitas",
+      "items": {
+        "analysis": {
+          "title": "Análisis profundo de requerimientos",
+          "description": "Comenzamos con un discovery exhaustivo para entender a fondo tus procesos, desafíos y objetivos de negocio."
+        },
+        "architecture": {
+          "title": "Arquitectura escalable",
+          "description": "Diseñamos la arquitectura de tu sistema pensando en el crecimiento futuro, utilizando tecnologías robustas y probadas."
+        },
+        "agile": {
+          "title": "Desarrollo ágil e iterativo",
+          "description": "Trabajamos en sprints cortos con entregas frecuentes, permitiéndote ver el progreso y hacer ajustes en el camino."
+        },
+        "support": {
+          "title": "Soporte y mantenimiento continuo",
+          "description": "No terminamos con el lanzamiento. Ofrecemos soporte técnico, actualizaciones y nuevas funcionalidades según evolucionen tus necesidades."
+        }
+      }
+    }
+  },
+  "services_section": {
+    "tagline": "Nuestros Servicios",
+    "title": "Lo que hacemos",
+    "subtitle": "Soluciones digitales completas para impulsar tu negocio",
+    "items": {
+      "web": {
+        "title": "Marketing Landings & Webapps",
+        "description": "Diseñamos y desarrollamos landing pages optimizadas para conversión y aplicaciones web modernas que capturan la atención y generan resultados.",
+        "cta": "Conocer más"
+      },
+      "business": {
+        "title": "Sistemas para PyMEs, Eventos y Clubes",
+        "description": "Desarrollamos sistemas de gestión adaptados a las necesidades de pequeñas y medianas empresas, eventos y organizaciones deportivas.",
+        "cta": "Conocer más"
+      },
+      "custom": {
+        "title": "Desarrollo a Medida",
+        "description": "Creamos soluciones de software 100% personalizadas que se adaptan exactamente a los procesos y necesidades de tu negocio.",
+        "cta": "Conocer más"
+      }
+    }
+  },
+  "differentiation": {
+    "tagline": "Por qué elegirnos",
+    "title": "Lo que nos hace diferentes",
+    "content_title": "Creatividad, Calidad y Flexibilidad",
+    "content_subtitle": "Una consultora de sistemas con los más altos estándares, enfocada en tu éxito",
+    "items": {
+      "creativity": {
+        "title": "Creatividad en cada solución",
+        "description": "Nos encanta resolver desafíos con creatividad. Pensamos fuera de la caja para encontrar la mejor solución técnica que se adapte perfectamente a tu problema de negocio."
+      },
+      "quality": {
+        "title": "Calidad sin concesiones",
+        "description": "Cumplimos con los más altos estándares de calidad en cada línea de código. Priorizamos la excelencia y la experiencia de uso por encima de la cantidad de proyectos."
+      },
+      "flexibility": {
+        "title": "Flexibilidad enfocada en el cliente",
+        "description": "Nos adaptamos a tus necesidades con una capacidad de respuesta rápida y difícil de superar. Tu éxito es nuestro compromiso principal."
+      },
+      "custom": {
+        "title": "Desarrollo a medida",
+        "description": "Creamos soluciones de software 100% adaptadas a las necesidades específicas de tu negocio. No hay dos proyectos iguales, cada uno es único como tu empresa."
+      },
+      "agile": {
+        "title": "Equipos ágiles e idóneos",
+        "description": "Nuestros equipos combinan agilidad con experiencia técnica profunda. Entregas rápidas sin sacrificar la calidad del producto final."
+      },
+      "improvement": {
+        "title": "Mejora continua",
+        "description": "Aprovechamos cada oportunidad de mejora para optimizar nuestros procesos de comunicación y producción. Evolucionamos junto a nuestros clientes."
+      }
+    }
+  },
+  "about": {
+    "title": "Sobre nosotros",
+    "subtitle": "Grape es una empresa de Desarrollo de Software especializada en software factory y transformación digital. Acompañamos a nuestros clientes en todo el proceso hasta lograr los objetivos comprometidos. Lo que nos diferencia es la agilidad y la idoneidad de nuestros equipos: afrontamos cada desafío con creatividad, calidad y flexibilidad enfocada en el cliente."
+  },
+  "steps": {
+    "title": "Nuestro proceso de trabajo: claro, ágil y efectivo",
+    "items": {
+      "discovery": {
+        "title": "Discovery y Planificación",
+        "description": "Comenzamos con una reunión de descubrimiento donde entendemos a fondo tu visión, objetivos y desafíos. Definimos alcance, tecnologías y roadmap del proyecto."
+      },
+      "design": {
+        "title": "Diseño y Arquitectura",
+        "description": "Diseñamos la arquitectura técnica y la experiencia de usuario. Creamos prototipos y wireframes para validar la solución antes de comenzar el desarrollo.",
+        "icon": "tabler:layout-2"
+      },
+      "development": {
+        "title": "Desarrollo Ágil",
+        "description": "Desarrollamos en sprints cortos con entregas frecuentes. Comunicación constante, demos regulares y ajustes en el camino. Ves el progreso desde la primera semana."
+      },
+      "testing": {
+        "title": "Testing y QA",
+        "description": "Pruebas exhaustivas de funcionalidad, rendimiento y seguridad. Garantizamos que tu aplicación funcione perfectamente en todos los escenarios."
+      },
+      "launch": {
+        "title": "Lanzamiento y Soporte",
+        "description": "Deploy a producción con todas las garantías. No terminamos aquí: soporte continuo, monitoreo 24/7 y evolución constante de tu producto."
+      },
+      "ready": "¡Tu proyecto en producción!"
+    }
+  },
+  "contact": {
+    "title": "¿Listo para comenzar tu proyecto?",
+    "subtitle": "Contáctanos y cuéntanos sobre tu idea. Nuestro equipo estará encantado de ayudarte a convertirla en realidad.",
+    "name_label": "Nombre",
+    "email_label": "Email",
+    "message_label": "Cuéntanos sobre tu proyecto",
+    "disclaimer": "Al enviar este formulario, aceptas que procesemos tu información para contactarte sobre tu proyecto.",
+    "description": "Te responderemos dentro de las 24 horas hábiles."
+  },
+  "contact_info": {
+    "title": "¿Cómo podemos ayudarte?",
+    "items": {
+      "consulting": {
+        "title": "Consultoría técnica",
+        "description": "¿Necesitas asesoramiento sobre tecnologías, arquitectura o escalabilidad? Hablemos sobre la mejor solución para tu proyecto."
+      },
+      "quotes": {
+        "title": "Presupuestos",
+        "description": "Solicita un presupuesto sin compromiso. Te ayudamos a definir alcance, tiempos y costos de tu proyecto de forma transparente."
+      },
+      "support": {
+        "title": "Soporte y mantenimiento",
+        "description": "¿Tienes una aplicación que necesita mantenimiento o nuevas funcionalidades? Podemos ayudarte a evolucionar tu producto."
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "value": "+54 9 11 XXXX-XXXX"
+      },
+      "email": {
+        "title": "Email",
+        "value": "hola@grape.com.ar"
+      },
+      "location": {
+        "title": "Ubicación",
+        "value": "Buenos Aires, Argentina"
+      }
+    }
+  }
+}

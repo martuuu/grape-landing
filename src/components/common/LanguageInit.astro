@@ -1,0 +1,36 @@
+---
+/**
+ * Script de inicialización de idioma
+ * Se ejecuta antes de que se renderice la página para evitar flash de contenido
+ * Y actualiza dinámicamente el contenido según el idioma
+ */
+---
+
+<script is:inline>
+  // Este script se ejecuta inline para evitar flash de contenido
+  (function() {
+    const storedLang = localStorage.getItem('language');
+    const browserLang = navigator.language.toLowerCase();
+    const defaultLang = 'es';
+    
+    // Determinar idioma a usar
+    let lang = defaultLang;
+    if (storedLang === 'es' || storedLang === 'en') {
+      lang = storedLang;
+    } else if (browserLang.startsWith('en')) {
+      lang = 'en';
+      localStorage.setItem('language', lang);
+    } else {
+      localStorage.setItem('language', defaultLang);
+    }
+    
+    // Aplicar al HTML
+    document.documentElement.lang = lang;
+    
+    // Hacer disponible globalmente
+    window.__GRAPE_LANG__ = lang;
+    
+    // Guardar en cookie para posible uso futuro
+    document.cookie = `language=${lang}; path=/; max-age=31536000`;
+  })();
+</script>

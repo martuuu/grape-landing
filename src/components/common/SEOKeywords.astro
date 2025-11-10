@@ -1,0 +1,55 @@
+---
+/**
+ * SEOKeywords Component
+ * 
+ * Agrega meta keywords y otros meta tags relevantes para SEO
+ * Aunque Google no usa meta keywords, otros buscadores sí (Bing, Yandex)
+ */
+
+export interface Props {
+  keywords?: string | string[];
+  author?: string;
+  robots?: string;
+  googlebot?: string;
+}
+
+const {
+  keywords,
+  author = 'Grape Agency',
+  robots,
+  googlebot,
+} = Astro.props;
+
+// Convertir array de keywords a string
+const keywordsString = Array.isArray(keywords) ? keywords.join(', ') : keywords;
+---
+
+<!-- Keywords Meta Tag -->
+{keywordsString && <meta name="keywords" content={keywordsString} />}
+
+<!-- Author -->
+<meta name="author" content={author} />
+
+<!-- Robots specific directives -->
+{robots && <meta name="robots" content={robots} />}
+{googlebot && <meta name="googlebot" content={googlebot} />}
+
+<!-- Additional SEO Meta Tags -->
+<meta name="rating" content="general" />
+<meta name="distribution" content="global" />
+
+<!-- Mobile SEO -->
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Grape" />
+
+<!-- Language and Geographic -->
+<meta name="geo.region" content="ES" />
+<meta name="language" content="Spanish" />
+
+<!-- Content Classification -->
+<meta name="coverage" content="Worldwide" />
+<meta name="target" content="all" />
+<meta name="audience" content="all" />
+
+<!-- Additional indexing hints -->
+<meta name="revisit-after" content="7 days" />

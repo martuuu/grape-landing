@@ -1,0 +1,277 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features from '~/components/widgets/Features.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'Marketing & Landings - Servicios Grape',
+  description: 'Creamos landing pages y campañas de marketing digital que convierten visitantes en clientes.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <HeroText
+    tagline="Marketing Digital"
+    title="Landings que Convierten"
+    subtitle="Diseñamos y desarrollamos landing pages optimizadas para maximizar tus conversiones y potenciar tu presencia digital."
+  />
+
+  <!-- Introducción desde index -->
+  <Content
+    isReversed
+    items={[
+      {
+        title: "Marketing Landings & Webapps",
+        description:
+          "Diseñamos y desarrollamos landing pages optimizadas para conversión que capturan la atención de tus visitantes y los guían hacia la acción.",
+        icon: "tabler:rocket",
+      },
+      {
+        title: "Web applications modernas",
+        description:
+          "Creamos aplicaciones web escalables y performantes utilizando las últimas tecnologías como React, Next.js, Astro y más.",
+        icon: "tabler:apps",
+      },
+      {
+        title: "Diseño centrado en conversión",
+        description:
+          "Cada elemento está estratégicamente ubicado para maximizar las conversiones, desde CTAs efectivos hasta formularios optimizados.",
+        icon: "tabler:target",
+      },
+      {
+        title: "SEO y Analytics integrados",
+        description:
+          "Implementamos las mejores prácticas de SEO desde el inicio y configuramos analytics para que puedas medir el éxito de tu sitio.",
+        icon: "tabler:chart-line",
+      },
+    ]}
+    image={{
+      src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80",
+      alt: "Marketing Digital",
+    }}
+  >
+    <Fragment slot="content">
+      <h3
+        class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2"
+      >
+        Tu presencia digital que convierte
+      </h3>
+      Transformamos visitantes en clientes con diseño estratégico y tecnología de
+      punta
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Características Principales -->
+  <Features
+    id="features"
+    title="¿Qué incluye este servicio?"
+    subtitle="Todo lo que necesitas para lanzar campañas exitosas"
+    columns={3}
+    items={[
+      {
+        title: 'Diseño Orientado a Conversión',
+        description: 'Diseños probados que guían al usuario hacia la acción deseada, con llamados a la acción estratégicos.',
+        icon: 'tabler:target',
+      },
+      {
+        title: 'Optimización SEO',
+        description: 'Landing pages optimizadas para motores de búsqueda, mejorando tu visibilidad orgánica.',
+        icon: 'tabler:seo',
+      },
+      {
+        title: 'Responsive Design',
+        description: 'Diseños que se adaptan perfectamente a cualquier dispositivo: móvil, tablet o desktop.',
+        icon: 'tabler:device-mobile',
+      },
+      {
+        title: 'Carga Ultrarrápida',
+        description: 'Optimización de rendimiento para tiempos de carga mínimos, mejorando la experiencia del usuario.',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Integración con Analytics',
+        description: 'Configuración completa de Google Analytics y herramientas de seguimiento para medir resultados.',
+        icon: 'tabler:chart-line',
+      },
+      {
+        title: 'A/B Testing',
+        description: 'Implementación de herramientas para probar diferentes versiones y optimizar conversiones.',
+        icon: 'tabler:a-b-2',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
+    </Fragment>
+  </Features>
+
+  <!-- Proceso de Trabajo -->
+  <Steps
+    id="proceso"
+    title="Nuestro Proceso de Trabajo"
+    tagline="Metodología comprobada"
+    items={[
+      {
+        title: '1. Descubrimiento',
+        description: 'Analizamos tu negocio, público objetivo y objetivos de conversión para crear una estrategia efectiva.',
+        icon: 'tabler:search',
+      },
+      {
+        title: '2. Diseño y Prototipo',
+        description: 'Creamos wireframes y diseños visuales que maximizan la conversión, validando con tu equipo.',
+        icon: 'tabler:palette',
+      },
+      {
+        title: '3. Desarrollo',
+        description: 'Desarrollamos tu landing con las últimas tecnologías, asegurando rendimiento y compatibilidad.',
+        icon: 'tabler:code',
+      },
+      {
+        title: '4. Optimización',
+        description: 'Configuramos analytics, implementamos SEO técnico y optimizamos para conversiones.',
+        icon: 'tabler:adjustments',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80',
+      alt: 'Proceso de Marketing Digital',
+    }}
+  />
+
+  <!-- Tipos de Landings -->
+  <Features2
+    title="Tipos de Landing Pages"
+    subtitle="Soluciones adaptadas a tus necesidades"
+    items={[
+      {
+        title: 'Landing de Captación',
+        description: 'Páginas diseñadas para captar leads con formularios optimizados y ofertas irresistibles.',
+        icon: 'tabler:user-plus',
+      },
+      {
+        title: 'Landing de Producto',
+        description: 'Presentación detallada de productos o servicios con focus en beneficios y características.',
+        icon: 'tabler:package',
+      },
+      {
+        title: 'Landing de Evento',
+        description: 'Páginas para promocionar eventos, webinars o lanzamientos con registro integrado.',
+        icon: 'tabler:calendar-event',
+      },
+      {
+        title: 'Landing de Descarga',
+        description: 'Optimizadas para descargas de apps, ebooks, whitepapers u otros recursos digitales.',
+        icon: 'tabler:download',
+      },
+      {
+        title: 'Landing de Campaña',
+        description: 'Páginas para campañas específicas de Google Ads, Facebook Ads o email marketing.',
+        icon: 'tabler:ad',
+      },
+      {
+        title: 'Landing de Ventas',
+        description: 'Long-form sales pages con storytelling persuasivo para productos de alto valor.',
+        icon: 'tabler:cash',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- Tecnologías que usamos -->
+  <Content
+    isReversed
+    title="Tecnologías de Vanguardia"
+    subtitle="Trabajamos con las herramientas más modernas y eficientes"
+    items={[
+      {
+        title: 'Astro & Next.js',
+        description: 'Frameworks modernos para sitios ultra-rápidos y optimizados.',
+        icon: 'tabler:brand-astro',
+      },
+      {
+        title: 'Tailwind CSS',
+        description: 'Diseños únicos y responsivos con el mejor framework de CSS.',
+        icon: 'tabler:brand-tailwind',
+      },
+      {
+        title: 'WordPress & Webflow',
+        description: 'Para clientes que necesitan gestión de contenido simplificada.',
+        icon: 'tabler:brand-wordpress',
+      },
+      {
+        title: 'Google Analytics & Tag Manager',
+        description: 'Seguimiento completo de conversiones y comportamiento de usuarios.',
+        icon: 'tabler:chart-dots',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
+      alt: 'Tecnologías de Marketing',
+    }}
+  />
+
+  <!-- Resultados que obtendrás -->
+  <Content
+    title="Resultados Medibles"
+    subtitle="Métricas que importan para tu negocio"
+    isAfterContent
+    items={[
+      {
+        title: 'Mayor Tasa de Conversión',
+        description: 'Aumenta tus conversiones entre 30% y 200% con diseños optimizados.',
+        icon: 'tabler:trending-up',
+      },
+      {
+        title: 'Menor Costo por Adquisición',
+        description: 'Reduce el CPA de tus campañas con landings de alto rendimiento.',
+        icon: 'tabler:coin',
+      },
+      {
+        title: 'Mejor ROI Publicitario',
+        description: 'Maximiza el retorno de inversión de tus campañas de Google Ads y Facebook Ads.',
+        icon: 'tabler:percentage',
+      },
+      {
+        title: 'Datos Accionables',
+        description: 'Dashboards y reportes para tomar decisiones basadas en datos reales.',
+        icon: 'tabler:report-analytics',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Resultados Analytics',
+    }}
+  />
+
+  <!-- Call to Action -->
+  <CallToAction
+    title="¿Listo para mejorar tus conversiones?"
+    subtitle="Conversemos sobre tu proyecto y cómo podemos ayudarte a alcanzar tus objetivos de marketing digital."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Solicitar Presupuesto',
+        href: getPermalink('/presupuestos'),
+        icon: 'tabler:rocket',
+      },
+      {
+        variant: 'secondary',
+        text: 'Ver Trabajos',
+        href: getPermalink('/trabajos'),
+      },
+    ]}
+  />
+</Layout>

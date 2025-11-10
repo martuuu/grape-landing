@@ -58,6 +58,7 @@ export interface MetaData {
   robots?: MetaDataRobots;
 
   description?: string;
+  keywords?: string | string[];
 
   openGraph?: MetaDataOpenGraph;
   twitter?: MetaDataTwitter;
@@ -136,6 +137,7 @@ export interface Item {
   title?: string;
   description?: string;
   icon?: string;
+  iconImage?: ImageMetadata | string;
   classes?: Record<string, string>;
   callToAction?: CallToAction;
   image?: Image;

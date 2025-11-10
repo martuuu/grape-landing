@@ -1,35 +1,39 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Grape
+  site: 'https://grape.agency' # TODO: Actualizar con dominio real
   base: '/'
   trailingSlash: false
 
-  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M # TODO: Actualizar con Google Search Console
 
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: Grape - Agencia de Desarrollo de Software
+    template: '%s | Grape'
+  description: "Agencia especializada en desarrollo de aplicaciones web y móviles. Creamos soluciones digitales personalizadas para startups y empresas. Apps, webapps, MVPs y sistemas a medida."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Grape
     images:
       - url: '~/assets/images/default.png'
         width: 1200
-        height: 628
+        height: 630
     type: website
+    locale: es_ES
   twitter:
-    handle: '@arthelokyo'
-    site: '@arthelokyo'
+    handle: '@grape_agency' # TODO: Actualizar con cuenta real de Twitter
+    site: '@grape_agency'
     cardType: summary_large_image
 
 i18n:
-  language: en
+  language: es
   textDirection: ltr
+  defaultLanguage: 'es'
+  languages: ['es', 'en']
+  showLanguageSelector: true
 
 apps:
   blog:

@@ -1,0 +1,53 @@
+---
+import WidgetWrapper from '../ui/WidgetWrapper.astro';
+import Headline from '../ui/Headline.astro';
+import ItemGrid2 from '../ui/ItemGrid2.astro';
+import type { Item, CallToAction, Image } from '~/types';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  items?: Array<Item & { callToAction?: CallToAction; iconImage?: Image | ImageMetadata | string }>;
+  columns?: number;
+  defaultIcon?: string;
+  id?: string;
+  isDark?: boolean;
+  classes?: {
+    container?: string;
+    headline?: Record<string, string>;
+  };
+  bg?: string;
+}
+
+import type { ImageMetadata } from 'astro';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  items = [],
+  columns = 3,
+  defaultIcon,
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline} />
+  <ItemGrid2
+    items={items}
+    columns={columns}
+    defaultIcon={defaultIcon}
+    classes={{
+      container: 'gap-6 md:gap-8',
+      panel: 'rounded-xl p-8 md:p-10 min-h-[320px] shadow-lg bg-white dark:bg-slate-800 hover:shadow-xl transition-shadow duration-300',
+      title: 'text-xl md:text-2xl font-bold mb-3',
+      description: 'text-muted dark:text-slate-400',
+      icon: 'w-16 h-16 mb-4 text-primary',
+    }}
+  />
+</WidgetWrapper>

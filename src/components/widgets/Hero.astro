@@ -1,6 +1,7 @@
 ---
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
+import Fireflies from '~/components/effects/Fireflies.astro';
 
 import type { Hero as Props } from '~/types';
 
@@ -18,11 +19,13 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
+<section class="relative md:-mt-[76px] not-prose overflow-hidden" {...id ? { id } : {}}>
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
     <slot name="bg">
       {bg ? <Fragment set:html={bg} /> : null}
     </slot>
+    <!-- Fireflies Effect -->
+    <Fireflies quantity={15} />
   </div>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
     <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
@@ -71,9 +74,7 @@ const {
         </div>
         {content && <Fragment set:html={content} />}
       </div>
-      <div
-        class="intersect-once intersect-no-queue intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-      >
+      <div id="hero-image-container">
         {
           image && (
             <div class="relative m-auto max-w-5xl">
@@ -97,3 +98,27 @@ const {
     </div>
   </div>
 </section>
+
+<script>
+  import { inView, animate } from 'motion';
+  
+  // Animar la imagen del hero cuando entra en el viewport
+  const heroImage = document.querySelector('#hero-image-container') as HTMLElement;
+  
+  if (heroImage) {
+    // Configurar estado inicial
+    heroImage.style.opacity = '0';
+    heroImage.style.transform = 'translateY(60px) scale(0.95)';
+    heroImage.style.filter = 'blur(8px)';
+    
+    // Animar cuando entra en el viewport
+    inView(heroImage, () => {
+      // @ts-expect-error - Motion types
+      animate(heroImage, { opacity: 1 }, { duration: 1.2, easing: [0.16, 1, 0.3, 1] });
+      // @ts-expect-error - Motion types
+      animate(heroImage, { transform: 'translateY(0px) scale(1)' }, { duration: 1.2, easing: [0.16, 1, 0.3, 1] });
+      // @ts-expect-error - Motion types
+      animate(heroImage, { filter: 'blur(0px)' }, { duration: 1.2, easing: [0.16, 1, 0.3, 1] });
+    }, { amount: 0.3 }); // Trigger cuando 30% es visible
+  }
+</script>

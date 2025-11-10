@@ -20,17 +20,39 @@ const { iconClass = 'w-6 h-6' } = Astro.props;
 <script>
   function attachEvent() {
     const button = document.querySelector('[data-aw-toggle-language]');
-    if (!button) return;
+    if (!button) {
+      console.error('🔴 Language button not found!');
+      return;
+    }
 
     button.addEventListener('click', () => {
-      // Aquí irá la lógica para cambiar el idioma
-      // Por ahora solo mostramos un alert
-      const currentLang = document.documentElement.lang === 'es' ? 'en' : 'es';
-      alert(`Cambiando idioma a: ${currentLang === 'es' ? 'Español' : 'English'}`);
-      // TODO: Implementar cambio real de idioma cuando se configure i18n
+      // Detectar idioma actual
+      const currentLang = localStorage.getItem('language') || 'es';
+      const newLang = currentLang === 'es' ? 'en' : 'es';
+      
+      console.log(`🌐 Switching language: ${currentLang} → ${newLang}`);
+      
+      // Guardar preferencia en localStorage
+      localStorage.setItem('language', newLang);
+      
+      // Guardar en cookie para que el servidor lo detecte
+      document.cookie = `language=${newLang}; path=/; max-age=31536000`; // 1 año
+      
+      // Recargar página para aplicar nuevo idioma
+      window.location.reload();
     });
   }
 
+  // Aplicar idioma guardado al cargar la página
+  function applyStoredLanguage() {
+    const storedLang = localStorage.getItem('language') || 'es';
+    document.documentElement.lang = storedLang;
+    
+    // Sincronizar cookie con localStorage
+    document.cookie = `language=${storedLang}; path=/; max-age=31536000`;
+  }
+
+  applyStoredLanguage();
   attachEvent();
   document.addEventListener('astro:after-swap', attachEvent);
 </script>

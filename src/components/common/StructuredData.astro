@@ -1,0 +1,208 @@
+---
+/**
+ * StructuredData Component
+ * 
+ * Genera JSON-LD Schema.org markup para mejorar SEO
+ * Soporta diferentes tipos: Organization, WebSite, WebPage, Article, BreadcrumbList
+ */
+
+import { SITE } from 'astrowind:config';
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Breadcrumb {
+  name: string;
+  url: string;
+}
+
+interface ArticleData {
+  title: string;
+  description: string;
+  image?: string;
+  publishDate: string;
+  modifiedDate?: string;
+  url?: string;
+}
+
+interface ServiceData {
+  name: string;
+  description: string;
+  offers?: Record<string, string>;
+}
+
+interface StructuredDataProps {
+  title?: string;
+  url?: string;
+  description?: string;
+  article?: ArticleData;
+  service?: ServiceData;
+  faqs?: FAQ[];
+  breadcrumbs?: Breadcrumb[];
+}
+
+export interface Props {
+  type?: 'Organization' | 'WebSite' | 'WebPage' | 'Article' | 'Service' | 'FAQPage';
+  data?: StructuredDataProps;
+}
+
+const { type = 'WebPage', data = {} } = Astro.props;
+
+// Data base de la organización
+const organizationData = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Grape',
+  url: SITE.site || 'https://grape.agency',
+  logo: `${SITE.site || 'https://grape.agency'}/logo.png`,
+  description: 'Agencia especializada en desarrollo de aplicaciones web y móviles para startups y empresas',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'ES', // TODO: Actualizar con ubicación real
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Customer Service',
+    email: 'contact@grape.agency', // TODO: Actualizar con email real
+  },
+  sameAs: [
+    // TODO: Agregar redes sociales reales
+    'https://twitter.com/grape_agency',
+    'https://linkedin.com/company/grape-agency',
+    'https://github.com/grape-agency',
+  ],
+};
+
+// Data del sitio web
+const websiteData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Grape',
+  url: SITE.site || 'https://grape.agency',
+  description: 'Desarrollo de aplicaciones web, móviles y soluciones digitales personalizadas',
+  publisher: organizationData,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${SITE.site || 'https://grape.agency'}/search?q={search_term_string}`,
+    },
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+// Data de página web genérica
+const webPageData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: data.title || 'Grape - Desarrollo de Software',
+  url: data.url || Astro.url.href,
+  description: data.description || 'Servicios de desarrollo de software profesional',
+  publisher: organizationData,
+  inLanguage: 'es-ES',
+};
+
+// Data para artículos de blog
+const articleData = data.article
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: data.article.title,
+      description: data.article.description,
+      image: data.article.image,
+      datePublished: data.article.publishDate,
+      dateModified: data.article.modifiedDate || data.article.publishDate,
+      author: {
+        '@type': 'Organization',
+        name: 'Grape',
+      },
+      publisher: organizationData,
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': data.article.url || Astro.url.href,
+      },
+    }
+  : null;
+
+// Data para servicios
+const serviceData = data.service
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: data.service.name,
+      description: data.service.description,
+      provider: organizationData,
+      areaServed: {
+        '@type': 'Country',
+        name: 'Spain', // TODO: Expandir según área de servicio
+      },
+      offers: data.service.offers || {
+        '@type': 'Offer',
+        availability: 'https://schema.org/InStock',
+      },
+    }
+  : null;
+
+// Data para FAQs
+const faqData = data.faqs
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: data.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    }
+  : null;
+
+// Breadcrumbs si se proporcionan
+const breadcrumbData = data.breadcrumbs
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: data.breadcrumbs.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        item: item.url,
+      })),
+    }
+  : null;
+
+// Seleccionar el schema apropiado según el tipo
+let schemaData;
+switch (type) {
+  case 'Organization':
+    schemaData = organizationData;
+    break;
+  case 'WebSite':
+    schemaData = [organizationData, websiteData];
+    break;
+  case 'Article':
+    schemaData = articleData || webPageData;
+    break;
+  case 'Service':
+    schemaData = serviceData || webPageData;
+    break;
+  case 'FAQPage':
+    schemaData = faqData || webPageData;
+    break;
+  default:
+    schemaData = webPageData;
+}
+
+// Agregar breadcrumbs si están disponibles
+const finalSchema = breadcrumbData
+  ? Array.isArray(schemaData)
+    ? [...schemaData, breadcrumbData]
+    : [schemaData, breadcrumbData]
+  : schemaData;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(finalSchema)} />

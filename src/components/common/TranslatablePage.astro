@@ -1,0 +1,86 @@
+---
+/**
+ * Componente que hace que una página sea traducible dinámicamente
+ * en el cliente para sitios estáticos
+ */
+---
+
+<script>
+  import esTranslations from '../../locales/es.json';
+  import enTranslations from '../../locales/en.json';
+
+  type Language = 'es' | 'en';
+
+  const translations = {
+    es: esTranslations,
+    en: enTranslations,
+  };
+
+  function t(lang: Language, key: string): string {
+    const keys = key.split('.');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let value: any = translations[lang];
+
+    for (const k of keys) {
+      if (value && typeof value === 'object' && k in value) {
+        value = value[k];
+      } else {
+        return key;
+      }
+    }
+
+    return typeof value === 'string' ? value : key;
+  }
+
+  function updatePageContent() {
+    const lang = (localStorage.getItem('language') || 'es') as Language;
+    console.log('🔄 [TRANSLATE] Updating page content to:', lang);
+
+    // Actualizar elementos con data-i18n-key
+    const elements = document.querySelectorAll('[data-i18n-key]');
+    console.log(`📝 [TRANSLATE] Found ${elements.length} translatable elements`);
+    
+    elements.forEach((element) => {
+      const key = element.getAttribute('data-i18n-key');
+      if (key) {
+        const translation = t(lang, key);
+        
+        // Manejar diferentes tipos de elementos
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+          (element as HTMLInputElement).placeholder = translation;
+        } else if (element.hasAttribute('data-i18n-html')) {
+          element.innerHTML = translation;
+        } else {
+          element.textContent = translation;
+        }
+        
+        // Log solo los primeros 50 caracteres para no saturar la consola
+        const preview = translation.length > 50 ? translation.substring(0, 50) + '...' : translation;
+        console.log(`  ✓ ${key} = ${preview}`);
+      }
+    });
+
+    // Actualizar atributo lang
+    document.documentElement.lang = lang;
+    
+    console.log('✅ [TRANSLATE] Page translation complete');
+  }
+
+  // Ejecutar al cargar la página
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updatePageContent);
+  } else {
+    updatePageContent();
+  }
+
+  // Soporte para View Transitions de Astro
+  document.addEventListener('astro:page-load', updatePageContent);
+  
+  // Escuchar cambios de idioma
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'language') {
+      console.log('🔔 [TRANSLATE] Language changed in storage, updating...');
+      updatePageContent();
+    }
+  });
+</script>

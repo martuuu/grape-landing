@@ -1,0 +1,255 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "know_more": "Learn More"
+  },
+  "hero": {
+    "tagline": "Development Agency",
+    "title": "We create digital solutions to boost your business",
+    "title_part1": "We create digital solutions",
+    "title_part2": "to",
+    "title_highlight": "boost your business",
+    "subtitle": "We are a Development Agency that aims to provide solutions that help our clients improve their digital businesses.",
+    "cta_primary": "Learn More",
+    "cta_secondary": "Contact Us"
+  },
+  "features": {
+    "title": "What we do at GRAPE?",
+    "subtitle": "We combine experience, technology, and personalized attention to deliver solutions that truly make a difference.",
+    "items": {
+      "boutique": {
+        "title": "Boutique Agency",
+        "description": "Select team of specialists working directly on your project. No intermediaries, with personalized attention and complete dedication to your goals."
+      },
+      "experience": {
+        "title": "Senior Experience in Web and Mobile Development",
+        "description": "Over 10 years creating high-performance web and mobile applications. We master the most in-demand technologies: React, Next.js, React Native, Node.js, and more."
+      },
+      "processes": {
+        "title": "Clear and Efficient Processes",
+        "description": "Agile methodologies that guarantee fast deliveries without sacrificing quality. Short sprints, constant communication, and visible results from the first week."
+      },
+      "tech": {
+        "title": "Modern and Scalable Technologies",
+        "description": "Cutting-edge technology stack prepared to grow with your business. Cloud infrastructure, robust architectures, and maintainable code for the long term."
+      },
+      "attention": {
+        "title": "Personalized Attention",
+        "description": "Each project is unique. We assign you a dedicated team that understands your vision and works as an extension of your company. Fast responses, continuous feedback."
+      },
+      "support": {
+        "title": "Continuous Support and Monitoring",
+        "description": "We don't disappear after launch. 24/7 monitoring, regular updates, and technical support to keep your application running perfectly at all times."
+      }
+    }
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us",
+    "readMore": "Read More",
+    "viewAll": "View All"
+  },
+  "services": {
+    "web": {
+      "tagline": "Digital Presence",
+      "title": "Marketing Landings & Webapps",
+      "content_title": "Your digital presence that converts",
+      "content_subtitle": "We transform visitors into customers with strategic design and cutting-edge technology",
+      "items": {
+        "landing": {
+          "title": "High-impact landing pages",
+          "description": "We design and develop conversion-optimized landing pages that capture your visitors' attention and guide them to action."
+        },
+        "webapps": {
+          "title": "Modern web applications",
+          "description": "We create scalable and performant web applications using the latest technologies like React, Next.js, Astro and more."
+        },
+        "conversion": {
+          "title": "Conversion-centered design",
+          "description": "Every element is strategically placed to maximize conversions, from effective CTAs to optimized forms."
+        },
+        "seo": {
+          "title": "Integrated SEO and Analytics",
+          "description": "We implement SEO best practices from the start and configure analytics so you can measure your site's success."
+        }
+      }
+    },
+    "business": {
+      "tagline": "Business Solutions",
+      "title": "Systems for SMEs, Events and Clubs",
+      "content_title": "Software that adapts to your business",
+      "content_subtitle": "Practical and efficient solutions to simplify your daily management",
+      "items": {
+        "pyme": {
+          "title": "Management for SMEs",
+          "description": "We develop management systems adapted to the specific needs of small and medium businesses: inventory, invoicing, CRM and more."
+        },
+        "events": {
+          "title": "Platforms for events",
+          "description": "Complete solutions for event management: attendee registration, ticket sales, accreditations and real-time tracking."
+        },
+        "clubs": {
+          "title": "Software for sports clubs",
+          "description": "Specialized systems for member administration, facility reservations, fee payments and communication with members."
+        },
+        "integration": {
+          "title": "Integration with existing tools",
+          "description": "We connect your new system with the tools you already use: accounting, email marketing, payment gateways and more."
+        }
+      }
+    },
+    "custom": {
+      "tagline": "Custom Development",
+      "title": "100% Custom Systems",
+      "content_title": "Your vision, our code",
+      "content_subtitle": "We build the software your business needs, exactly as you need it",
+      "items": {
+        "analysis": {
+          "title": "Deep requirements analysis",
+          "description": "We start with an exhaustive discovery to thoroughly understand your processes, challenges and business objectives."
+        },
+        "architecture": {
+          "title": "Scalable architecture",
+          "description": "We design your system's architecture thinking about future growth, using robust and proven technologies."
+        },
+        "agile": {
+          "title": "Agile and iterative development",
+          "description": "We work in short sprints with frequent deliveries, allowing you to see progress and make adjustments along the way."
+        },
+        "support": {
+          "title": "Continuous support and maintenance",
+          "description": "We don't finish with the launch. We offer technical support, updates and new features as your needs evolve."
+        }
+      }
+    }
+  },
+  "services_section": {
+    "tagline": "Our Services",
+    "title": "What we do",
+    "subtitle": "Complete digital solutions to boost your business",
+    "items": {
+      "web": {
+        "title": "Marketing Landings & Webapps",
+        "description": "We design and develop conversion-optimized landing pages and modern web applications that capture attention and generate results.",
+        "cta": "Learn More"
+      },
+      "business": {
+        "title": "Systems for SMEs, Events and Clubs",
+        "description": "We develop management systems adapted to the needs of small and medium businesses, events and sports organizations.",
+        "cta": "Learn More"
+      },
+      "custom": {
+        "title": "Custom Development",
+        "description": "We create 100% personalized software solutions that adapt exactly to your business processes and needs.",
+        "cta": "Learn More"
+      }
+    }
+  },
+  "differentiation": {
+    "tagline": "Why choose us",
+    "title": "What makes us different",
+    "content_title": "Creativity, Quality and Flexibility",
+    "content_subtitle": "A systems consultancy with the highest standards, focused on your success",
+    "items": {
+      "creativity": {
+        "title": "Creativity in every solution",
+        "description": "We love solving challenges with creativity. We think outside the box to find the best technical solution that perfectly fits your business problem."
+      },
+      "quality": {
+        "title": "Uncompromising quality",
+        "description": "We meet the highest quality standards in every line of code. We prioritize excellence and user experience over the number of projects."
+      },
+      "flexibility": {
+        "title": "Client-focused flexibility",
+        "description": "We adapt to your needs with a fast response capacity that's hard to beat. Your success is our main commitment."
+      },
+      "custom": {
+        "title": "Custom development",
+        "description": "We create software solutions 100% adapted to your business's specific needs. No two projects are alike, each one is unique like your company."
+      },
+      "agile": {
+        "title": "Agile and skilled teams",
+        "description": "Our teams combine agility with deep technical experience. Fast deliveries without sacrificing the quality of the final product."
+      },
+      "improvement": {
+        "title": "Continuous improvement",
+        "description": "We leverage every opportunity for improvement to optimize our communication and production processes. We evolve alongside our clients."
+      }
+    }
+  },
+  "about": {
+    "title": "About us",
+    "subtitle": "Grape is a Software Development company specialized in software factory and digital transformation. We support our clients throughout the entire process until achieving the committed objectives. What sets us apart is the agility and suitability of our teams: we face each challenge with creativity, quality, and client-focused flexibility."
+  },
+  "steps": {
+    "title": "Our work process: clear, agile and effective",
+    "items": {
+      "discovery": {
+        "title": "Discovery and Planning",
+        "description": "We begin with a discovery meeting where we thoroughly understand your vision, objectives, and challenges. We define scope, technologies, and project roadmap."
+      },
+      "design": {
+        "title": "Design and Architecture",
+        "description": "We design the technical architecture and user experience. We create prototypes and wireframes to validate the solution before starting development.",
+        "icon": "tabler:layout-2"
+      },
+      "development": {
+        "title": "Agile Development",
+        "description": "We develop in short sprints with frequent deliveries. Constant communication, regular demos, and adjustments along the way. You see progress from the first week."
+      },
+      "testing": {
+        "title": "Testing and QA",
+        "description": "Exhaustive testing of functionality, performance, and security. We guarantee that your application works perfectly in all scenarios."
+      },
+      "launch": {
+        "title": "Launch and Support",
+        "description": "Deploy to production with all guarantees. We don't stop here: continuous support, 24/7 monitoring, and constant evolution of your product."
+      },
+      "ready": "Your project in production!"
+    }
+  },
+  "contact": {
+    "title": "Ready to start your project?",
+    "subtitle": "Contact us and tell us about your idea. Our team will be happy to help you make it a reality.",
+    "name_label": "Name",
+    "email_label": "Email",
+    "message_label": "Tell us about your project",
+    "disclaimer": "By submitting this form, you agree that we process your information to contact you about your project.",
+    "description": "We will respond within 24 business hours."
+  },
+  "contact_info": {
+    "title": "How can we help you?",
+    "items": {
+      "consulting": {
+        "title": "Technical consulting",
+        "description": "Need advice on technologies, architecture, or scalability? Let's talk about the best solution for your project."
+      },
+      "quotes": {
+        "title": "Quotes",
+        "description": "Request a quote without obligation. We help you define scope, timelines, and costs for your project transparently."
+      },
+      "support": {
+        "title": "Support and maintenance",
+        "description": "Do you have an application that needs maintenance or new features? We can help you evolve your product."
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "value": "+54 9 11 XXXX-XXXX"
+      },
+      "email": {
+        "title": "Email",
+        "value": "hola@grape.com.ar"
+      },
+      "location": {
+        "title": "Location",
+        "value": "Buenos Aires, Argentina"
+      }
+    }
+  }
+}

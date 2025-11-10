@@ -5,4 +5,18 @@ import { getAsset } from '~/utils/permalinks';
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<!-- Sitemap -->
 <link rel="sitemap" href={getAsset('/sitemap-index.xml')} />
+
+<!-- DNS Prefetch & Preconnect for performance -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+
+<!-- Security Headers -->
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- Theme Color for mobile browsers -->
+<meta name="theme-color" content="#1e40af" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
