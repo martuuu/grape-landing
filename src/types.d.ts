@@ -281,3 +281,10 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
 }
 
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
+
+export interface ScrollSnapContent extends Omit<Headline, 'classes'>, Widget {
+  content?: string;
+  items?: Array<Item>;
+  image?: string | unknown;
+  isReversed?: boolean;
+}

@@ -1,0 +1,24 @@
+# Robots.txt - Grape Agency
+# https://grape.agency/robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow admin or private areas (if needed in the future)
+# Disallow: /admin/
+# Disallow: /api/
+
+# Disallow blog tag pages (low value for SEO)
+Disallow: /tag/
+
+# Allow images and CSS/JS for Google Image Search
+User-agent: Googlebot-Image
+Allow: /
+
+# Sitemap location
+Sitemap: https://grape.agency/sitemap-index.xml
+Sitemap: https://grape.agency/sitemap-0.xml
+
+# Crawl delay for specific bots (optional - uncomment if needed)
+# User-agent: Bingbot
+# Crawl-delay: 1

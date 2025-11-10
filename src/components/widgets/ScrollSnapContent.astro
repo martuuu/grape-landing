@@ -1,0 +1,191 @@
+---
+import type { ScrollSnapContent as Props, Item } from '~/types';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Image from '~/components/common/Image.astro';
+import { Icon } from 'astro-icon/components';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  content = await Astro.slots.render('content'),
+  items = [],
+  image = await Astro.slots.render('image'),
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+// Dividir los items en grupos de 2
+const itemSlides: Item[][] = [];
+for (let i = 0; i < items.length; i += 2) {
+  itemSlides.push(items.slice(i, i + 2));
+}
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <style>
+    /* Configuración base */
+    .scroll-snap-wrapper {
+      padding: 4rem 0;
+    }
+
+    /* Header con título */
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    /* Layout de dos columnas en desktop */
+    .content-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .content-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+    }
+
+    /* Columna izquierda - Imagen */
+    .image-column {
+      order: 2;
+    }
+
+    @media (min-width: 768px) {
+      .image-column {
+        order: 1;
+      }
+    }
+
+    .image-wrapper {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Columna derecha - Contenido */
+    .content-column {
+      order: 1;
+    }
+
+    @media (min-width: 768px) {
+      .content-column {
+        order: 2;
+      }
+    }
+
+    /* Grid para los items */
+    .items-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    /* Tarjetas de items */
+    .item-card {
+      background: var(--aw-color-bg-page);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .item-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .item-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      color: var(--aw-color-primary);
+      flex-shrink: 0;
+    }
+
+    .item-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--aw-color-text-heading);
+    }
+
+    .item-description {
+      font-size: 0.95rem;
+      color: var(--aw-color-text-muted);
+      line-height: 1.6;
+    }
+  </style>
+
+  <div class="scroll-snap-wrapper">
+    <!-- Header con título y subtítulo -->
+    <div class="section-header">
+      <Headline
+        title={title}
+        subtitle={subtitle}
+        tagline={tagline}
+        classes={{
+          container: 'text-center max-w-3xl mx-auto',
+          title: 'text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-heading',
+          subtitle: 'max-w-3xl mx-auto text-xl text-muted dark:text-slate-400',
+        }}
+      />
+      {content && <div class="mt-4 text-center max-w-3xl mx-auto text-lg dark:text-slate-400" set:html={content} />}
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="content-layout">
+      <!-- Columna izquierda: Imagen -->
+      <div class="image-column">
+        {image && (
+          <div class="image-wrapper">
+            {typeof image === 'string' ? (
+              <Fragment set:html={image} />
+            ) : (
+              <Image
+                class="w-full rounded-lg shadow-lg"
+                width={500}
+                height={500}
+                widths={[400, 768]}
+                sizes="(max-width: 768px) 100vw, 432px"
+                layout="responsive"
+                loading="lazy"
+                {...image}
+              />
+            )}
+          </div>
+        )}
+      </div>
+
+      <!-- Columna derecha: Todos los items -->
+      <div class="content-column">
+        <div class="items-grid">
+          {items.map((item) => (
+            <div class="item-card">
+              <div class="flex items-start gap-3">
+                {item.icon && (
+                  <Icon name={item.icon} class="item-icon" />
+                )}
+                <div class="flex-1">
+                  {item.title && <h3 class="item-title">{item.title}</h3>}
+                  {item.description && (
+                    <p class="item-description" set:html={item.description} />
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</WidgetWrapper>
+

@@ -5,10 +5,10 @@ import Layout from "~/layouts/PageLayout.astro";
 import Hero from "~/components/widgets/Hero.astro";
 import Features from "~/components/widgets/Features.astro";
 import Features2 from "~/components/widgets/Features2.astro";
-import Content from "~/components/widgets/Content.astro";
 import Contact from "~/components/widgets/Contact.astro";
 import Steps from "~/components/widgets/Steps.astro";
 import Services from "~/components/widgets/Services.astro";
+import ScrollSnapContent from "~/components/widgets/ScrollSnapContent.astro";
 import TranslatablePage from "~/components/common/TranslatablePage.astro";
 import { getPermalink } from "~/utils/permalinks";
 import { t } from "~/i18n";
@@ -87,7 +87,8 @@ const metadata = {
       <span data-i18n-key="hero.title_part1">{t(lang, "hero.title_part1")}</span><br />
       <span data-i18n-key="hero.title_part2">{t(lang, "hero.title_part2")}</span> <span class="relative inline-block">
         <span class="text-accent dark:text-blue-400" data-i18n-key="hero.title_highlight">{t(lang, "hero.title_highlight")}</span>
-        <svg
+        <!-- Subrayado SVG animado (comentado) -->
+        <!-- <svg
           class="absolute -bottom-2 left-0 w-full h-3"
           viewBox="0 0 300 12"
           fill="none"
@@ -102,7 +103,7 @@ const metadata = {
             class="text-primary"
             opacity="0.6"
           />
-        </svg>
+        </svg> -->
       </span>
     </Fragment>
 
@@ -112,56 +113,7 @@ const metadata = {
   </Hero>
 
   <!-- ========================================
-       SECCIÓN 2: ¿Qué hacemos en GRAPE?
-       Fuente: homes/saas.astro (Features)
-       ======================================== -->
-
-  <Features
-    id="features"
-    columns={2}
-    items={[
-      {
-        title: t(lang, "features.items.boutique.title"),
-        description: t(lang, "features.items.boutique.description"),
-        icon: "tabler:diamond",
-      },
-      {
-        title: t(lang, "features.items.experience.title"),
-        description: t(lang, "features.items.experience.description"),
-        icon: "tabler:award",
-      },
-      {
-        title: t(lang, "features.items.processes.title"),
-        description: t(lang, "features.items.processes.description"),
-        icon: "tabler:rocket",
-      },
-      {
-        title: t(lang, "features.items.tech.title"),
-        description: t(lang, "features.items.tech.description"),
-        icon: "tabler:cpu",
-      },
-      {
-        title: t(lang, "features.items.attention.title"),
-        description: t(lang, "features.items.attention.description"),
-        icon: "tabler:users",
-      },
-      {
-        title: t(lang, "features.items.support.title"),
-        description: t(lang, "features.items.support.description"),
-        icon: "tabler:headset",
-      },
-    ]}
-  >
-    <Fragment slot="title">
-      <span data-i18n-key="features.title">{t(lang, "features.title")}</span>
-    </Fragment>
-    <Fragment slot="subtitle">
-      <span data-i18n-key="features.subtitle">{t(lang, "features.subtitle")}</span>
-    </Fragment>
-  </Features>
-
-  <!-- ========================================
-       SECCIÓN 3: Servicios (Cards)
+       SECCIÓN 2: Servicios (Cards)
        Fuente: Nuevo diseño personalizado
        ======================================== -->
 
@@ -215,14 +167,62 @@ const metadata = {
     </Fragment>
   </Services>
 
-  <!-- ========================================
-       SECCIÓN 4: Diferenciación (Content)
-       Fuente: pages/index.astro (Content - original Sec 4)
+    <!-- ========================================
+       SECCIÓN 3: ¿Qué hacemos en GRAPE?
+       Fuente: homes/saas.astro (Features)
        ======================================== -->
 
-  <Content
+  <Features
+    id="features"
+    columns={2}
+    items={[
+      {
+        title: t(lang, "features.items.boutique.title"),
+        description: t(lang, "features.items.boutique.description"),
+        icon: "tabler:diamond",
+      },
+      {
+        title: t(lang, "features.items.experience.title"),
+        description: t(lang, "features.items.experience.description"),
+        icon: "tabler:award",
+      },
+      {
+        title: t(lang, "features.items.processes.title"),
+        description: t(lang, "features.items.processes.description"),
+        icon: "tabler:rocket",
+      },
+      {
+        title: t(lang, "features.items.tech.title"),
+        description: t(lang, "features.items.tech.description"),
+        icon: "tabler:cpu",
+      },
+      {
+        title: t(lang, "features.items.attention.title"),
+        description: t(lang, "features.items.attention.description"),
+        icon: "tabler:users",
+      },
+      {
+        title: t(lang, "features.items.support.title"),
+        description: t(lang, "features.items.support.description"),
+        icon: "tabler:headset",
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <span data-i18n-key="features.title">{t(lang, "features.title")}</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      <span data-i18n-key="features.subtitle">{t(lang, "features.subtitle")}</span>
+    </Fragment>
+  </Features>
+
+  <!-- ========================================
+       SECCIÓN 4: Diferenciación (Content con Scroll Snap)
+       Efecto de scroll snapping con transiciones
+       ======================================== -->
+
+  <ScrollSnapContent
     id="diferenciacion"
-    isReversed
     items={[
       {
         title: t(lang, "differentiation.items.creativity.title"),
@@ -266,13 +266,7 @@ const metadata = {
     <Fragment slot="title">
       <span data-i18n-key="differentiation.title">{t(lang, "differentiation.title")}</span>
     </Fragment>
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
-        <span data-i18n-key="differentiation.content_title">{t(lang, "differentiation.content_title")}</span>
-      </h3>
-      <span data-i18n-key="differentiation.content_subtitle">{t(lang, "differentiation.content_subtitle")}</span>
-    </Fragment>
-  </Content>
+  </ScrollSnapContent>
 
   <!-- ========================================
        SECCIÓN 5: About Us (Sobre Nosotros)
