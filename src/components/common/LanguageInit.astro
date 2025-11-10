@@ -10,17 +10,14 @@
   // Este script se ejecuta inline para evitar flash de contenido
   (function() {
     const storedLang = localStorage.getItem('language');
-    const browserLang = navigator.language.toLowerCase();
     const defaultLang = 'es';
     
-    // Determinar idioma a usar
+    // Usar idioma guardado o español por defecto
     let lang = defaultLang;
     if (storedLang === 'es' || storedLang === 'en') {
       lang = storedLang;
-    } else if (browserLang.startsWith('en')) {
-      lang = 'en';
-      localStorage.setItem('language', lang);
     } else {
+      // Primera visita: usar español por defecto
       localStorage.setItem('language', defaultLang);
     }
     
