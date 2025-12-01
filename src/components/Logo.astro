@@ -4,11 +4,71 @@ import { Image } from 'astro:assets';
 import logoImage from '~/assets/images/logo.png';
 ---
 
-<div class="flex items-center gap-2">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+  
+  @font-face {
+    font-family: "Axis";
+    src: url("https://db.onlinewebfonts.com/t/f9e3f78cb6c6b737eda3859758ba1c8b.eot");
+    src: url("https://db.onlinewebfonts.com/t/f9e3f78cb6c6b737eda3859758ba1c8b.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/f9e3f78cb6c6b737eda3859758ba1c8b.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/f9e3f78cb6c6b737eda3859758ba1c8b.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/f9e3f78cb6c6b737eda3859758ba1c8b.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/f9e3f78cb6c6b737eda3859758ba1c8b.svg#Axis")format("svg");
+  }
+
+  .brand-title {
+    font-family: "Axis", sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #052832;
+    line-height: 1;
+    margin: 0;
+    text-align: left;
+  }
+
+  .brand-slogan {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: #052832;
+    line-height: 1;
+    margin: 0;
+    text-align: left;
+  }
+
+  html.dark .brand-title,
+  html.dark .brand-slogan {
+    color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .brand-title {
+      font-size: 24px;
+    }
+    
+    .brand-slogan {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .brand-text {
+      display: none;
+    }
+  }
+</style>
+
+<div class="flex items-center gap-4">
   <Image 
     src={logoImage} 
     alt={SITE?.name || 'Logo'} 
     class="h-10 md:h-12 w-auto"
-   
   />
+  <div class="brand-text flex flex-col justify-center">
+    <h1 class="brand-title">COMMIT</h1>
+    <p class="brand-slogan">TECNOLOGÍAS DEL SUR</p>
+  </div>
 </div>

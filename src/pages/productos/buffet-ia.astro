@@ -1,0 +1,205 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import PremiumCard from '~/components/ui/PremiumCard.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Icon } from 'astro-icon/components';
+
+const metadata = {
+  title: 'Buffet-IA - LegalTech con IA Local | COMMIT',
+  description: 'Tu abogado junior con IA privada y segura. Redacción automática, análisis de expedientes y privacidad total con LLMs locales.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-20 md:py-32 bg-gradient-to-b from-white to-commit-pale/20 dark:from-gray-900 dark:to-commit-darkest">
+    
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-commit-lighter/30 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-commit-light/25 rounded-full blur-[120px]"></div>
+      <div class="absolute top-1/2 right-1/4 w-80 h-80 bg-commit/20 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-commit-lighter/20 border border-commit-lighter/40 text-commit-darker dark:text-commit-light text-sm font-medium mb-8">
+        <Icon name="tabler:robot" class="w-5 h-5" />
+        LegalTech + IA Local
+      </div>
+      
+      <h1 class="text-4xl md:text-7xl font-bold font-heading leading-tight mb-8">
+        Tu Abogado Junior <br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-commit-darker via-commit to-commit-light">Privado y Seguro</span>
+      </h1>
+      
+      <p class="text-lg md:text-xl text-muted dark:text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+        La revolución de la IA llega a tu estudio jurídico sin comprometer la privacidad. 
+        Modelos de lenguaje locales que leen tus expedientes, redactan escritos y organizan tu agenda.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#contacto" class="px-8 py-4 bg-gradient-commit text-white font-bold rounded-xl shadow-lg shadow-commit/30 hover:scale-105 transition-transform">
+          Solicitar Early Access
+        </a>
+        <a href="#features" class="px-8 py-4 bg-white dark:bg-gray-800 border-2 border-commit-light dark:border-gray-700 font-bold rounded-xl hover:bg-commit-pale/20 dark:hover:bg-gray-700 transition-colors">
+          Cómo Funciona
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Value Props -->
+  <section id="features" class="py-20 bg-gray-50 dark:bg-gray-900 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-gray-800 backdrop-blur border border-gray-200 dark:border-gray-700 p-8 rounded-2xl hover:border-commit-light transition-colors group hover:shadow-xl">
+          <div class="w-14 h-14 bg-commit-lighter/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <Icon name="tabler:lock" class="w-7 h-7 text-commit" />
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Privacidad Total (Local LLM)</h3>
+          <p class="text-muted">
+            Tus datos nunca salen de tu servidor. Usamos modelos como Llama-3 corriendo localmente en tu infraestructura. Adiós al miedo de "subir datos a la nube".
+          </p>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 backdrop-blur border border-gray-200 dark:border-gray-700 p-8 rounded-2xl hover:border-commit-light transition-colors group hover:shadow-xl">
+          <div class="w-14 h-14 bg-commit-light/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <Icon name="tabler:files" class="w-7 h-7 text-commit-light" />
+          </div>
+          <h3 class="text-2xl font-bold mb-4">RAG sobre Expedientes</h3>
+          <p class="text-muted">
+            Chatea con tus PDFs. "¿Qué dijo el testigo a fojas 20?". La IA busca en tus documentos y te responde con citas exactas.
+          </p>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 backdrop-blur border border-gray-200 dark:border-gray-700 p-8 rounded-2xl hover:border-commit-lighter transition-colors group hover:shadow-xl">
+          <div class="w-14 h-14 bg-commit/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <Icon name="tabler:writing" class="w-7 h-7 text-commit-darker" />
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Redacción Automatizada</h3>
+          <p class="text-muted">
+            Genera borradores de cartas documento, demandas y escritos de mero trámite en segundos, basados en los hechos de la causa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture / MCP Section -->
+  <section class="py-20 bg-white dark:bg-gray-900 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold font-heading mb-6">Potenciado por MCP <br/><span class="text-commit-light">Model Context Protocol</span></h2>
+          <p class="text-muted dark:text-gray-300 text-lg mb-8">
+            Utilizamos el estándar MCP para conectar la IA con tus datos de forma estructurada y segura. El "cerebro" de la IA tiene herramientas específicas para leer tu base de datos y archivos.
+          </p>
+          
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-full bg-commit-lighter/20 flex items-center justify-center flex-shrink-0 border border-commit-lighter">
+                <span class="font-bold text-commit">1</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-xl mb-2">Input del Abogado</h4>
+                <p class="text-muted">"Redactame un mail reclamando la deuda de la Causa 402"</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-full bg-commit-light/20 flex items-center justify-center flex-shrink-0 border border-commit-light">
+                <span class="font-bold text-commit-light">2</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-xl mb-2">MCP Tools & RAG</h4>
+                <p class="text-muted">La IA consulta la DB segura para ver el monto y estado, y lee el expediente para contexto.</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-full bg-commit/20 flex items-center justify-center flex-shrink-0 border border-commit">
+                <span class="font-bold text-commit-darker">3</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-xl mb-2">Resultado Perfecto</h4>
+                <p class="text-muted">Obtienes un borrador preciso con datos reales, listo para enviar.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-r from-commit-lighter/30 to-commit-light/20 blur-3xl rounded-full"></div>
+          <div class="relative bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-2xl">
+            <!-- Code/Terminal Mockup -->
+            <div class="flex gap-2 mb-4">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <div class="font-mono text-sm space-y-2">
+              <div class="text-gray-600 dark:text-gray-400">$ user_query: "¿Estado causa Perez?"</div>
+              <div class="text-commit-light">&gt; Thinking...</div>
+              <div class="text-commit">&gt; Tool Call: get_case_details(client="Perez")</div>
+              <div class="text-gray-500">&gt; Querying PostgreSQL (Secure Schema)...</div>
+              <div class="text-green-600 dark:text-green-400">&gt; Result found: {'{'} id: 402, status: "Sentencia Firme" {'}'}</div>
+              <div class="text-gray-900 dark:text-white">&gt; La causa de Perez tiene Sentencia Firme. ¿Deseas redactar la notificación?</div>
+              <div class="animate-pulse">_</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <h2 class="text-3xl font-bold font-heading text-center mb-16">Funcionalidades Next-Gen</h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <PremiumCard
+          title="Extracción de Fechas"
+          description="Sube una cédula y la IA detecta automáticamente fechas de audiencia y vencimientos para agendarlos."
+          icon="tabler:calendar-event"
+          gradient="purple"
+          class="bg-gray-800 border-gray-700"
+        />
+        <PremiumCard
+          title="Anonimización"
+          description="Comparte documentos tranquilos. La IA detecta y ofusca nombres y DNIs sensibles automáticamente."
+          icon="tabler:eye-off"
+          gradient="red"
+          class="bg-gray-800 border-gray-700"
+        />
+        <PremiumCard
+          title="Búsqueda Semántica"
+          description="Encuentra documentos por concepto, no solo por palabras clave. 'Busca casos de despido por embarazo'."
+          icon="tabler:search"
+          gradient="blue"
+          class="bg-gray-800 border-gray-700"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div id="contacto">
+    <CallToAction
+      title="El Futuro del Derecho es Ahora"
+      subtitle="Agenda una demo técnica y ve a la IA trabajar sobre tus propios documentos."
+      actions={[
+        {
+          variant: 'primary',
+          text: 'Agendar Demo',
+          href: '/contact',
+          icon: 'tabler:calendar',
+        },
+        {
+          variant: 'secondary',
+          text: 'Volver a Productos',
+          href: '/productos',
+        },
+      ]}
+    />
+  </div>
+</Layout>
