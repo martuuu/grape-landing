@@ -1,6 +1,6 @@
 site:
-  name: Grape
-  site: 'https://grape.agency' # TODO: Actualizar con dominio real
+  name: COMMIT
+  site: 'https://commit.agency' # TODO: Actualizar con dominio real
   base: '/'
   trailingSlash: false
 
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: Grape - Agencia de Desarrollo de Software
-    template: '%s | Grape'
+    default: COMMIT - Agencia de Desarrollo de Software
+    template: '%s | COMMIT'
   description: "Agencia especializada en desarrollo de aplicaciones web y móviles. Creamos soluciones digitales personalizadas para startups y empresas. Apps, webapps, MVPs y sistemas a medida."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: Grape
+    site_name: COMMIT
     images:
       - url: '~/assets/images/default.png'
         width: 1200
@@ -24,8 +24,8 @@ metadata:
     type: website
     locale: es_ES
   twitter:
-    handle: '@grape_agency' # TODO: Actualizar con cuenta real de Twitter
-    site: '@grape_agency'
+    handle: '@commit_agency' # TODO: Actualizar con cuenta real de Twitter
+    site: '@commit_agency'
     cardType: summary_large_image
 
 i18n:

@@ -1,0 +1,90 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import BudgetBuilder from '~/components/widgets/BudgetBuilder.astro';
+
+const metadata = {
+  title: 'Presupuesto - COMMIT',
+  description: 'Solicita un presupuesto personalizado para tu proyecto. Cuéntanos qué necesitas y te ayudaremos a estimar el costo de desarrollo.',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-commit/10 via-white to-commit-lighter/10 dark:from-commit-darkest dark:via-gray-900 dark:to-commit-darkest py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold font-heading mb-4">
+        Construyamos tu proyecto juntos
+      </h1>
+      <p class="text-xl text-muted max-w-2xl mx-auto">
+        Responde unas simples preguntas y recibe un presupuesto personalizado. Te guiaremos paso a paso para entender el alcance y costo real de tu desarrollo.
+      </p>
+    </div>
+  </section>
+
+  <!-- Budget Builder -->
+  <section class="py-12 md:py-16">
+    <BudgetBuilder />
+  </section>
+
+  <!-- Info Section -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-800/50">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold font-heading text-center mb-12">¿Por qué es importante entender los costos?</h2>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-commit rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="font-bold mb-2">Transparencia Total</h3>
+          <p class="text-sm text-muted">Sin sorpresas. Sabrás exactamente qué estás pagando y por qué.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-commit-light rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="font-bold mb-2">Decisiones Informadas</h3>
+          <p class="text-sm text-muted">Entiende qué funcionalidades son esenciales y cuáles pueden esperar.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-commit rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="font-bold mb-2">Mejor ROI</h3>
+          <p class="text-sm text-muted">Invierte inteligentemente en las funcionalidades que realmente importan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold font-heading mb-4">¿Tienes dudas?</h2>
+      <p class="text-muted mb-8">Nuestro equipo está listo para ayudarte a definir tu proyecto</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a 
+          href="/contact" 
+          class="px-8 py-4 bg-gradient-commit text-white font-bold rounded-lg hover:shadow-lg hover:scale-[1.02] transition-all inline-block"
+        >
+          Hablar con un experto
+        </a>
+        <a 
+          href="/trabajos" 
+          class="px-8 py-4 border-2 border-commit text-commit font-bold rounded-lg hover:bg-commit/5 transition-all inline-block"
+        >
+          Ver proyectos anteriores
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,8 +1,7 @@
 ---
-import type { ScrollSnapContent as Props, Item } from '~/types';
+import type { ScrollSnapContent as Props } from '~/types';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Headline from '~/components/ui/Headline.astro';
-import Image from '~/components/common/Image.astro';
 import { Icon } from 'astro-icon/components';
 
 const {
@@ -11,121 +10,326 @@ const {
   tagline = await Astro.slots.render('tagline'),
   content = await Astro.slots.render('content'),
   items = [],
-  image = await Astro.slots.render('image'),
   id,
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
-
-// Dividir los items en grupos de 2
-const itemSlides: Item[][] = [];
-for (let i = 0; i < items.length; i += 2) {
-  itemSlides.push(items.slice(i, i + 2));
-}
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl ${classes?.container ?? ''}`} bg={bg}>
   <style>
-    /* Configuración base */
-    .scroll-snap-wrapper {
-      padding: 4rem 0;
+    .minimalist-section {
+      padding: 4rem 1rem;
     }
 
-    /* Header con título */
     .section-header {
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
     }
 
-    /* Layout de dos columnas en desktop */
-    .content-layout {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      max-width: 1200px;
+    .items-list {
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 0 1rem;
     }
 
-    @media (min-width: 768px) {
-      .content-layout {
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: start;
-      }
+    .item {
+      margin-bottom: 5rem;
+      position: relative;
+      padding-top: 3rem;
     }
 
-    /* Columna izquierda - Imagen */
-    .image-column {
-      order: 2;
+    .item:last-child {
+      margin-bottom: 0;
     }
 
-    @media (min-width: 768px) {
-      .image-column {
-        order: 1;
-      }
+    /* Línea separadora sutil arriba de cada item */
+    .item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(19, 139, 174, 0.2),
+        transparent
+      );
     }
 
-    .image-wrapper {
+    /* Items alternados: izquierda y derecha */
+    .item:nth-child(odd) .item-header {
+      justify-content: flex-start;
+    }
+
+    .item:nth-child(even) .item-header {
+      justify-content: flex-end;
+    }
+
+    .item-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .item-title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .item-icon-wrapper {
+      display: flex;
+      align-items: center;
       width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
+      margin-bottom: 1rem;
     }
 
-    /* Columna derecha - Contenido */
-    .content-column {
-      order: 1;
+    /* Icono con gradiente animado que oscurece progresivamente */
+    .item-icon {
+      width: 2rem;
+      height: 2rem;
+      flex-shrink: 0;
+      animation: iconPulse 3s ease-in-out infinite;
     }
 
-    @media (min-width: 768px) {
-      .content-column {
-        order: 2;
+    /* Colores progresivamente más oscuros usando COMMIT theme */
+    .item:nth-child(1) .item-icon {
+      color: #ade4f7; /* commit pale */
+      filter: drop-shadow(0 0 8px rgba(173, 228, 247, 0.4));
+    }
+
+    .item:nth-child(2) .item-icon {
+      color: #26bce9; /* commit lighter */
+      filter: drop-shadow(0 0 8px rgba(38, 188, 233, 0.4));
+    }
+
+    .item:nth-child(3) .item-icon {
+      color: #1ba1c9; /* commit light */
+      filter: drop-shadow(0 0 8px rgba(27, 161, 201, 0.4));
+    }
+
+    .item:nth-child(4) .item-icon {
+      color: #138bae; /* commit default */
+      filter: drop-shadow(0 0 8px rgba(19, 139, 174, 0.4));
+    }
+
+    .item:nth-child(5) .item-icon {
+      color: #1283a5; /* commit dark */
+      filter: drop-shadow(0 0 8px rgba(18, 131, 165, 0.4));
+    }
+
+    .item:nth-child(6) .item-icon {
+      color: #117999; /* commit darker */
+      filter: drop-shadow(0 0 8px rgba(17, 121, 153, 0.4));
+    }
+
+    @keyframes iconPulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.08);
       }
     }
 
-    /* Grid para los items */
-    .items-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+    /* Línea divisoria con gradiente de color que oscurece */
+    .divider-line {
+      height: 2px;
+      flex-grow: 1;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* Tarjetas de items */
-    .item-card {
-      background: var(--aw-color-bg-page);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .divider-line::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(to right, transparent, transparent);
+      animation: shimmer 3s ease-in-out infinite;
     }
 
-    .item-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    .item:nth-child(1) .divider-line {
+      background: linear-gradient(to right, #ade4f7, transparent);
     }
 
-    .item-icon {
-      width: 2.5rem;
-      height: 2.5rem;
-      color: var(--aw-color-primary);
-      flex-shrink: 0;
+    .item:nth-child(2) .divider-line {
+      background: linear-gradient(to left, #26bce9, transparent);
+    }
+
+    .item:nth-child(3) .divider-line {
+      background: linear-gradient(to right, #1ba1c9, transparent);
+    }
+
+    .item:nth-child(4) .divider-line {
+      background: linear-gradient(to left, #138bae, transparent);
+    }
+
+    .item:nth-child(5) .divider-line {
+      background: linear-gradient(to right, #1283a5, transparent);
+    }
+
+    .item:nth-child(6) .divider-line {
+      background: linear-gradient(to left, #117999, transparent);
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+      50% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Orden invertido para items pares */
+    .item:nth-child(odd) .item-icon-wrapper {
+      flex-direction: row;
+    }
+
+    .item:nth-child(even) .item-icon-wrapper {
+      flex-direction: row-reverse;
+    }
+
+    .item:nth-child(odd) .item-title-wrapper {
+      flex-direction: row;
+    }
+
+    .item:nth-child(even) .item-title-wrapper {
+      flex-direction: row-reverse;
+    }
+
+    .item-content {
+      padding: 0 2rem;
+    }
+
+    .item:nth-child(even) .item-content {
+      text-align: right;
     }
 
     .item-title {
-      font-size: 1.125rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin: 0;
       color: var(--aw-color-text-heading);
     }
 
+    /* Títulos con gradiente que oscurece progresivamente usando COMMIT theme */
+    .item:nth-child(1) .item-title {
+      background: linear-gradient(135deg, #ade4f7, #26bce9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .item:nth-child(2) .item-title {
+      background: linear-gradient(135deg, #26bce9, #1ba1c9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .item:nth-child(3) .item-title {
+      background: linear-gradient(135deg, #1ba1c9, #138bae);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .item:nth-child(4) .item-title {
+      background: linear-gradient(135deg, #138bae, #1283a5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .item:nth-child(5) .item-title {
+      background: linear-gradient(135deg, #1283a5, #117999);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .item:nth-child(6) .item-title {
+      background: linear-gradient(135deg, #117999, #052832);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
     .item-description {
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: var(--aw-color-text-muted);
-      line-height: 1.6;
+      line-height: 1.8;
+      max-width: 700px;
+    }
+
+    .item:nth-child(even) .item-description {
+      margin-left: auto;
+    }
+
+    /* Animación sutil al hacer scroll */
+    .item {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .item:nth-child(1) { animation-delay: 0.1s; }
+    .item:nth-child(2) { animation-delay: 0.2s; }
+    .item:nth-child(3) { animation-delay: 0.3s; }
+    .item:nth-child(4) { animation-delay: 0.4s; }
+    .item:nth-child(5) { animation-delay: 0.5s; }
+    .item:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .item {
+        padding-top: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .item-content {
+        padding: 0 1rem;
+      }
+
+      .item:nth-child(even) .item-content {
+        text-align: left;
+      }
+
+      .item:nth-child(even) .item-description {
+        margin-left: 0;
+      }
+
+      .item-title {
+        font-size: 1.1rem;
+      }
+
+      .item-description {
+        font-size: 0.95rem;
+      }
+
+      .item-icon {
+        width: 1.75rem;
+        height: 1.75rem;
+      }
     }
   </style>
 
-  <div class="scroll-snap-wrapper">
+  <div class="minimalist-section">
     <!-- Header con título y subtítulo -->
     <div class="section-header">
       <Headline
@@ -141,50 +345,26 @@ for (let i = 0; i < items.length; i += 2) {
       {content && <div class="mt-4 text-center max-w-3xl mx-auto text-lg dark:text-slate-400" set:html={content} />}
     </div>
 
-    <!-- Contenedor principal -->
-    <div class="content-layout">
-      <!-- Columna izquierda: Imagen -->
-      <div class="image-column">
-        {image && (
-          <div class="image-wrapper">
-            {typeof image === 'string' ? (
-              <Fragment set:html={image} />
-            ) : (
-              <Image
-                class="w-full rounded-lg shadow-lg"
-                width={500}
-                height={500}
-                widths={[400, 768]}
-                sizes="(max-width: 768px) 100vw, 432px"
-                layout="responsive"
-                loading="lazy"
-                {...image}
-              />
+    <!-- Lista de items con diseño alternado -->
+    <div class="items-list">
+      {items.map((item) => (
+        <div class="item">
+          <div class="item-header">
+            <div class="item-title-wrapper">
+              {item.icon && <Icon name={item.icon} class="item-icon" />}
+              {item.title && <h3 class="item-title">{item.title}</h3>}
+            </div>
+          </div>
+          <div class="item-icon-wrapper">
+            <div class="divider-line"></div>
+          </div>
+          <div class="item-content">
+            {item.description && (
+              <p class="item-description" set:html={item.description} />
             )}
           </div>
-        )}
-      </div>
-
-      <!-- Columna derecha: Todos los items -->
-      <div class="content-column">
-        <div class="items-grid">
-          {items.map((item) => (
-            <div class="item-card">
-              <div class="flex items-start gap-3">
-                {item.icon && (
-                  <Icon name={item.icon} class="item-icon" />
-                )}
-                <div class="flex-1">
-                  {item.title && <h3 class="item-title">{item.title}</h3>}
-                  {item.description && (
-                    <p class="item-description" set:html={item.description} />
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
-      </div>
+      ))}
     </div>
   </div>
 </WidgetWrapper>

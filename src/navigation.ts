@@ -7,6 +7,24 @@ export const headerData = {
       href: getPermalink('/'),
     },
     {
+      text: 'Productos',
+      href: getPermalink('/productos'),
+      links: [
+        {
+          text: 'Laneko - Medicina Laboral',
+          href: getPermalink('/productos/laneko'),
+        },
+        {
+          text: 'Buffet-IA - LegalTech',
+          href: getPermalink('/productos/buffet-ia'),
+        },
+        {
+          text: 'EventPlanner - Eventos',
+          href: getPermalink('/productos/event-planning'),
+        },
+      ],
+    },
+    {
       text: 'Servicios',
       links: [
         {
@@ -20,10 +38,6 @@ export const headerData = {
         {
           text: 'Desarrollo a Medida',
           href: getPermalink('/servicios/desarrollo-medida'),
-        },
-        {
-          text: 'Presupuestos',
-          href: getPermalink('/presupuestos'),
         },
       ],
     },
@@ -43,6 +57,10 @@ export const headerData = {
           href: getPermalink('/trabajos'),
         },
       ],
+    },
+    {
+      text: 'Presupuesto',
+      href: getPermalink('/presupuesto'),
     },
     {
       text: 'Contacto',
@@ -168,12 +186,21 @@ export const headerData = {
 export const footerData = {
   links: [
     {
+      title: 'Productos',
+      links: [
+        { text: 'Todos los Productos', href: getPermalink('/productos') },
+        { text: 'Landing Pages', href: getPermalink('/productos#productos-principales') },
+        { text: 'Aplicaciones Web', href: getPermalink('/productos#productos-principales') },
+        { text: 'Módulos Especializados', href: getPermalink('/productos#modulos') },
+      ],
+    },
+    {
       title: 'Servicios',
       links: [
         { text: 'Marketing & Landings', href: getPermalink('/servicios/marketing-landings') },
         { text: 'Sistemas para PyMEs', href: getPermalink('/servicios/sistemas-pymes') },
         { text: 'Desarrollo a Medida', href: getPermalink('/servicios/desarrollo-medida') },
-        { text: 'Presupuestos', href: getPermalink('/presupuestos') },
+        { text: 'Solicitar Presupuesto', href: getPermalink('/presupuesto') },
       ],
     },
     {

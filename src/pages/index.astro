@@ -72,6 +72,21 @@ const metadata = {
        Fuente: homes/startup.astro
        ======================================== -->
 
+  <style is:global>
+    #header {
+      position: fixed;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 50;
+    }
+    
+    html.dark #header {
+      background-color: rgba(31, 41, 55, 0.8);
+    }
+  </style>
+
   <Hero
     actions={[
       {
@@ -81,34 +96,24 @@ const metadata = {
       },
       { text: t(lang, "nav.contact"), href: "#contact" },
     ]}
-    image={{ src: "~/assets/images/hero-image.png", alt: "Grape Hero Image" }}
   >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white dark:bg-gray-900"></div>
+      <div 
+        class="absolute top-0 left-0 w-full h-full bg-no-repeat pointer-events-none bg-cover bg-center md:bg-[length:200%] md:bg-[center_top]"
+        style="background-image: url('/src/assets/backgrounds/eli_7.jpg');"
+      ></div>
+    </Fragment>
+
     <Fragment slot="title">
-      <span data-i18n-key="hero.title_part1">{t(lang, "hero.title_part1")}</span><br />
-      <span data-i18n-key="hero.title_part2">{t(lang, "hero.title_part2")}</span> <span class="relative inline-block">
-        <span class="text-accent dark:text-blue-400" data-i18n-key="hero.title_highlight">{t(lang, "hero.title_highlight")}</span>
-        <!-- Subrayado SVG animado (comentado) -->
-        <!-- <svg
-          class="absolute -bottom-2 left-0 w-full h-3"
-          viewBox="0 0 300 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M2 6C50 2, 100 10, 150 6C200 2, 250 10, 298 6"
-            stroke="currentColor"
-            stroke-width="4"
-            stroke-linecap="round"
-            class="text-primary"
-            opacity="0.6"
-          />
-        </svg> -->
+      <span class="text-black dark:text-white" data-i18n-key="hero.title_part1">{t(lang, "hero.title_part1")}</span><br />
+      <span class="text-black dark:text-white" data-i18n-key="hero.title_part2">{t(lang, "hero.title_part2")}</span> <span class="relative inline-block">
+        <span class="text-commit-darkest dark:text-commit-lighter drop-shadow-md" data-i18n-key="hero.title_highlight">{t(lang, "hero.title_highlight")}</span>
       </span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span data-i18n-key="hero.subtitle">{t(lang, "hero.subtitle")}</span>
+      <span class="text-black dark:text-slate-300 font-medium" data-i18n-key="hero.subtitle">{t(lang, "hero.subtitle")}</span>
     </Fragment>
   </Hero>
 
@@ -128,7 +133,7 @@ const metadata = {
         callToAction: {
           text: t(lang, "services_section.items.web.cta"),
           href: getPermalink("/servicios/marketing-landings"),
-          variant: "link",
+          variant: "gradient-border",
         },
       },
       {
@@ -138,7 +143,7 @@ const metadata = {
         callToAction: {
           text: t(lang, "services_section.items.business.cta"),
           href: getPermalink("/servicios/sistemas-pymes"),
-          variant: "link",
+          variant: "gradient-border",
         },
       },
       {
@@ -148,7 +153,7 @@ const metadata = {
         callToAction: {
           text: t(lang, "services_section.items.custom.cta"),
           href: getPermalink("/servicios/desarrollo-medida"),
-          variant: "link",
+          variant: "gradient-border",
         },
       },
     ]}
@@ -162,12 +167,9 @@ const metadata = {
     <Fragment slot="subtitle">
       <span data-i18n-key="services_section.subtitle">{t(lang, "services_section.subtitle")}</span>
     </Fragment>
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
-    </Fragment>
   </Services>
 
-    <!-- ========================================
+  <!-- ========================================
        SECCIÓN 3: ¿Qué hacemos en GRAPE?
        Fuente: homes/saas.astro (Features)
        ======================================== -->
@@ -269,21 +271,31 @@ const metadata = {
   </ScrollSnapContent>
 
   <!-- ========================================
-       SECCIÓN 5: About Us (Sobre Nosotros)
-       Fuente: homes/startup.astro (Features2)
+       SECCIÓN 5: About Us (Sobre Nosotros) - CUSTOM
+       Background con gradiente atractivo
        ======================================== -->
 
-  <Features2>
-    <Fragment slot="title">
-      <span data-i18n-key="about.title">{t(lang, "about.title")}</span>
-    </Fragment>
-    <Fragment slot="subtitle">
-      <span data-i18n-key="about.subtitle">{t(lang, "about.subtitle")}</span>
-    </Fragment>
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
-    </Fragment>
-  </Features2>
+  <section class="relative py-16 md:py-20 overflow-hidden">
+    <!-- Gradient background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-commit-dark via-commit-darkest to-gray-900"></div>
+    
+    <!-- Animated gradient overlay -->
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute inset-0 bg-gradient-to-tr from-commit-lighter/20 via-transparent to-commit-light/20 animate-pulse"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter mb-4 font-heading text-white">
+          <span data-i18n-key="about.title">{t(lang, "about.title")}</span>
+        </h2>
+        <p class="text-xl text-white mt-4">
+          <span data-i18n-key="about.subtitle">{t(lang, "about.subtitle")}</span>
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- ========================================
        SECCIÓN 6: Cómo Trabajamos (Steps)
