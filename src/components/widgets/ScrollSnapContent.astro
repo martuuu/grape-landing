@@ -19,317 +19,239 @@ const {
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl ${classes?.container ?? ''}`} bg={bg}>
   <style>
-    .minimalist-section {
+    .timeline-section {
       padding: 4rem 1rem;
+      position: relative;
     }
 
     .section-header {
       margin-bottom: 4rem;
+      text-align: center;
     }
 
-    .items-list {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .item {
-      margin-bottom: 5rem;
+    .timeline-container {
       position: relative;
-      padding-top: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+      display: flex;
+      gap: 3rem;
     }
 
-    .item:last-child {
+    /* Columna izquierda: Timeline compacta */
+    .timeline-track {
+      position: relative;
+      width: 60px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Línea vertical del timeline con gradiente */
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, #ade4f7, #26bce9, #138bae, #1283a5, #117999, #052832);
+      opacity: 0.2;
+      border-radius: 2px;
+    }
+
+    /* Línea de progreso que se llena */
+    .timeline-progress {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      width: 4px;
+      height: 0%;
+      background: linear-gradient(to bottom, #59cbee, #26bce9, #1ba1c9, #138bae, #1283a5, #117999);
+      border-radius: 2px;
+      transition: height 0.3s ease-out; /* Transición suave para el fill */
+      box-shadow: 0 0 20px rgba(38, 188, 233, 0.5);
+    }
+
+    /* Columna derecha: Cards */
+    .timeline-cards {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(40px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0s linear 0.6s;
+    }
+
+    .timeline-item:last-child {
       margin-bottom: 0;
     }
 
-    /* Línea separadora sutil arriba de cada item */
-    .item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(
-        to right,
-        transparent,
-        rgba(19, 139, 174, 0.2),
-        transparent
-      );
+    .timeline-item.in-view {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0s;
     }
 
-    /* Items alternados: izquierda y derecha */
-    .item:nth-child(odd) .item-header {
-      justify-content: flex-start;
-    }
-
-    .item:nth-child(even) .item-header {
-      justify-content: flex-end;
-    }
-
-    .item-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.75rem;
-    }
-
-    .item-title-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .item-icon-wrapper {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      margin-bottom: 1rem;
-    }
-
-    /* Icono con gradiente animado que oscurece progresivamente */
-    .item-icon {
-      width: 2rem;
-      height: 2rem;
-      flex-shrink: 0;
-      animation: iconPulse 3s ease-in-out infinite;
-    }
-
-    /* Colores progresivamente más oscuros usando COMMIT theme */
-    .item:nth-child(1) .item-icon {
-      color: #ade4f7; /* commit pale */
-      filter: drop-shadow(0 0 8px rgba(173, 228, 247, 0.4));
-    }
-
-    .item:nth-child(2) .item-icon {
-      color: #26bce9; /* commit lighter */
-      filter: drop-shadow(0 0 8px rgba(38, 188, 233, 0.4));
-    }
-
-    .item:nth-child(3) .item-icon {
-      color: #1ba1c9; /* commit light */
-      filter: drop-shadow(0 0 8px rgba(27, 161, 201, 0.4));
-    }
-
-    .item:nth-child(4) .item-icon {
-      color: #138bae; /* commit default */
-      filter: drop-shadow(0 0 8px rgba(19, 139, 174, 0.4));
-    }
-
-    .item:nth-child(5) .item-icon {
-      color: #1283a5; /* commit dark */
-      filter: drop-shadow(0 0 8px rgba(18, 131, 165, 0.4));
-    }
-
-    .item:nth-child(6) .item-icon {
-      color: #117999; /* commit darker */
-      filter: drop-shadow(0 0 8px rgba(17, 121, 153, 0.4));
-    }
-
-    @keyframes iconPulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.08);
-      }
-    }
-
-    /* Línea divisoria con gradiente de color que oscurece */
-    .divider-line {
-      height: 2px;
-      flex-grow: 1;
+    /* Dot/Hito en la columna izquierda */
+    .timeline-dot {
       position: relative;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: transparent;
+      border: 3px solid rgba(89, 203, 238, 0.3);
+      z-index: 10;
+      flex-shrink: 0;
+      margin-top: 1.5rem;
+      transition: all 0.4s ease-out;
+      opacity: 0.6;
       overflow: hidden;
     }
 
-    .divider-line::before {
+    /* Fill interno del dot que crece */
+    .timeline-dot::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 50%;
+      left: 50%;
+      width: 0%;
+      height: 0%;
+      background: #26bce9;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease-out, height 0.4s ease-out;
+    }
+
+    .timeline-dot.active {
+      opacity: 1;
+      border-color: #26bce9;
+      box-shadow: 0 0 20px rgba(38, 188, 233, 0.4);
+    }
+
+    .timeline-dot.active::before {
+      width: 100%;
       height: 100%;
-      background: linear-gradient(to right, transparent, transparent);
-      animation: shimmer 3s ease-in-out infinite;
     }
 
-    .item:nth-child(1) .divider-line {
-      background: linear-gradient(to right, #ade4f7, transparent);
+    /* Card a la derecha - Sin border, con sombreado sutil */
+    .timeline-content {
+      flex: 1;
+      padding: 2rem;
+      border-radius: 1rem;
+      background: rgba(89, 203, 238, 0.03);
+      border: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease-out;
     }
 
-    .item:nth-child(2) .divider-line {
-      background: linear-gradient(to left, #26bce9, transparent);
+    .timeline-item.active .timeline-content {
+      background: rgba(89, 203, 238, 0.08);
+      box-shadow: 0 8px 24px rgba(38, 188, 233, 0.2);
     }
 
-    .item:nth-child(3) .divider-line {
-      background: linear-gradient(to right, #1ba1c9, transparent);
+    /* Colores para dot activo - Todos del mismo color celeste */
+    .timeline-dot.active {
+      opacity: 1;
+      border-color: #26bce9;
+      box-shadow: 0 0 20px rgba(38, 188, 233, 0.4);
     }
 
-    .item:nth-child(4) .divider-line {
-      background: linear-gradient(to left, #138bae, transparent);
+    .timeline-dot.active::before {
+      width: 100%;
+      height: 100%;
     }
 
-    .item:nth-child(5) .divider-line {
-      background: linear-gradient(to right, #1283a5, transparent);
+    .item-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      color: var(--aw-color-text-muted);
     }
 
-    .item:nth-child(6) .divider-line {
-      background: linear-gradient(to left, #117999, transparent);
-    }
-
-    @keyframes shimmer {
-      0% {
-        transform: translateX(-100%);
-      }
-      50% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-
-    /* Orden invertido para items pares */
-    .item:nth-child(odd) .item-icon-wrapper {
-      flex-direction: row;
-    }
-
-    .item:nth-child(even) .item-icon-wrapper {
-      flex-direction: row-reverse;
-    }
-
-    .item:nth-child(odd) .item-title-wrapper {
-      flex-direction: row;
-    }
-
-    .item:nth-child(even) .item-title-wrapper {
-      flex-direction: row-reverse;
-    }
-
-    .item-content {
-      padding: 0 2rem;
-    }
-
-    .item:nth-child(even) .item-content {
-      text-align: right;
+    .timeline-item.active .item-icon {
+      color: #26bce9;
+      filter: drop-shadow(0 0 12px rgba(38, 188, 233, 0.5));
     }
 
     .item-title {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      margin: 0;
+      margin-bottom: 0.75rem;
       color: var(--aw-color-text-heading);
+      transition: color 0.3s ease;
     }
 
-    /* Títulos con gradiente que oscurece progresivamente usando COMMIT theme */
-    .item:nth-child(1) .item-title {
-      background: linear-gradient(135deg, #ade4f7, #26bce9);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .item:nth-child(2) .item-title {
-      background: linear-gradient(135deg, #26bce9, #1ba1c9);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .item:nth-child(3) .item-title {
-      background: linear-gradient(135deg, #1ba1c9, #138bae);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .item:nth-child(4) .item-title {
-      background: linear-gradient(135deg, #138bae, #1283a5);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .item:nth-child(5) .item-title {
-      background: linear-gradient(135deg, #1283a5, #117999);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .item:nth-child(6) .item-title {
-      background: linear-gradient(135deg, #117999, #052832);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .timeline-item.active .item-title {
+      color: #26bce9;
     }
 
     .item-description {
       font-size: 1rem;
       color: var(--aw-color-text-muted);
-      line-height: 1.8;
-      max-width: 700px;
-    }
-
-    .item:nth-child(even) .item-description {
-      margin-left: auto;
-    }
-
-    /* Animación sutil al hacer scroll */
-    .item {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s ease forwards;
-    }
-
-    .item:nth-child(1) { animation-delay: 0.1s; }
-    .item:nth-child(2) { animation-delay: 0.2s; }
-    .item:nth-child(3) { animation-delay: 0.3s; }
-    .item:nth-child(4) { animation-delay: 0.4s; }
-    .item:nth-child(5) { animation-delay: 0.5s; }
-    .item:nth-child(6) { animation-delay: 0.6s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      line-height: 1.7;
     }
 
     @media (max-width: 768px) {
-      .item {
-        padding-top: 2rem;
-        margin-bottom: 3rem;
+      .timeline-container {
+        gap: 1.5rem;
       }
 
-      .item-content {
-        padding: 0 1rem;
+      .timeline-track {
+        width: 40px;
       }
 
-      .item:nth-child(even) .item-content {
-        text-align: left;
+      .timeline-dot {
+        width: 16px;
+        height: 16px;
+        border-width: 2px;
+        margin-top: 1rem;
       }
 
-      .item:nth-child(even) .item-description {
-        margin-left: 0;
+      .timeline-item.active .timeline-dot {
+        box-shadow: 0 0 12px rgba(38, 188, 233, 0.3);
+      }
+
+      .timeline-content {
+        padding: 1.5rem;
       }
 
       .item-title {
-        font-size: 1.1rem;
+        font-size: 1.25rem;
       }
 
       .item-description {
         font-size: 0.95rem;
       }
 
-      .item-icon {
-        width: 1.75rem;
-        height: 1.75rem;
+      .timeline-cards {
+        gap: 2rem;
+      }
+    }
+
+    /* Respect user motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      .timeline-item,
+      .timeline-progress,
+      .timeline-dot,
+      .timeline-dot::before {
+        transition: opacity 0.2s ease;
       }
     }
   </style>
 
-  <div class="minimalist-section">
+  <div class="timeline-section">
     <!-- Header con título y subtítulo -->
     <div class="section-header">
       <Headline
@@ -345,27 +267,163 @@ const {
       {content && <div class="mt-4 text-center max-w-3xl mx-auto text-lg dark:text-slate-400" set:html={content} />}
     </div>
 
-    <!-- Lista de items con diseño alternado -->
-    <div class="items-list">
-      {items.map((item) => (
-        <div class="item">
-          <div class="item-header">
-            <div class="item-title-wrapper">
+    <!-- Timeline -->
+    <div class="timeline-container">
+      <!-- Columna izquierda: Timeline track -->
+      <div class="timeline-track">
+        <div class="timeline-line"></div>
+        <div class="timeline-progress" id="timeline-progress"></div>
+      </div>
+
+      <!-- Columna derecha: Cards -->
+      <div class="timeline-cards">
+        {items.map((item, index) => (
+          <div class="timeline-item" data-index={index}>
+            <div class="timeline-content">
               {item.icon && <Icon name={item.icon} class="item-icon" />}
               {item.title && <h3 class="item-title">{item.title}</h3>}
+              {item.description && (
+                <p class="item-description" set:html={item.description} />
+              )}
             </div>
           </div>
-          <div class="item-icon-wrapper">
-            <div class="divider-line"></div>
-          </div>
-          <div class="item-content">
-            {item.description && (
-              <p class="item-description" set:html={item.description} />
-            )}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
+
+    <!-- Dots se generan dinámicamente con JS para sincronizar con cards -->
   </div>
+
+  <!-- Script para Timeline con Intersection Observer -->
+  <script>
+    function initTimeline() {
+      const items = document.querySelectorAll('.timeline-item');
+      const progressBar = document.getElementById('timeline-progress');
+      const timelineTrack = document.querySelector('.timeline-track');
+      const timelineCards = document.querySelector('.timeline-cards');
+      
+      if (!items.length || !progressBar || !timelineTrack || !timelineCards) return;
+
+      // Crear dots dinámicamente para cada card
+      const dotsContainer = document.createElement('div');
+      dotsContainer.style.position = 'absolute';
+      dotsContainer.style.top = '0';
+      dotsContainer.style.left = '50%';
+      dotsContainer.style.transform = 'translateX(-50%)';
+      dotsContainer.style.width = '100%';
+      dotsContainer.style.height = '100%';
+      dotsContainer.style.zIndex = '10';
+      
+      const dots: HTMLElement[] = [];
+      items.forEach((item, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'timeline-dot';
+        dot.dataset.index = String(index);
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+      });
+      
+      timelineTrack.appendChild(dotsContainer);
+
+      // Función para posicionar dots
+      function positionDots() {
+        items.forEach((item, index) => {
+          const itemRect = item.getBoundingClientRect();
+          const cardsRect = timelineCards!.getBoundingClientRect();
+          const trackRect = (timelineTrack as HTMLElement).getBoundingClientRect();
+          
+          // Calcular posición relativa al scroll
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const itemTop = itemRect.top + scrollTop;
+          const trackTop = trackRect.top + scrollTop;
+          const relativeTop = itemTop - trackTop;
+          
+          if (dots[index]) {
+            dots[index].style.position = 'absolute';
+            dots[index].style.top = `${relativeTop + 24}px`;
+            dots[index].style.left = '50%';
+            dots[index].style.transform = 'translateX(-50%)';
+          }
+        });
+      }
+
+      // Actualizar timeline en scroll - FILL CONTINUO
+      function updateTimeline() {
+        const viewportHeight = window.innerHeight;
+        const triggerPoint = viewportHeight * 0.75; // 3/4 del viewport
+        const trackRect = (timelineTrack as HTMLElement).getBoundingClientRect();
+        const trackTop = trackRect.top;
+        const trackHeight = trackRect.height;
+        
+        // Calcular progreso continuo basado en scroll
+        const scrollProgress = triggerPoint - trackTop;
+        const progressPercent = Math.max(0, Math.min(100, (scrollProgress / trackHeight) * 100));
+        
+        // Actualizar barra de progreso de forma CONTINUA
+        (progressBar as HTMLElement).style.height = `${progressPercent}%`;
+        
+        // Activar cards y dots según su posición
+        items.forEach((item, index) => {
+          const itemElement = item as HTMLElement;
+          const dotElement = dots[index];
+          
+          if (!dotElement) return;
+          
+          const dotRect = dotElement.getBoundingClientRect();
+          const dotCenter = dotRect.top + dotRect.height / 2;
+          
+          // Cuando el dot cruza el punto trigger (3/4 del viewport)
+          if (dotCenter <= triggerPoint) {
+            // Activar dot y mostrar card
+            if (!dotElement.classList.contains('active')) {
+              dotElement.classList.add('active');
+            }
+            if (!itemElement.classList.contains('in-view')) {
+              itemElement.classList.add('in-view');
+              itemElement.classList.add('active');
+            }
+          } else {
+            // Desactivar dot y ocultar card
+            dotElement.classList.remove('active');
+            itemElement.classList.remove('in-view');
+            itemElement.classList.remove('active');
+          }
+        });
+      }
+
+      // Posicionar dots inicialmente
+      positionDots();
+      
+      // Actualizar en scroll con requestAnimationFrame para suavidad
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateTimeline();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+      
+      window.addEventListener('resize', () => {
+        positionDots();
+        updateTimeline();
+      }, { passive: true });
+      
+      // Ejecutar una vez al inicio
+      updateTimeline();
+    }
+
+    // Inicializar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTimeline);
+    } else {
+      initTimeline();
+    }
+
+    // Re-inicializar después de View Transitions
+    document.addEventListener('astro:page-load', initTimeline);
+  </script>
 </WidgetWrapper>
 

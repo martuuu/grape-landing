@@ -1,26 +1,54 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
 import Features from '~/components/widgets/Features.astro';
 import Content from '~/components/widgets/Content.astro';
-import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import { getPermalink } from '~/utils/permalinks';
+import { Icon } from 'astro-icon/components';
 
 const metadata = {
-  title: 'Marketing & Landings - Servicios Grape',
+  title: 'Marketing & Landings - Servicios COMMIT',
   description: 'Creamos landing pages y campañas de marketing digital que convierten visitantes en clientes.',
 };
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Section -->
-  <HeroText
-    tagline="Marketing Digital"
-    title="Landings que Convierten"
-    subtitle="Diseñamos y desarrollamos landing pages optimizadas para maximizar tus conversiones y potenciar tu presencia digital."
-  />
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-20 md:py-32 bg-gradient-to-b from-white to-commit-pale/20 dark:from-gray-900 dark:to-commit-darkest">
+    
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-commit-lighter/30 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-commit-light/25 rounded-full blur-[120px]"></div>
+      <div class="absolute top-1/2 right-1/4 w-80 h-80 bg-commit/20 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-commit-lighter/20 border border-commit-lighter/40 text-commit-darker dark:text-commit-light text-sm font-medium mb-8">
+        <Icon name="tabler:rocket" class="w-5 h-5" />
+        Marketing Digital
+      </div>
+      
+      <h1 class="text-4xl md:text-7xl font-bold font-heading leading-tight mb-8">
+        Landings que <br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-commit-darker via-commit to-commit-light">Convierten</span>
+      </h1>
+      
+      <p class="text-lg md:text-xl text-muted dark:text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+        Diseñamos y desarrollamos landing pages optimizadas para maximizar tus conversiones y potenciar tu presencia digital.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getPermalink('/presupuestos')} class="px-8 py-4 bg-gradient-commit text-white font-bold rounded-xl shadow-lg shadow-commit/30 hover:scale-105 transition-transform">
+          Solicitar Presupuesto
+        </a>
+        <a href={getPermalink('/trabajos')} class="px-8 py-4 bg-white dark:bg-gray-800 border-2 border-commit-light dark:border-gray-700 font-bold rounded-xl hover:bg-commit-pale/20 dark:hover:bg-gray-700 transition-colors">
+          Ver Trabajos
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Introducción desde index -->
   <Content
@@ -67,7 +95,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-transparent"></div>
     </Fragment>
   </Content>
 
@@ -111,7 +139,7 @@ const metadata = {
     ]}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-transparent"></div>
     </Fragment>
   </Features>
 
@@ -149,46 +177,100 @@ const metadata = {
   />
 
   <!-- Tipos de Landings -->
-  <Features2
-    title="Tipos de Landing Pages"
-    subtitle="Soluciones adaptadas a tus necesidades"
-    items={[
-      {
-        title: 'Landing de Captación',
-        description: 'Páginas diseñadas para captar leads con formularios optimizados y ofertas irresistibles.',
-        icon: 'tabler:user-plus',
-      },
-      {
-        title: 'Landing de Producto',
-        description: 'Presentación detallada de productos o servicios con focus en beneficios y características.',
-        icon: 'tabler:package',
-      },
-      {
-        title: 'Landing de Evento',
-        description: 'Páginas para promocionar eventos, webinars o lanzamientos con registro integrado.',
-        icon: 'tabler:calendar-event',
-      },
-      {
-        title: 'Landing de Descarga',
-        description: 'Optimizadas para descargas de apps, ebooks, whitepapers u otros recursos digitales.',
-        icon: 'tabler:download',
-      },
-      {
-        title: 'Landing de Campaña',
-        description: 'Páginas para campañas específicas de Google Ads, Facebook Ads o email marketing.',
-        icon: 'tabler:ad',
-      },
-      {
-        title: 'Landing de Ventas',
-        description: 'Long-form sales pages con storytelling persuasivo para productos de alto valor.',
-        icon: 'tabler:cash',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
-    </Fragment>
-  </Features2>
+  <section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold font-heading mb-4">Tipos de Landing Pages</h2>
+        <p class="text-xl text-muted dark:text-gray-400">Soluciones adaptadas a tus necesidades</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-indigo-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+            <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-6">
+              <Icon name="tabler:user-plus" class="w-6 h-6 text-blue-600 dark:text-blue-400" />
+            </div>
+            <h3 class="text-xl font-bold mb-3">Landing de Captación</h3>
+            <p class="text-muted dark:text-gray-400">
+              Páginas diseñadas para captar leads con formularios optimizados y ofertas irresistibles.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-pink-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+            <div class="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-6">
+              <Icon name="tabler:package" class="w-6 h-6 text-purple-600 dark:text-purple-400" />
+            </div>
+            <h3 class="text-xl font-bold mb-3">Landing de Producto</h3>
+            <p class="text-muted dark:text-gray-400">
+              Presentación detallada de productos o servicios con focus en beneficios y características.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-r from-orange-500/30 to-yellow-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+            <div class="w-12 h-12 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mb-6">
+              <Icon name="tabler:calendar-event" class="w-6 h-6 text-orange-600 dark:text-orange-400" />
+            </div>
+            <h3 class="text-xl font-bold mb-3">Landing de Evento</h3>
+            <p class="text-muted dark:text-gray-400">
+              Páginas para promocionar eventos, webinars o lanzamientos con registro integrado.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-r from-green-500/30 to-emerald-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+            <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-6">
+              <Icon name="tabler:download" class="w-6 h-6 text-green-600 dark:text-green-400" />
+            </div>
+            <h3 class="text-xl font-bold mb-3">Landing de Descarga</h3>
+            <p class="text-muted dark:text-gray-400">
+              Optimizadas para descargas de apps, ebooks, whitepapers u otros recursos digitales.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-r from-red-500/30 to-rose-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+            <div class="w-12 h-12 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center mb-6">
+              <Icon name="tabler:ad" class="w-6 h-6 text-red-600 dark:text-red-400" />
+            </div>
+            <h3 class="text-xl font-bold mb-3">Landing de Campaña</h3>
+            <p class="text-muted dark:text-gray-400">
+              Páginas para campañas específicas de Google Ads, Facebook Ads o email marketing.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-r from-teal-500/30 to-cyan-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+            <div class="w-12 h-12 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center mb-6">
+              <Icon name="tabler:cash" class="w-6 h-6 text-teal-600 dark:text-teal-400" />
+            </div>
+            <h3 class="text-xl font-bold mb-3">Landing de Ventas</h3>
+            <p class="text-muted dark:text-gray-400">
+              Long-form sales pages con storytelling persuasivo para productos de alto valor.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Tecnologías que usamos -->
   <Content

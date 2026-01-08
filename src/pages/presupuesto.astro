@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import BudgetBuilder from '~/components/widgets/BudgetBuilder.astro';
+import Button from '~/components/ui/Button.astro';
 
 const metadata = {
   title: 'Presupuesto - COMMIT',
@@ -14,10 +15,10 @@ const metadata = {
   <section class="bg-gradient-to-br from-commit/10 via-white to-commit-lighter/10 dark:from-commit-darkest dark:via-gray-900 dark:to-commit-darkest py-16 md:py-20">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-4xl md:text-5xl font-bold font-heading mb-4">
-        Construyamos tu proyecto juntos
+        Construyamos tu proyecto a medida
       </h1>
       <p class="text-xl text-muted max-w-2xl mx-auto">
-        Responde unas simples preguntas y recibe un presupuesto personalizado. Te guiaremos paso a paso para entender el alcance y costo real de tu desarrollo.
+        Respondé unas simples preguntas y recibí un presupuesto personalizado. Te guiaremos paso a paso para entender el alcance y costo real de tu desarrollo.
       </p>
     </div>
   </section>
@@ -72,18 +73,16 @@ const metadata = {
       <h2 class="text-3xl font-bold font-heading mb-4">¿Tienes dudas?</h2>
       <p class="text-muted mb-8">Nuestro equipo está listo para ayudarte a definir tu proyecto</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a 
-          href="/contact" 
-          class="px-8 py-4 bg-gradient-commit text-white font-bold rounded-lg hover:shadow-lg hover:scale-[1.02] transition-all inline-block"
-        >
-          Hablar con un experto
-        </a>
-        <a 
-          href="/trabajos" 
-          class="px-8 py-4 border-2 border-commit text-commit font-bold rounded-lg hover:bg-commit/5 transition-all inline-block"
-        >
-          Ver proyectos anteriores
-        </a>
+        <Button 
+          variant="primary"
+          text="Hablar con un experto"
+          href="/contact"
+        />
+        <Button 
+          variant="secondary"
+          text="Ver proyectos anteriores"
+          href="/trabajos"
+        />
       </div>
     </div>
   </section>

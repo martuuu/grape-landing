@@ -1,8 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Logo from '~/components/Logo.astro';
-import ToggleTheme from '~/components/common/ToggleTheme.astro';
-import ToggleLanguage from '~/components/common/ToggleLanguage.astro';
+// import ToggleTheme from '~/components/common/ToggleTheme.astro'; // COMENTADO TEMPORALMENTE
+// import ToggleLanguage from '~/components/common/ToggleLanguage.astro'; // COMENTADO TEMPORALMENTE
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
 
 import { getHomePermalink } from '~/utils/permalinks';
@@ -38,7 +38,7 @@ const {
   isSticky = false,
   isDark = false,
   isFullWidth = false,
-  showToggleTheme = false,
+  // showToggleTheme = false, // COMENTADO TEMPORALMENTE
   position = 'center',
 } = Astro.props;
 
@@ -81,7 +81,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       aria-label="Main navigation"
     >
       <ul
-        class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-xl md:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center"
+        class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-lg md:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center"
       >
         {
           links.map(({ text, href, links }) => (
@@ -149,7 +149,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           <a
             class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
             aria-label="Instagram"
-            href="https://instagram.com/grape.devs"
+            href="https://instagram.com/commit.ar"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -158,7 +158,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           <a
             class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
             aria-label="LinkedIn"
-            href="https://linkedin.com/company/grape-dev"
+            href="https://linkedin.com/company/commit-ar"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -167,7 +167,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           <a
             class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
             aria-label="WhatsApp"
-            href="https://wa.me/5491234567890"
+            href="https://wa.me/5492915278982"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -175,13 +175,13 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           </a>
 
           <!-- Separador -->
-          <div class="w-px h-5 bg-gray-300 dark:bg-gray-600 mx-1"></div>
+          <!-- <div class="w-px h-5 bg-gray-300 dark:bg-gray-600 mx-1"></div> -->
 
-          <!-- Toggle Idioma -->
-          <ToggleLanguage iconClass="w-5 h-5 md:inline-block" />
+          <!-- Toggle Idioma - COMENTADO TEMPORALMENTE -->
+          <!-- <ToggleLanguage iconClass="w-5 h-5 md:inline-block" /> -->
 
-          <!-- Toggle Theme -->
-          {showToggleTheme && <ToggleTheme iconClass="w-5 h-5 md:inline-block" />}
+          <!-- Toggle Theme - COMENTADO TEMPORALMENTE -->
+          <!-- {showToggleTheme && <ToggleTheme iconClass="w-5 h-5 md:inline-block" />} -->
 
           <!-- RSS Feed - Comentado -->
           {
