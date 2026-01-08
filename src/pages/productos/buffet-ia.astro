@@ -157,27 +157,44 @@ const metadata = {
       <h2 class="text-3xl font-bold font-heading text-center mb-16">Funcionalidades Next-Gen</h2>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <PremiumCard
-          title="Extracción de Fechas"
-          description="Sube una cédula y la IA detecta automáticamente fechas de audiencia y vencimientos para agendarlos."
-          icon="tabler:calendar-event"
-          gradient="purple"
-          class="bg-gray-800 border-gray-700"
-        />
-        <PremiumCard
-          title="Anonimización"
-          description="Comparte documentos tranquilos. La IA detecta y ofusca nombres y DNIs sensibles automáticamente."
-          icon="tabler:eye-off"
-          gradient="red"
-          class="bg-gray-800 border-gray-700"
-        />
-        <PremiumCard
-          title="Búsqueda Semántica"
-          description="Encuentra documentos por concepto, no solo por palabras clave. 'Busca casos de despido por embarazo'."
-          icon="tabler:search"
-          gradient="blue"
-          class="bg-gray-800 border-gray-700"
-        />
+        <!-- Card 1 -->
+        <div class="relative group p-[2px] rounded-2xl bg-gradient-to-b from-primary via-secondary to-accent">
+          <div class="relative bg-white dark:bg-gray-900 rounded-2xl p-8 h-full">
+            <div class="w-12 h-12 rounded-lg bg-commit-lighter/20 flex items-center justify-center mb-6">
+              <Icon name="tabler:calendar-event" class="w-6 h-6 text-commit" />
+            </div>
+            <h3 class="text-xl font-bold mb-3">Extracción de Fechas</h3>
+            <p class="text-muted dark:text-gray-400">
+              Sube una cédula y la IA detecta automáticamente fechas de audiencia y vencimientos para agendarlos.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="relative group p-[2px] rounded-2xl bg-gradient-to-b from-primary via-secondary to-accent">
+          <div class="relative bg-white dark:bg-gray-900 rounded-2xl p-8 h-full">
+            <div class="w-12 h-12 rounded-lg bg-commit-lighter/20 flex items-center justify-center mb-6">
+              <Icon name="tabler:eye-off" class="w-6 h-6 text-commit" />
+            </div>
+            <h3 class="text-xl font-bold mb-3">Anonimización</h3>
+            <p class="text-muted dark:text-gray-400">
+              Comparte documentos tranquilos. La IA detecta y ofusca nombres y DNIs sensibles automáticamente.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="relative group p-[2px] rounded-2xl bg-gradient-to-b from-primary via-secondary to-accent">
+          <div class="relative bg-white dark:bg-gray-900 rounded-2xl p-8 h-full">
+            <div class="w-12 h-12 rounded-lg bg-commit-lighter/20 flex items-center justify-center mb-6">
+              <Icon name="tabler:search" class="w-6 h-6 text-commit" />
+            </div>
+            <h3 class="text-xl font-bold mb-3">Búsqueda Semántica</h3>
+            <p class="text-muted dark:text-gray-400">
+              Encuentra documentos por concepto, no solo por palabras clave. "Busca casos de despido por embarazo".
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>

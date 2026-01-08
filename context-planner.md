@@ -1,102 +1,114 @@
-Contexto de Proyecto: Event Planning SaaS (MVP)
-Este documento define la arquitectura, stack tecnológico y hoja de ruta para el desarrollo de una plataforma SaaS de gestión de eventos (Wedding Planner / Eventos Corporativos).
+# 🚀 COMMIT Landing - Plan de Mejoras UX/UI
 
-1. Objetivo del Proyecto
-Desarrollar un sistema SaaS Multi-tenant que centralice la gestión de eventos para organizadores (Panel de Control) y ofrezca una experiencia digital fluida para los invitados (Sitios de Evento). El enfoque inicial es la velocidad de desarrollo aprovechando un template comprado y la escalabilidad lógica mediante el uso del protocolo MCP.
+## 📋 Checklist de Mejoras (Sprint Actual)
 
-2. Stack Tecnológico
-Frontend (La prioridad inicial)
-Framework: Next.js 15 (App Router) - TypeScript
+### ✅ **1. Header - Ajustes Generales**
+- [x] Comentar toggle de cambio de theme
+- [x] Comentar toggle de cambio de idioma
+- [x] Actualizar link de Instagram a `commit.ar`
+- [x] Cambiar teléfono de contacto global a `2915278982`
 
-UI Library: Template comprado (Materialize) + Tailwind CSS.
+### ✅ **2. Header - Menú Productos**
+- [x] Actualizar dropdown con 3 productos:
+  - [x] Laneko - Gestión integral
+  - [x] Consultorio Online
+  - [x] Picky - Gestión de tiendas
 
-Deploy: Vercel / Netlify.
+### ✅ **3. Rebranding Global: Grape → COMMIT**
+- [x] Actualizar todas las referencias en código
+- [x] Revisar metadata y SEO
+- [x] Verificar textos en componentes
+- [x] Actualizar assets si es necesario
 
-Funciones: Renderiza tanto el Panel Admin (Privado) como las Landings de Eventos (Públicas).
+### ✅ **4. Home - Sección Diferenciación (Rediseño)**
+- [x] Analizar problemas actuales:
+  - Items muy separados
+  - Gradiente de color no visible
+  - Falta de transiciones fluidas
+- [x] Implementar mejoras:
+  - [x] Agregar transiciones de aparición (fade-in, slide-up con Intersection Observer)
+  - [x] Ajustar espaciado entre items (más compacto)
+  - [x] Mejorar contraste de gradientes (colores más vibrantes)
+  - [x] Agregar efectos hover con glassmorphism
+  - [x] Staggered animations para efecto progresivo
 
-Backend (Fase 2)
-Framework: NestJS - TypeScript
+### ✅ **5. Home - Sección Contact/Support (Sección 8)**
+- [x] Eliminar información de ubicación
+- [x] Refocalizar en "Presupuestos personalizados"
+- [x] Mejorar CTA hacia página `/presupuesto`
+- [x] Optimizar copy y diseño del formulario
 
-Database: PostgreSQL.
+### ✅ **6. Página Presupuesto - Mejoras Generales**
+- [x] Actualizar texto inicial: "Construyamos tu proyecto a medida"
+- [x] Cambiar "Tienes" por "Tenés" (argentinizar)
 
-ORM: Prisma.
+### ✅ **7. Página Presupuesto - Step 2 (Tipo de Proyecto)**
+- [x] Corregir layout: cards apiladas sin separación
+- [x] Opción 3: Mantener gradiente del logo (queda bien así)
+- [x] Opción 3: Cambiar título a "Desarrollo 100% Personalizado (Landing + App)"
 
-Storage: MinIO / AWS S3 (para fotos y contratos).
+### ✅ **8. Página Presupuesto - Step 3 (Funcionalidades)**
+- [x] Eliminar efecto de agrandamiento de card al seleccionar
+- [x] Implementar transición suave al seleccionar:
+  - Borde de color ✓
+  - Hover sutil ✓
+  - Sin cambio de tamaño (se mantiene escala consistente)
+- [x] Aplicar consistencia en todo el builder
 
-Arquitectura Lógica: Uso de MCP (Model Context Protocol) como capa de abstracción para herramientas de lógica compleja (ej: SeatingPlanner, BudgetCalculator).
+### ✅ **9. Página Presupuesto - Step 4 (Resumen)**
+- [x] Argentinizar textos (eliminar español neutro)
+- [x] Rediseñar visualización de selecciones del usuario:
+  - Layout más organizado con gradientes
+  - Mejor jerarquía visual con bullets de color
+  - Estilo más premium con borders y shadows
 
-3. Arquitectura del Repositorio
-Estructura de repositorio unificado (no Monorepo estricto con Turborepo, sino dos aplicaciones claras):
+---
 
-/event-planner-repo
-├── frontend/          # Next.js App (Admin + Landings)
-│   ├── src/app/admin  # Rutas privadas del Panel de Control
-│   └── src/app/event  # Rutas públicas dinámicas (Landings de invitación)
-├── backend/           # NestJS API (API REST + MCP Tools)
-└── docker/            # Configuración de DB y MinIO
-4. Plan de Ejecución (Roadmap)
-FASE 1: Frontend First & UI Definition (INICIO INMEDIATO)
-Objetivo: Levantar el template, personalizar la marca y definir las interfaces clave de negocio antes de conectar datos reales.
+## 🎯 Contexto Técnico
 
-Setup Inicial:
+### Stack Actual
+- **Framework**: Astro 5.0 (SSG optimizado)
+- **Styling**: Tailwind CSS + Paleta COMMIT
+- **Interactividad**: React components (islands architecture)
+- **Transiciones**: Intersection Observer API + CSS transitions
 
-Inicializar proyecto Next.js.
+### Paleta de Colores COMMIT
+```css
+'commit': {
+  darkest: '#052832',
+  darker: '#117999',
+  dark: '#1283a5',
+  DEFAULT: '#138bae',
+  light: '#1ba1c9',
+  lighter: '#26bce9',
+  lightest: '#59cbee',
+  pale: '#ade4f7',
+}
+```
 
-Migrar/Instalar el Template Materialize comprado dentro de la carpeta frontend/.
+### Componentes Modificados
+- ✅ `/src/components/widgets/Header.astro` - Toggles comentados, links actualizados
+- ✅ `/src/components/widgets/ScrollSnapContent.astro` - Rediseño completo con mejores transiciones
+- ✅ `/src/pages/index.astro` - CallToAction reemplazando Features2
+- ✅ `/src/pages/presupuesto.astro` - Textos argentinizados
+- ✅ `/src/components/widgets/BudgetBuilder.tsx` - Mejoras UX en todos los steps
+- ✅ `/src/navigation.ts` - Menú Productos actualizado
 
-Limpieza: Eliminar módulos innecesarios del template (e-commerce).
+---
 
-Branding & Theming:
+## 📝 Notas de Implementación
+- ✅ Transiciones implementadas con Intersection Observer para mejor performance
+- ✅ `motion-safe:` considerado en los estilos para accesibilidad
+- ✅ Consistencia mantenida con sistema de diseño COMMIT
+- ✅ Responsive verificado conceptualmente (requiere testing)
 
-Ajustar paleta de colores, tipografías y logos para la identidad del SaaS.
+---
 
-Configurar el Layout principal del Admin Panel y eliminar los restantes.
+## 🔄 Siguiente Sprint (Backlog)
+- Testing responsive en todos los breakpoints (mobile, tablet, desktop)
+- Internacionalización ES/EN
+- Optimización SEO avanzada
+- Analytics y tracking
+- Formularios funcionales con backend
+- Validación de schemas en Schema Validator
 
-Maquetación de Módulos Core (Mock Data):
-
-Dashboard: Vista principal con métricas dummy.
-
-Organizador de Mesas (Seating UI): Crear la interfaz visual (drag & drop si es posible) para asignar invitados a mesas. Hacerlo didactico y con informacion sugerida por hover-cards con info de los invitados que hacemos hover, como nombre, apellido, vinculo, etc.
-
-Gestor de Invitados: Tabla para cargar/editar invitados y ver estados de RSVP. Hacer checkin a traves de QR con el celular. 
-
-Editor de Landings: Interfaz para que el planner configure la "Historia", fotos y colores de la landing del evento. Aca tiene que estar toda la informacion que se muestra en la landing del evento.
-
-Landing de Evento (Public View): Maquetar la página /event/[slug] que verán los invitados (Hero, RSVP Form, Mapa). Lo ideal es SUPER basica y con el minimo de funcionalidades.
-
-FASE 2: Backend Core & Infraestructura
-Objetivo: Dar vida a la UI con datos reales y persistencia.
-
-Infraestructura Local: Configurar docker-compose.yml con PostgreSQL y MinIO.
-
-NestJS Setup: Inicializar proyecto backend/.
-
-Base de Datos: Definir esquema Prisma (Event, Guest, Table, Planner). Importante: Soporte Multi-tenant (todo filtrado por eventId).
-
-API Básica: Endpoints CRUD para los módulos maquetados en Fase 1.
-
-FASE 3: Integración & Lógica MCP
-Objetivo: Conectar Front con Back e implementar la lógica de negocio avanzada.
-
-Integración: Conectar los formularios del Frontend a la API de NestJS.
-
-MCP Implementation:
-
-Crear módulo interno de MCP en NestJS.
-
-Implementar Tools: SeatingLogic (algoritmo simple de asignación), InvitationSender (lógica de emails).
-
-RSVP Real: Habilitar el flujo de confirmación de invitados real (Landing -> API -> DB).
-
-5. Funcionalidades Clave del MVP (Alcance)
-Gestión de Eventos: Crear, editar y configurar fecha/lugar.
-
-Invitados y RSVP: Carga masiva, link único de invitación, confirmación online.
-
-Landing Page del Evento: Página web autogenerada para cada evento con información, mapa y formulario.
-
-Organización de Mesas: Interfaz visual para distribuir invitados.
-
-Timeline: Agenda del día del evento visible para planner e invitados.
-
-Instrucción para la IA: "Comienza asistiéndome con la FASE 1. Necesito ayuda para configurar el entorno de Next.js e integrar los assets del template comprado. Prioricemos limpiar la UI y dejar listos los componentes visuales para el 'Organizador de Mesas' y la 'Lista de Invitados'."

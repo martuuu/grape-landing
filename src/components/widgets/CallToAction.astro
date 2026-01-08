@@ -27,32 +27,45 @@ const {
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <div
-    class="max-w-3xl mx-auto text-center p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600"
+    class="relative max-w-3xl mx-auto text-center p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600 overflow-hidden group"
   >
-    <Headline
-      title={title}
-      subtitle={subtitle}
-      tagline={tagline}
-      classes={{
-        container: 'mb-0 md:mb-0',
-        title: 'text-4xl md:text-4xl font-bold tracking-tighter mb-4 font-heading',
-        subtitle: 'text-xl text-muted dark:text-slate-400',
-      }}
-    />
-    {
-      actions && (
-        <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6">
-          {Array.isArray(actions) ? (
-            actions.map((action) => (
-              <div class="flex w-full sm:w-auto">
-                <Button {...(action || {})} class="w-full sm:mb-0" />
-              </div>
-            ))
-          ) : (
-            <Fragment set:html={actions} />
-          )}
-        </div>
-      )
-    }
+    <!-- Background Image with Zoom Effect -->
+    <div 
+      class="absolute inset-0 bg-cover bg-[position:80%_100%] z-0 transform scale-110 group-hover:scale-125 transition-transform duration-700 ease-in-out"
+      style="background-image: url('/src/assets/backgrounds/uyys3.jpg');"
+    ></div>
+    
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/20 z-10"></div>
+
+    <!-- Content -->
+    <div class="relative z-20">
+      <Headline
+        title={title}
+        subtitle={subtitle}
+        tagline={tagline}
+        classes={{
+          container: 'mb-0 md:mb-0',
+          title: 'text-4xl md:text-4xl font-bold tracking-tighter mb-4 font-heading text-white',
+          subtitle: 'text-xl text-white',
+        }}
+      />
+      {
+        actions && (
+          <div class="max-w-xl m-auto flex flex-wrap justify-center gap-3 mt-6">
+            {Array.isArray(actions) ? (
+              actions.map((action) => (
+                <Button 
+                  {...(action || {})} 
+                  class="px-6 py-3 text-sm font-semibold bg-white text-commit-dark hover:bg-gray-50 border-2 border-white shadow-lg hover:shadow-xl transition-all duration-300"
+                />
+              ))
+            ) : (
+              <Fragment set:html={actions} />
+            )}
+          </div>
+        )
+      }
+    </div>
   </div>
 </WidgetWrapper>

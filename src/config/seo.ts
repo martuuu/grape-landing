@@ -1,5 +1,5 @@
 /**
- * SEO Configuration for Grape Agency
+ * SEO Configuration for COMMIT
  * 
  * Configuración centralizada de SEO keywords, structured data y metadata
  * Optimizado para: Apps, Webapps, Desarrollo de Software, Startups
@@ -42,7 +42,7 @@ export const SEO_CONFIG = {
   // Páginas específicas
   pages: {
     home: {
-      title: 'Desarrollo de Apps Web y Móviles | Grape Agency',
+      title: 'Desarrollo de Apps Web y Móviles | COMMIT',
       description:
         'Agencia especializada en desarrollo de aplicaciones web y móviles para startups y empresas. Creamos MVPs, webapps y soluciones digitales personalizadas con las últimas tecnologías.',
       keywords: 'desarrollo de apps, desarrollo web, desarrollo móvil, mvp, startup, webapp, agencia software',
@@ -59,14 +59,14 @@ export const SEO_CONFIG = {
     contact: {
       title: 'Contacto - Hablemos de tu proyecto',
       description:
-        'Contacta con Grape para desarrollar tu aplicación web o móvil. Respuesta en 24 horas. Presupuesto gratuito y sin compromiso.',
+        'Contacta con COMMIT para desarrollar tu aplicación web o móvil. Respuesta en 24 horas. Presupuesto gratuito y sin compromiso.',
       keywords: 'contacto, presupuesto desarrollo, consultoría software, agencia desarrollo',
       focusKeywords: ['contacto desarrollo software', 'presupuesto app'],
     },
     about: {
-      title: 'Sobre Nosotros - Equipo Grape',
+      title: 'Sobre Nosotros - Equipo COMMIT',
       description:
-        'Conoce al equipo de Grape. Agencia de desarrollo de software con experiencia en startups y empresas. Metodologías ágiles y tecnologías modernas.',
+        'Conoce al equipo de COMMIT. Agencia de desarrollo de software con experiencia en startups y empresas. Metodologías ágiles y tecnologías modernas.',
       keywords: 'equipo desarrollo, agencia software, sobre nosotros, metodología ágil',
       focusKeywords: ['agencia desarrollo software', 'equipo desarrollo'],
     },
@@ -75,8 +75,8 @@ export const SEO_CONFIG = {
   // Structured Data Templates
   structuredData: {
     organization: {
-      name: 'Grape',
-      legalName: 'Grape Agency SL', // TODO: Actualizar con nombre legal
+      name: 'COMMIT',
+      legalName: 'COMMIT Agency SL', // TODO: Actualizar con nombre legal
       description: 'Agencia especializada en desarrollo de aplicaciones web y móviles para startups y empresas',
       foundingDate: '2020', // TODO: Actualizar con fecha real
       founders: [

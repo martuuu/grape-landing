@@ -54,9 +54,9 @@ const { type = 'WebPage', data = {} } = Astro.props;
 const organizationData = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Grape',
-  url: SITE.site || 'https://grape.agency',
-  logo: `${SITE.site || 'https://grape.agency'}/logo.png`,
+  name: 'COMMIT',
+  url: SITE.site || 'https://commit.agency',
+  logo: `${SITE.site || 'https://commit.agency'}/logo.png`,
   description: 'Agencia especializada en desarrollo de aplicaciones web y móviles para startups y empresas',
   address: {
     '@type': 'PostalAddress',
@@ -65,13 +65,13 @@ const organizationData = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'Customer Service',
-    email: 'contact@grape.agency', // TODO: Actualizar con email real
+    email: 'contact@commit.agency', // TODO: Actualizar con email real
   },
   sameAs: [
     // TODO: Agregar redes sociales reales
-    'https://twitter.com/grape_agency',
-    'https://linkedin.com/company/grape-agency',
-    'https://github.com/grape-agency',
+    'https://instagram.com/commit.agency',
+    'https://linkedin.com/company/commit-agency',
+    'https://github.com/commit-agency',
   ],
 };
 
@@ -79,15 +79,15 @@ const organizationData = {
 const websiteData = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Grape',
-  url: SITE.site || 'https://grape.agency',
+  name: 'COMMIT',
+  url: SITE.site || 'https://commit.agency',
   description: 'Desarrollo de aplicaciones web, móviles y soluciones digitales personalizadas',
   publisher: organizationData,
   potentialAction: {
     '@type': 'SearchAction',
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: `${SITE.site || 'https://grape.agency'}/search?q={search_term_string}`,
+      urlTemplate: `${SITE.site || 'https://commit.agency'}/search?q={search_term_string}`,
     },
     'query-input': 'required name=search_term_string',
   },
@@ -97,7 +97,7 @@ const websiteData = {
 const webPageData = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: data.title || 'Grape - Desarrollo de Software',
+  name: data.title || 'COMMIT - Desarrollo de Software',
   url: data.url || Astro.url.href,
   description: data.description || 'Servicios de desarrollo de software profesional',
   publisher: organizationData,
@@ -116,7 +116,7 @@ const articleData = data.article
       dateModified: data.article.modifiedDate || data.article.publishDate,
       author: {
         '@type': 'Organization',
-        name: 'Grape',
+        name: 'COMMIT',
       },
       publisher: organizationData,
       mainEntityOfPage: {

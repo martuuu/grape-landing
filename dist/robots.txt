@@ -16,7 +16,7 @@ User-agent: Googlebot-Image
 Allow: /
 
 # Sitemap location
-Sitemap: https://commit.agency/sitemap-index.xml
+Sitemap: https://grape.agency/sitemap-index.xml
 Sitemap: https://grape.agency/sitemap-0.xml
 
 # Crawl delay for specific bots (optional - uncomment if needed)

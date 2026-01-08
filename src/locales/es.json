@@ -19,7 +19,7 @@
     "cta_secondary": "Contáctanos"
   },
   "features": {
-    "title": "¿Qué hacemos en GRAPE?",
+    "title": "¿Qué hacemos en COMMIT?",
     "subtitle": "Combinamos experiencia, tecnología y atención personalizada para entregar soluciones que realmente marcan la diferencia.",
     "items": {
       "boutique": {
@@ -185,7 +185,8 @@
   },
   "about": {
     "title": "Sobre nosotros",
-    "subtitle": "Grape es una empresa de Desarrollo de Software especializada en software factory y transformación digital. Acompañamos a nuestros clientes en todo el proceso hasta lograr los objetivos comprometidos. Lo que nos diferencia es la agilidad y la idoneidad de nuestros equipos: afrontamos cada desafío con creatividad, calidad y flexibilidad enfocada en el cliente."
+    "subtitle": "COMMIT es una empresa de Desarrollo de Software especializada en software factory y transformación digital. Acompañamos a nuestros clientes en todo el proceso hasta lograr los objetivos comprometidos. Lo que nos diferencia es la agilidad y la idoneidad de nuestros equipos: afrontamos cada desafío con creatividad, calidad y flexibilidad enfocada en el cliente.",
+    "cta": "Conoce más sobre nosotros"
   },
   "steps": {
     "title": "Nuestro proceso de trabajo: claro, ágil y efectivo",

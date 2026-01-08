@@ -1,6 +1,5 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
 import Features from '~/components/widgets/Features.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features2 from '~/components/widgets/Features2.astro';
@@ -8,37 +7,50 @@ import Steps from '~/components/widgets/Steps.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import { getPermalink } from '~/utils/permalinks';
+import { Icon } from 'astro-icon/components';
 
 const metadata = {
-  title: 'Desarrollo a Medida - Servicios Grape',
+  title: 'Desarrollo a Medida - Servicios COMMIT',
   description: 'Desarrollamos software 100% personalizado para proyectos únicos y complejos que requieren soluciones específicas.',
 };
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Section -->
-  <Hero
-    tagline="Desarrollo Custom"
-    title="Sistemas 100% a Medida"
-    subtitle="Construimos software personalizado desde cero, adaptado completamente a las necesidades específicas de tu proyecto."
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Iniciar Proyecto',
-        href: getPermalink('/presupuestos'),
-        icon: 'tabler:rocket',
-      },
-      {
-        variant: 'secondary',
-        text: 'Ver Casos de Éxito',
-        href: getPermalink('/trabajos'),
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Desarrollo a Medida',
-    }}
-  />
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-20 md:py-32 bg-gradient-to-b from-white to-commit-pale/20 dark:from-gray-900 dark:to-commit-darkest">
+    
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-commit-lighter/30 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-commit-light/25 rounded-full blur-[120px]"></div>
+      <div class="absolute top-1/2 right-1/4 w-80 h-80 bg-commit/20 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-commit-lighter/20 border border-commit-lighter/40 text-commit-darker dark:text-commit-light text-sm font-medium mb-8">
+        <Icon name="tabler:code" class="w-5 h-5" />
+        Desarrollo Custom
+      </div>
+      
+      <h1 class="text-4xl md:text-7xl font-bold font-heading leading-tight mb-8">
+        Sistemas <br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-commit-darker via-commit to-commit-light">100% a Medida</span>
+      </h1>
+      
+      <p class="text-lg md:text-xl text-muted dark:text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+        Construimos software personalizado desde cero, adaptado completamente a las necesidades específicas de tu proyecto.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={getPermalink('/presupuestos')} class="px-8 py-4 bg-gradient-commit text-white font-bold rounded-xl shadow-lg shadow-commit/30 hover:scale-105 transition-transform">
+          Iniciar Proyecto
+        </a>
+        <a href={getPermalink('/trabajos')} class="px-8 py-4 bg-white dark:bg-gray-800 border-2 border-commit-light dark:border-gray-700 font-bold rounded-xl hover:bg-commit-pale/20 dark:hover:bg-gray-700 transition-colors">
+          Ver Casos de Éxito
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Introducción desde index -->
   <Content
@@ -85,7 +97,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-transparent"></div>
     </Fragment>
   </Content>
 
@@ -128,7 +140,7 @@ const metadata = {
     ]}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-bg-light dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-transparent"></div>
     </Fragment>
   </Features2>
 
@@ -339,7 +351,7 @@ const metadata = {
     subtitle="Empresas que confiaron en nosotros para sus proyectos más importantes"
     testimonials={[
       {
-        testimonial: 'Grape transformó nuestra visión en una plataforma SaaS robusta que hoy usan más de 5000 usuarios. Su expertise técnico y capacidad de resolver problemas complejos fue clave para nuestro éxito.',
+        testimonial: 'COMMIT transformó nuestra visión en una plataforma SaaS robusta que hoy usan más de 5000 usuarios. Su expertise técnico y capacidad de resolver problemas complejos fue clave para nuestro éxito.',
         name: 'Carlos Mendoza',
         job: 'CEO, TechStartup',
         image: {
@@ -348,7 +360,7 @@ const metadata = {
         },
       },
       {
-        testimonial: 'Necesitábamos integrar 7 sistemas legacy diferentes. El equipo de Grape no solo lo logró, sino que mejoró significativamente nuestros tiempos de procesamiento.',
+        testimonial: 'Necesitábamos integrar 7 sistemas legacy diferentes. El equipo de COMMIT no solo lo logró, sino que mejoró significativamente nuestros tiempos de procesamiento.',
         name: 'María González',
         job: 'CTO, Enterprise Corp',
         image: {

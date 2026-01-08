@@ -4,7 +4,7 @@ import Layout from "~/layouts/PageLayout.astro";
 // Import all necessary widgets
 import Hero from "~/components/widgets/Hero.astro";
 import Features from "~/components/widgets/Features.astro";
-import Features2 from "~/components/widgets/Features2.astro";
+import CallToAction from "~/components/widgets/CallToAction.astro";
 import Contact from "~/components/widgets/Contact.astro";
 import Steps from "~/components/widgets/Steps.astro";
 import Services from "~/components/widgets/Services.astro";
@@ -24,7 +24,7 @@ import launchIcon from '~/assets/animated-icons/launch.gif';
 const lang: Language = 'es';
 
 const metadata = {
-  title: "Desarrollo de Apps Web y Móviles | Grape Agency",
+  title: "Desarrollo de Apps Web y Móviles | COMMIT",
   ignoreTitleTemplate: true,
   description: "Agencia especializada en desarrollo de aplicaciones web y móviles para startups y empresas. Creamos MVPs, webapps y soluciones digitales personalizadas con las últimas tecnologías.",
   keywords: [
@@ -39,25 +39,25 @@ const metadata = {
     'desarrollo react',
     'desarrollo node.js',
   ],
-  canonical: "https://grape.agency/",
+  canonical: "https://commit.ar/",
   openGraph: {
-    title: "Grape - Desarrollo de Software para Startups y Empresas",
+    title: "COMMIT - Desarrollo de Software para Startups y Empresas",
     description: "Transformamos ideas en aplicaciones web y móviles exitosas. Desarrollo ágil, diseño moderno y tecnología de vanguardia.",
     type: "website",
-    url: "https://grape.agency/",
+    url: "https://commit.ar/",
     // TODO: Crear og-image-home.jpg (1200x630) - Ver /public/og-images/README.md
     // images: [
     //   {
-    //     url: "https://grape.agency/og-image-home.jpg",
+    //     url: "https://commit.ar/og-image-home.jpg",
     //     width: 1200,
     //     height: 630,
-    //     alt: "Grape - Agencia de Desarrollo de Software"
+    //     alt: "COMMIT - Agencia de Desarrollo de Software"
     //   }
     // ],
   },
   twitter: {
     cardType: "summary_large_image",
-    title: "Grape - Desarrollo de Apps Web y Móviles",
+    title: "COMMIT - Desarrollo de Apps Web y Móviles",
     description: "Creamos soluciones digitales personalizadas para startups y empresas. Apps, webapps y MVPs.",
   },
 };
@@ -108,7 +108,7 @@ const metadata = {
     <Fragment slot="title">
       <span class="text-black dark:text-white" data-i18n-key="hero.title_part1">{t(lang, "hero.title_part1")}</span><br />
       <span class="text-black dark:text-white" data-i18n-key="hero.title_part2">{t(lang, "hero.title_part2")}</span> <span class="relative inline-block">
-        <span class="text-commit-darkest dark:text-commit-lighter drop-shadow-md" data-i18n-key="hero.title_highlight">{t(lang, "hero.title_highlight")}</span>
+        <span class="text-transparent bg-clip-text bg-gradient-commit drop-shadow-md" data-i18n-key="hero.title_highlight">{t(lang, "hero.title_highlight")}</span>
       </span>
     </Fragment>
 
@@ -170,7 +170,7 @@ const metadata = {
   </Services>
 
   <!-- ========================================
-       SECCIÓN 3: ¿Qué hacemos en GRAPE?
+       SECCIÓN 3: ¿Qué hacemos en COMMIT?
        Fuente: homes/saas.astro (Features)
        ======================================== -->
 
@@ -259,7 +259,7 @@ const metadata = {
     ]}
     image={{
       src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      alt: "Equipo Grape trabajando",
+      alt: "Equipo COMMIT trabajando",
     }}
   >
     <Fragment slot="tagline">
@@ -290,9 +290,22 @@ const metadata = {
         <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter mb-4 font-heading text-white">
           <span data-i18n-key="about.title">{t(lang, "about.title")}</span>
         </h2>
-        <p class="text-xl text-white mt-4">
+        <p class="text-xl text-white mt-4 mb-8">
           <span data-i18n-key="about.subtitle">{t(lang, "about.subtitle")}</span>
         </p>
+        
+        <!-- CTA Button -->
+        <div class="mt-6">
+          <a 
+            href={getPermalink("/about")} 
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-commit-dark bg-white hover:bg-commit-pale rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
+          >
+            <span data-i18n-key="about.cta">Conoce más sobre nosotros</span>
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -336,7 +349,7 @@ const metadata = {
     ]}
     image={{
       src: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      alt: "Proceso de trabajo en Grape",
+      alt: "Proceso de trabajo en COMMIT",
     }}
   >
     <Fragment slot="title">
@@ -382,43 +395,31 @@ const metadata = {
   </Contact>
 
   <!-- ========================================
-       SECCIÓN 8: Contact Support Info
-       Fuente: pages/contact.astro (Features2)
+       SECCIÓN 8: Presupuesto Personalizado
+       CTA para solicitar presupuesto
        ======================================== -->
 
-  <Features2
-    items={[
+  <CallToAction
+    actions={[
       {
-        title: t(lang, "contact_info.items.consulting.title"),
-        description: t(lang, "contact_info.items.consulting.description"),
+        variant: 'primary',
+        text: 'Solicitar Presupuesto',
+        href: getPermalink('/presupuesto'),
+        icon: 'tabler:calculator',
       },
       {
-        title: t(lang, "contact_info.items.quotes.title"),
-        description: t(lang, "contact_info.items.quotes.description"),
-      },
-      {
-        title: t(lang, "contact_info.items.support.title"),
-        description: t(lang, "contact_info.items.support.description"),
-      },
-      {
-        title: t(lang, "contact_info.items.whatsapp.title"),
-        description: t(lang, "contact_info.items.whatsapp.value"),
-        icon: "tabler:brand-whatsapp",
-      },
-      {
-        title: t(lang, "contact_info.items.email.title"),
-        description: t(lang, "contact_info.items.email.value"),
-        icon: "tabler:mail",
-      },
-      {
-        title: t(lang, "contact_info.items.location.title"),
-        description: t(lang, "contact_info.items.location.value"),
-        icon: "tabler:map-pin",
+        variant: 'tertiary',
+        text: 'Contactar por WhatsApp',
+        href: 'https://wa.me/5492915278982?text=Hola! Quiero solicitar un presupuesto',
+        icon: 'tabler:brand-whatsapp',
       },
     ]}
   >
     <Fragment slot="title">
-      <span data-i18n-key="contact_info.title">{t(lang, "contact_info.title")}</span>
+      Presupuestos Personalizados
     </Fragment>
-  </Features2>
+    <Fragment slot="subtitle">
+      Respondé unas preguntas simples y recibí un presupuesto adaptado a tu proyecto en menos de 24 horas
+    </Fragment>
+  </CallToAction>
 </Layout>

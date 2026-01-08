@@ -11,16 +11,16 @@ export const headerData = {
       href: getPermalink('/productos'),
       links: [
         {
-          text: 'Laneko - Medicina Laboral',
+          text: 'Laneko - Gestión Integral',
           href: getPermalink('/productos/laneko'),
         },
         {
-          text: 'Buffet-IA - LegalTech',
-          href: getPermalink('/productos/buffet-ia'),
+          text: 'Consultorio Online',
+          href: getPermalink('/productos/consultorio-online'),
         },
         {
-          text: 'EventPlanner - Eventos',
-          href: getPermalink('/productos/event-planning'),
+          text: 'Picky - Gestión de Tiendas',
+          href: getPermalink('/productos/picky'),
         },
       ],
     },
@@ -46,15 +46,15 @@ export const headerData = {
       links: [
         {
           text: 'Sobre la Agencia',
-          href: getPermalink('/about'),
+          href: getPermalink('/about#agency'),
         },
         {
           text: 'Quiénes Somos',
-          href: getPermalink('/quienes-somos'),
+          href: getPermalink('/about#team'),
         },
         {
           text: 'Trabajos',
-          href: getPermalink('/trabajos'),
+          href: getPermalink('/about#work'),
         },
       ],
     },
@@ -188,10 +188,10 @@ export const footerData = {
     {
       title: 'Productos',
       links: [
+        { text: 'Laneko - Medicina Laboral', href: getPermalink('/productos/laneko') },
+        { text: 'Buffet-IA - LegalTech', href: getPermalink('/productos/buffet-ia') },
+        { text: 'EventPlanner - Eventos', href: getPermalink('/productos/event-planning') },
         { text: 'Todos los Productos', href: getPermalink('/productos') },
-        { text: 'Landing Pages', href: getPermalink('/productos#productos-principales') },
-        { text: 'Aplicaciones Web', href: getPermalink('/productos#productos-principales') },
-        { text: 'Módulos Especializados', href: getPermalink('/productos#modulos') },
       ],
     },
     {
@@ -233,9 +233,9 @@ export const footerData = {
     { text: 'Privacidad', href: getPermalink('/privacy') },
   ],
   socialLinks: [
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://instagram.com/grape.dev' },
-    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://linkedin.com/company/grape-dev' },
-    { ariaLabel: 'WhatsApp', icon: 'tabler:brand-whatsapp', href: 'https://wa.me/5491234567890' },
+    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://instagram.com/commit.ar' },
+    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://linkedin.com/company/commit-ar' },
+    { ariaLabel: 'WhatsApp', icon: 'tabler:brand-whatsapp', href: 'https://wa.me/5492915278982' },
     // { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `
