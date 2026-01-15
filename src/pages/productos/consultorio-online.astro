@@ -1,0 +1,322 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import PremiumCard from '~/components/ui/PremiumCard.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import consulDashImg from '~/assets/images/consul-dash.png';
+import consulReporteImg from '~/assets/images/consul-reporte.png';
+
+const metadata = {
+  title: 'Consultorio Online - Sistema de Gestión Médica | COMMIT',
+  description: 'SaaS integral para profesionales de la salud. Gestión de consultorios, turnos, historia clínica y facturación en una plataforma moderna.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-20 md:py-32 bg-gradient-to-b from-commit-lighter/10 to-white dark:from-commit-darkest dark:to-gray-900">
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+      <div class="absolute top-20 right-0 w-96 h-96 bg-commit-light/20 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-20 w-72 h-72 bg-commit-lighter/30 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-commit/15 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-commit-lighter/20 border border-commit-lighter/30 text-commit-darker text-sm font-medium mb-6">
+            <Icon name="tabler:stethoscope" class="w-4 h-4" />
+            Gestión Médica Inteligente
+          </div>
+          <h1 class="text-4xl md:text-6xl font-bold font-heading leading-tight mb-6">
+            Tu consultorio en la <span class="text-transparent bg-clip-text bg-gradient-to-r from-commit to-commit-light">nube</span>
+          </h1>
+          <p class="text-lg md:text-xl text-muted mb-8 leading-relaxed">
+            Sistema completo para médicos y profesionales de la salud. Gestiona tu consultorio, turnos, pacientes y facturación desde cualquier dispositivo.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#contacto" class="px-8 py-4 bg-gradient-commit text-white font-bold rounded-xl shadow-lg shadow-commit/20 hover:scale-105 transition-transform text-center">
+              Prueba Gratis 30 días
+            </a>
+            <a href="#features" class="px-8 py-4 bg-white dark:bg-gray-800 border-2 border-commit-light dark:border-gray-700 font-bold rounded-xl hover:bg-commit-pale/20 dark:hover:bg-gray-700 transition-colors text-center">
+              Ver Planes
+            </a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+            <Image
+              src={consulDashImg}
+              alt="Consultorio Online - Panel de Control"
+              class="w-full h-auto"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section id="features" class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">Todo lo que necesitas para tu práctica médica</h2>
+        <p class="text-muted text-lg">Una plataforma completa diseñada para simplificar la gestión de tu consultorio y mejorar la atención a tus pacientes.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <PremiumCard
+          title="Agenda Médica"
+          description="Gestión de turnos con recordatorios automáticos. Reduce el ausentismo y optimiza tu agenda de consultas."
+          icon="tabler:calendar-time"
+          gradient="blue"
+          tags={['WhatsApp', 'Email', 'SMS']}
+        />
+        <PremiumCard
+          title="Historia Clínica Electrónica"
+          description="Registros médicos digitales seguros y completos. Acceso instantáneo al historial de cada paciente."
+          icon="tabler:clipboard-text"
+          gradient="blue"
+          tags={['Digital', 'Seguro']}
+        />
+        <PremiumCard
+          title="Gestión de Pacientes"
+          description="Base de datos completa de pacientes con información de contacto, obra social y antecedentes."
+          icon="tabler:users"
+          gradient="purple"
+          tags={['CRM', 'Organización']}
+        />
+        <PremiumCard
+          title="Recetas Digitales"
+          description="Genera recetas médicas digitales con firma electrónica. Cumple con la normativa vigente."
+          icon="tabler:file-text"
+          gradient="blue"
+          tags={['E-prescripción', 'Legal']}
+        />
+        <PremiumCard
+          title="Facturación Inteligente"
+          description="Factura a obras sociales, prepagas y particulares. Controla tus ingresos con reportes detallados."
+          icon="tabler:receipt"
+          gradient="yellow"
+          tags={['Finanzas', 'Obras Sociales']}
+        />
+        <PremiumCard
+          title="Reportes y Analytics"
+          description="Estadísticas de ocupación, ingresos, diagnósticos más frecuentes y evolución de tu práctica."
+          icon="tabler:chart-line"
+          gradient="blue"
+          tags={['Analytics', 'KPIs']}
+        />
+        <PremiumCard
+          title="Portal del Paciente"
+          description="Tus pacientes pueden solicitar turnos online, ver sus estudios y recibir notificaciones."
+          icon="tabler:device-mobile"
+          gradient="purple"
+          tags={['Autogestión', 'UX']}
+        />
+        <PremiumCard
+          title="Telemedicina"
+          description="Consultas virtuales por videollamada. Atiende a tus pacientes desde cualquier lugar."
+          icon="tabler:video"
+          gradient="red"
+          tags={['Videoconsulta', 'Remoto']}
+        />
+        <PremiumCard
+          title="Cumplimiento Legal"
+          description="Sistema que cumple con las normativas de protección de datos y documentación médica."
+          icon="tabler:shield-check"
+          gradient="blue"
+          tags={['HIPAA', 'Seguridad']}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Analytics Section -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold font-heading mb-6">Toma decisiones basadas en datos</h2>
+          <p class="text-muted mb-6">
+            Obtén insights valiosos sobre tu práctica médica. Analiza tendencias, identifica oportunidades de crecimiento y optimiza tu tiempo.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm text-commit">
+                <Icon name="tabler:chart-bar" class="w-6 h-6" />
+              </div>
+              <div>
+                <h4 class="font-bold">Reportes en Tiempo Real</h4>
+                <p class="text-sm text-muted">Visualiza el estado de tu consultorio al instante.</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm text-commit-light">
+                <Icon name="tabler:trending-up" class="w-6 h-6" />
+              </div>
+              <div>
+                <h4 class="font-bold">Análisis de Evolución</h4>
+                <p class="text-sm text-muted">Compara períodos y detecta tendencias.</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm text-commit-lighter">
+                <Icon name="tabler:download" class="w-6 h-6" />
+              </div>
+              <div>
+                <h4 class="font-bold">Exportación de Datos</h4>
+                <p class="text-sm text-muted">Descarga reportes en PDF y Excel.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="order-first md:order-last">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+            <Image
+              src={consulReporteImg}
+              alt="Consultorio Online - Reportes y Estadísticas"
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">Planes que se adaptan a tu práctica</h2>
+        <p class="text-muted text-lg">Sin costos ocultos. Cancela cuando quieras.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Plan Básico -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-200 dark:border-gray-700 p-8 hover:shadow-2xl transition-shadow">
+          <h3 class="text-2xl font-bold mb-2">Básico</h3>
+          <div class="mb-6">
+            <span class="text-4xl font-bold">$29</span>
+            <span class="text-muted">/mes</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5 text-commit" />
+              <span class="text-sm">Hasta 50 pacientes</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5 text-commit" />
+              <span class="text-sm">Agenda de turnos</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5 text-commit" />
+              <span class="text-sm">Historia clínica básica</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5 text-commit" />
+              <span class="text-sm">1 usuario</span>
+            </li>
+          </ul>
+          <a href="#contacto" class="block w-full text-center px-6 py-3 border-2 border-commit rounded-xl font-bold hover:bg-commit hover:text-white transition-colors">
+            Comenzar
+          </a>
+        </div>
+
+        <!-- Plan Profesional -->
+        <div class="bg-gradient-to-br from-commit to-commit-light rounded-2xl p-8 text-white relative overflow-hidden hover:scale-105 transition-transform">
+          <div class="absolute top-4 right-4 px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold">
+            Popular
+          </div>
+          <h3 class="text-2xl font-bold mb-2">Profesional</h3>
+          <div class="mb-6">
+            <span class="text-4xl font-bold">$79</span>
+            <span class="text-white/80">/mes</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5" />
+              <span class="text-sm">Pacientes ilimitados</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5" />
+              <span class="text-sm">Todas las funciones</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5" />
+              <span class="text-sm">Portal del paciente</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5" />
+              <span class="text-sm">Telemedicina</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5" />
+              <span class="text-sm">Hasta 3 usuarios</span>
+            </li>
+          </ul>
+          <a href="#contacto" class="block w-full text-center px-6 py-3 bg-white text-commit rounded-xl font-bold hover:bg-gray-100 transition-colors">
+            Comenzar
+          </a>
+        </div>
+
+        <!-- Plan Clínica -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-200 dark:border-gray-700 p-8 hover:shadow-2xl transition-shadow">
+          <h3 class="text-2xl font-bold mb-2">Clínica</h3>
+          <div class="mb-6">
+            <span class="text-4xl font-bold">$199</span>
+            <span class="text-muted">/mes</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5 text-commit" />
+              <span class="text-sm">Todo de Profesional</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5 text-commit" />
+              <span class="text-sm">Múltiples especialidades</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5 text-commit" />
+              <span class="text-sm">Gestión de recursos</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5 text-commit" />
+              <span class="text-sm">Usuarios ilimitados</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="tabler:check" class="w-5 h-5 text-commit" />
+              <span class="text-sm">Soporte prioritario</span>
+            </li>
+          </ul>
+          <a href="#contacto" class="block w-full text-center px-6 py-3 border-2 border-commit rounded-xl font-bold hover:bg-commit hover:text-white transition-colors">
+            Contactar
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div id="contacto">
+    <CallToAction
+      title="Comienza hoy mismo"
+      subtitle="Prueba Consultorio Online gratis por 30 días. Sin tarjeta de crédito."
+      actions={[
+        {
+          variant: 'primary',
+          text: 'Crear cuenta gratis',
+          href: '/contact',
+          icon: 'tabler:rocket',
+        },
+        {
+          variant: 'secondary',
+          text: 'Ver otros productos',
+          href: '/productos',
+        },
+      ]}
+    />
+  </div>
+</Layout>

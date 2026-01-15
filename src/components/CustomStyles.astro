@@ -76,6 +76,15 @@ import "@fontsource-variable/inter";
     }
   }
 
+  @keyframes wave {
+    0%, 100% {
+      transform: translateX(0) translateY(0);
+    }
+    50% {
+      transform: translateX(-25px) translateY(15px);
+    }
+  }
+
   .animate-fade-in-up {
     animation: fade-in-up 0.8s ease-out forwards;
   }
@@ -94,6 +103,7 @@ import "@fontsource-variable/inter";
     --aw-font-heading: "Inter Variable";
 
     /* COMMIT Brand Colors - Dark Mode */
+    /* TODO: Verificar contraste de colores según WCAG AA para accesibilidad */
     --aw-color-primary: 255 37 91; /* c-red-light #ff255b */
     --aw-color-secondary: 204 75 231; /* c-purple-light #cc4be7 */
     --aw-color-accent: 0 208 255; /* commit-blue #00D0FF */

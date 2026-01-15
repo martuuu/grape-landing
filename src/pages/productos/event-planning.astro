@@ -1,5 +1,6 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
+import L<Layout metadata={metadata}>
+  <!-- Hero Section -->ts/PageLayout.astro';
 import PremiumCard from '~/components/ui/PremiumCard.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import { Icon } from 'astro-icon/components';
@@ -11,6 +12,23 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  <!-- Breadcrumb -->
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-4" aria-label="Breadcrumb">
+    <ol class="flex items-center space-x-2 text-sm text-muted">
+      <li>
+        <a href="/" class="hover:text-commit transition-colors">Inicio</a>
+      </li>
+      <li class="flex items-center">
+        <Icon name="tabler:chevron-right" class="w-4 h-4 mx-2" />
+        <a href="/productos" class="hover:text-commit transition-colors">Productos</a>
+      </li>
+      <li class="flex items-center">
+        <Icon name="tabler:chevron-right" class="w-4 h-4 mx-2" />
+        <span class="text-commit font-medium">EventPlanner</span>
+      </li>
+    </ol>
+  </nav>
+
   <!-- Hero Section -->
   <section class="relative overflow-hidden py-20 md:py-32 bg-gradient-to-b from-commit-lightest/20 to-white dark:from-gray-900 dark:to-commit-darkest">
     <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">

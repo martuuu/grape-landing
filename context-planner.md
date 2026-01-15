@@ -1,114 +1,63 @@
-# 🚀 COMMIT Landing - Plan de Mejoras UX/UI
+# 🎯 COMMIT Landing - Context Planner## 📦 Stack Tecnológico```json{  "framework": "Astro 5.12.9 (SSG)",  "styling": "Tailwind CSS 3.x + tailwindcss-animate",  "js-framework": "React 19.2.0 (Islands)",  "animations": "Motion 12.23.24 + Lottie 5.13.0",  "email": "EmailJS @emailjs/browser 4.x",  "icons": "astro-icon + @iconify-json/tabler",  "build": "Vite (via Astro)",  "deploy": "Vercel/Netlify ready"}```**Características clave:**- **Astro Islands**: Hidratación selectiva (React solo donde se necesita)- **Zero JS by default**: HTML estático + Progressive Enhancement- **View Transitions**: Navegación fluida entre páginas- **Image Optimization**: Astro Assets + Unpic CDN---## 🏗️ Arquitectura### Estructura de Directorios```src/├── components/│   ├── widgets/      # Secciones completas (Hero, Footer, etc)│   ├── ui/           # Componentes base (Button, Form)│   └── common/       # Utilidades (Image, Metadata)├── layouts/          # PageLayout, LandingLayout├── pages/            # Rutas (index, presupuesto, contact)├── utils/            # Helpers (email, permalinks, images)└── config/           # SEO, navegación```### Componentes Críticos**Header** (`src/components/widgets/Header.astro`)- Sticky navigation con auto-hide en footer (Intersection Observer)- Dropdown menus con Tailwind- Mobile: ToggleMenu hamburger**Hero** (`src/components/widgets/Hero.astro`)- Pattern ondulado SVG animado (paleta COMMIT)- Tailwind Animate: `animate-in fade-in slide-in-from-bottom`- Fireflies effect (canvas-based)**CallToAction** (`src/components/widgets/CallToAction.astro`)- Pattern ondulado similar al Hero- 3 ondas con gradientes (#052832 → #138bae → #26bce9)- Animaciones CSS `@keyframes wave`**BudgetBuilder** (`src/components/widgets/BudgetBuilder.tsx`)- React component (cliente-side)- 4 steps: basics, type, modules, summary- EmailJS integration con estados loading/success/error- Progress bar animada**Form** (`src/components/ui/Form.astro`)- EmailJS integration- Validación nativa HTML5- Feedback messages (green/red)---## 🎨 Sistema de Diseño### Paleta COMMIT (Tailwind)```javascript'commit': {  darkest: '#052832',  // Base oscura  darker: '#117999',  dark: '#1283a5',  DEFAULT: '#138bae',  // Principal  light: '#1ba1c9',  lighter: '#26bce9',  // Accent  lightest: '#59cbee',  pale: '#ade4f7',     // Backgrounds}```### Gradientes Predefinidos```cssbg-gradient-commit       /* #138bae → #26bce9 */bg-gradient-commit-dark  /* #052832 → #117999 */bg-gradient-commit-light /* #59cbee → #ade4f7 */```### Animaciones (Tailwind Animate)```cssanimate-in fade-in slide-in-from-bottom duration-1000animate-in fade-in-50 delay-[200ms]hover:animate-pulse```**Custom animations** (CustomStyles.astro):- `fadeInUp`: Aparición desde abajo- `wave`: Movimiento ondulatorio- `float`: Levitación suave---## 📧 Integración EmailJS### Setup```bashnpm install @emailjs/browser```### Variables de Entorno (.env.local)```envPUBLIC_EMAILJS_SERVICE_ID=service_xxxxxPUBLIC_EMAILJS_TEMPLATE_CONTACT=template_xxxxxPUBLIC_EMAILJS_TEMPLATE_BUDGET=template_xxxxxPUBLIC_EMAILJS_PUBLIC_KEY=your_public_key```### Implementación**Utilities** (`src/utils/email.ts`):- `initEmailJS()`: Inicializa con public key- `sendContactEmail(data)`: Form de contacto- `sendBudgetEmail(data)`: Budget Builder**Destino:** martin.navarro.dev@gmail.com**Templates necesarios:**1. Contact: name, email, message2. Budget: name, email, phone, company, selections (basics, type, modules)---## ⚙️ Configuración### SEO (src/config/seo.ts)- Meta tags por página- Open Graph tags- Twitter Cards- Canonical URLs- Sitemap automático### Navegación (src/navigation.ts)```javascriptheaderData.links    // Links del headerfooterData.links    // Links del footer (incluye Productos)footerData.socialLinks  // Instagram, LinkedIn, WhatsApp```**Nota:** "Productos" comentado en header (página en desarrollo)---## 🚀 Scripts NPM```bashnpm run dev       # http://localhost:4321npm run build     # Build para producciónnpm run preview   # Preview del buildnpm run check     # Astro + ESLint + Prettiernpm run fix       # Auto-fix linting```---## ⚠️ Integraciones Pendientes### 1. EmailJS (CRÍTICO)- [ ] Crear cuenta en emailjs.com- [ ] Conectar Gmail- [ ] Crear 2 templates- [ ] Copiar credenciales a `.env.local`- [ ] Testing de envío### 2. Analytics```javascript// TODO: Configurar Google Analytics o Plausible// Ver src/components/common/Analytics.astro// Opción recomendada: Plausible (privacy-focused, sin cookies)```**Eventos a trackear:**- Budget Builder completado- Formulario de contacto enviado- CTAs clickeados- Scroll depth### 3. OG Images```bash# Ver /public/og-images/README.md# Crear imágenes 1200x630px para:# - Home, Presupuesto, Contacto, Servicios```---## 🐛 Errores Conocidos### 1. Tailwind Animate ESLint Warning```javascript// tailwind.config.js línea 4// 'tailwindcssAnimate' is defined but never used// ⚠️ Falso positivo - el plugin SÍ se usa en el array```### 2. BudgetBuilder - Variables no usadas```typescript// BudgetBuilder.tsx líneas 17-18// 'isSubmitting' y 'submitMessage' están usadas en el JSX// ⚠️ Ignorar este warning de ESLint```---## 🎯 Buenas Prácticas Implementadas### Performance✅ Static Site Generation (SSG)  ✅ Image optimization (Astro Assets)  ✅ CSS Purging (Tailwind JIT)  ✅ Component lazy loading (Islands)  ✅ Minimal JavaScript (~50KB gzipped)### SEO✅ Semantic HTML  ✅ Meta tags completos  ✅ Sitemap.xml generado  ✅ robots.txt configurado  ✅ Canonical URLs  ⚠️ OG images pendientes### Accesibilidad✅ Aria labels en navegación  ✅ Keyboard navigation funcional  ✅ Focus states visibles  ✅ Color contrast (light mode)  ```javascript// TODO: Verificar contraste en dark mode (WCAG AA)// Ver src/components/CustomStyles.astro```
 
-## 📋 Checklist de Mejoras (Sprint Actual)
-
-### ✅ **1. Header - Ajustes Generales**
-- [x] Comentar toggle de cambio de theme
-- [x] Comentar toggle de cambio de idioma
-- [x] Actualizar link de Instagram a `commit.ar`
-- [x] Cambiar teléfono de contacto global a `2915278982`
-
-### ✅ **2. Header - Menú Productos**
-- [x] Actualizar dropdown con 3 productos:
-  - [x] Laneko - Gestión integral
-  - [x] Consultorio Online
-  - [x] Picky - Gestión de tiendas
-
-### ✅ **3. Rebranding Global: Grape → COMMIT**
-- [x] Actualizar todas las referencias en código
-- [x] Revisar metadata y SEO
-- [x] Verificar textos en componentes
-- [x] Actualizar assets si es necesario
-
-### ✅ **4. Home - Sección Diferenciación (Rediseño)**
-- [x] Analizar problemas actuales:
-  - Items muy separados
-  - Gradiente de color no visible
-  - Falta de transiciones fluidas
-- [x] Implementar mejoras:
-  - [x] Agregar transiciones de aparición (fade-in, slide-up con Intersection Observer)
-  - [x] Ajustar espaciado entre items (más compacto)
-  - [x] Mejorar contraste de gradientes (colores más vibrantes)
-  - [x] Agregar efectos hover con glassmorphism
-  - [x] Staggered animations para efecto progresivo
-
-### ✅ **5. Home - Sección Contact/Support (Sección 8)**
-- [x] Eliminar información de ubicación
-- [x] Refocalizar en "Presupuestos personalizados"
-- [x] Mejorar CTA hacia página `/presupuesto`
-- [x] Optimizar copy y diseño del formulario
-
-### ✅ **6. Página Presupuesto - Mejoras Generales**
-- [x] Actualizar texto inicial: "Construyamos tu proyecto a medida"
-- [x] Cambiar "Tienes" por "Tenés" (argentinizar)
-
-### ✅ **7. Página Presupuesto - Step 2 (Tipo de Proyecto)**
-- [x] Corregir layout: cards apiladas sin separación
-- [x] Opción 3: Mantener gradiente del logo (queda bien así)
-- [x] Opción 3: Cambiar título a "Desarrollo 100% Personalizado (Landing + App)"
-
-### ✅ **8. Página Presupuesto - Step 3 (Funcionalidades)**
-- [x] Eliminar efecto de agrandamiento de card al seleccionar
-- [x] Implementar transición suave al seleccionar:
-  - Borde de color ✓
-  - Hover sutil ✓
-  - Sin cambio de tamaño (se mantiene escala consistente)
-- [x] Aplicar consistencia en todo el builder
-
-### ✅ **9. Página Presupuesto - Step 4 (Resumen)**
-- [x] Argentinizar textos (eliminar español neutro)
-- [x] Rediseñar visualización de selecciones del usuario:
-  - Layout más organizado con gradientes
-  - Mejor jerarquía visual con bullets de color
-  - Estilo más premium con borders y shadows
+### UX
+✅ Header auto-hide en footer  
+✅ Animaciones sutiles con Tailwind Animate  
+✅ Form validation nativa  
+✅ Loading states en forms  
+✅ Error handling con fallback a WhatsApp
 
 ---
 
-## 🎯 Contexto Técnico
+## 🔧 TODOs en Código
 
-### Stack Actual
-- **Framework**: Astro 5.0 (SSG optimizado)
-- **Styling**: Tailwind CSS + Paleta COMMIT
-- **Interactividad**: React components (islands architecture)
-- **Transiciones**: Intersection Observer API + CSS transitions
-
-### Paleta de Colores COMMIT
-```css
-'commit': {
-  darkest: '#052832',
-  darker: '#117999',
-  dark: '#1283a5',
-  DEFAULT: '#138bae',
-  light: '#1ba1c9',
-  lighter: '#26bce9',
-  lightest: '#59cbee',
-  pale: '#ade4f7',
-}
+```bash
+# Buscar TODOs en el proyecto:
+grep -r "TODO" src/
 ```
 
-### Componentes Modificados
-- ✅ `/src/components/widgets/Header.astro` - Toggles comentados, links actualizados
-- ✅ `/src/components/widgets/ScrollSnapContent.astro` - Rediseño completo con mejores transiciones
-- ✅ `/src/pages/index.astro` - CallToAction reemplazando Features2
-- ✅ `/src/pages/presupuesto.astro` - Textos argentinizados
-- ✅ `/src/components/widgets/BudgetBuilder.tsx` - Mejoras UX en todos los steps
-- ✅ `/src/navigation.ts` - Menú Productos actualizado
+**Lista actual:**
+1. `CustomStyles.astro`: Verificar contraste dark mode
+2. `Header.astro`: Reactivar ToggleTheme y ToggleLanguage
+3. `Analytics.astro`: Configurar Google Analytics o Plausible
+4. `og-images/README.md`: Crear imágenes OG para páginas principales
 
 ---
 
-## 📝 Notas de Implementación
-- ✅ Transiciones implementadas con Intersection Observer para mejor performance
-- ✅ `motion-safe:` considerado en los estilos para accesibilidad
-- ✅ Consistencia mantenida con sistema de diseño COMMIT
-- ✅ Responsive verificado conceptualmente (requiere testing)
+## 📊 Métricas Target (Lighthouse)
+
+```
+Performance:  > 95
+Accessibility: > 95
+Best Practices: > 95
+SEO: 100
+```
+
+**Optimizaciones aplicadas:**
+- Preload critical resources
+- Font display: swap
+- Lazy loading de imágenes
+- Minificación de CSS/JS
 
 ---
 
-## 🔄 Siguiente Sprint (Backlog)
-- Testing responsive en todos los breakpoints (mobile, tablet, desktop)
-- Internacionalización ES/EN
-- Optimización SEO avanzada
-- Analytics y tracking
-- Formularios funcionales con backend
-- Validación de schemas en Schema Validator
+## 🔄 Próximas Iteraciones
+
+**Sprint 2 (Febrero 2026):**
+- Completar página Productos
+- Activar sistema i18n (ES/EN)
+- Blog con MDX
+- Testimonios dinámicos
+
+**Sprint 3 (Marzo 2026):**
+- Dashboard de clientes
+- A/B testing de CTAs
+- Optimización avanzada mobile
+- PWA capabilities
+
+---
+
+**Última actualización:** 14 Enero 2026  
+**Mantenedor:** Martin Navarro  
+**Email:** martin.navarro.dev@gmail.com
 

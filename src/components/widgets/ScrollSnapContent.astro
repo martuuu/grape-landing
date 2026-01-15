@@ -278,7 +278,11 @@ const {
       <!-- Columna derecha: Cards -->
       <div class="timeline-cards">
         {items.map((item, index) => (
-          <div class="timeline-item" data-index={index}>
+          <div 
+            class="timeline-item animate-in fade-in-50 duration-700" 
+            data-index={index}
+            style={`animation-delay: ${index * 200}ms;`}
+          >
             <div class="timeline-content">
               {item.icon && <Icon name={item.icon} class="item-icon" />}
               {item.title && <h3 class="item-title">{item.title}</h3>}

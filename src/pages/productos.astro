@@ -3,6 +3,10 @@ import Layout from "~/layouts/PageLayout.astro";
 import CallToAction from "~/components/widgets/CallToAction.astro";
 import { Icon } from "astro-icon/components";
 import LottieAnimation from "~/components/common/LottieAnimation.astro";
+import { Image } from 'astro:assets';
+import lanekoImg from '~/assets/images/laneko-landing.png';
+import consulImg from '~/assets/images/consul-dash.png';
+import medifarImg from '~/assets/images/medifar.png';
 
 const metadata = {
   title: "Nuestros Productos | Soluciones Tecnológicas Innovadoras",
@@ -48,153 +52,112 @@ const metadata = {
     </div>
   </section>
 
-  <!-- Main Products Hub -->
-  <section id="productos" class="py-12 md:py-20 bg-gray-50 dark:bg-gray-900">
+  <!-- Productos Section -->
+  <section id="productos" class="py-16 md:py-20 bg-commit-darkest/5 dark:bg-slate-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <!-- Laneko Card -->
-        <a href="/productos/laneko" class="group block">
-          <div class="relative h-full rounded-2xl overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-commit-lighter to-commit"></div>
-            
-            <!-- Icon Section -->
-            <div class="relative bg-gradient-to-br from-commit-lighter/10 to-commit/10 p-12 flex items-center justify-center border-b border-gray-200 dark:border-gray-700">
-              <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,174,235,0.08),transparent_70%)]"></div>
-              <Icon name="tabler:heartbeat" class="relative w-24 h-24 text-commit-lighter opacity-80 group-hover:scale-110 transition-transform duration-500" />
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Nuestros Productos</h2>
+        <p class="text-xl text-muted dark:text-slate-400 max-w-3xl mx-auto">
+          Soluciones innovadoras que hemos desarrollado para transformar industrias
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
+          <Image
+            src={lanekoImg}
+            alt="Laneko - Sistema de gestión para Medicina Laboral"
+            class="w-full h-64 object-cover"
+            width={800}
+            height={256}
+          />
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-3 py-1 bg-commit-light/10 text-commit-medium text-xs font-medium rounded-full">Healthcare</span>
+              <span class="px-3 py-1 bg-commit-light/10 text-commit-medium text-xs font-medium rounded-full">SaaS</span>
             </div>
-            
-            <!-- Content Section -->
-            <div class="p-6 flex flex-col">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-commit-lighter/10 text-commit-darker text-xs font-medium mb-4 w-fit">
-                <Icon name="tabler:heartbeat" class="w-3.5 h-3.5" />
-                HealthTech
-              </div>
-              
-              <h2 class="text-2xl font-bold font-heading mb-3 group-hover:text-commit-dark transition-colors">Laneko</h2>
-              
-              <p class="text-sm text-muted mb-6 flex-grow">
-                ERP médico integral para clínicas privadas. Agenda, HCE, Facturación, Stock y más.
-              </p>
-              
-              <div class="space-y-2 mb-6">
-                <div class="flex items-center gap-2 text-xs text-muted">
-                  <Icon name="tabler:check" class="w-4 h-4 text-commit-lighter flex-shrink-0" />
-                  <span>Agenda + HCE</span>
-                </div>
-                <div class="flex items-center gap-2 text-xs text-muted">
-                  <Icon name="tabler:check" class="w-4 h-4 text-commit-lighter flex-shrink-0" />
-                  <span>Portal B2B</span>
-                </div>
-                <div class="flex items-center gap-2 text-xs text-muted">
-                  <Icon name="tabler:check" class="w-4 h-4 text-commit-lighter flex-shrink-0" />
-                  <span>Visor DICOM</span>
-                </div>
-              </div>
-              
-              <div class="flex items-center text-commit-lighter font-semibold text-sm group-hover:translate-x-2 transition-transform">
-                Ver más
-                <Icon name="tabler:arrow-right" class="w-4 h-4 ml-2" />
-              </div>
+            <h3 class="text-xl font-bold mb-2">Laneko</h3>
+            <p class="text-muted dark:text-slate-400 mb-4">
+              Sistema de gestión integral para empresa de Medicina Laboral. Plataforma completa para manejo de pacientes, 
+              estudios médicos y reporting.
+            </p>
+            <div class="flex items-center gap-4 text-sm text-muted">
+              <span>⚡ React + Node.js</span>
+              <span>🏥 Healthcare</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <!-- Buffet-IA Card -->
-        <a href="/productos/buffet-ia" class="group block">
-          <div class="relative h-full rounded-2xl overflow-hidden bg-gray-900 text-white border border-gray-700 shadow-lg hover:shadow-xl hover:shadow-commit/10 hover:-translate-y-1 transition-all duration-300">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-commit to-commit-lighter"></div>
-            
-            <!-- Icon Section -->
-            <div class="relative bg-gray-800 p-12 flex items-center justify-center border-b border-gray-700">
-              <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(184,61,210,0.08),transparent_70%)]"></div>
-              <div class="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-10"></div>
-              <Icon name="tabler:robot" class="relative w-24 h-24 text-commit opacity-60 group-hover:scale-110 transition-transform duration-500" />
+        <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
+          <Image
+            src={consulImg}
+            alt="Consultorio Online - SaaS para profesionales de la salud"
+            class="w-full h-64 object-cover"
+            width={800}
+            height={256}
+          />
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-3 py-1 bg-commit-light/10 text-commit-medium text-xs font-medium rounded-full">SaaS</span>
+              <span class="px-3 py-1 bg-commit-light/10 text-commit-medium text-xs font-medium rounded-full">Healthcare</span>
             </div>
-            
-            <!-- Content Section -->
-            <div class="p-6 flex flex-col">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-commit/20 text-commit-light text-xs font-medium mb-4 w-fit border border-commit/30">
-                <Icon name="tabler:brain" class="w-3.5 h-3.5" />
-                LegalTech + AI
-              </div>
-              
-              <h2 class="text-2xl font-bold font-heading mb-3 group-hover:text-commit-light transition-colors">Buffet-IA</h2>
-              
-              <p class="text-sm text-gray-300 mb-6 flex-grow">
-                Tu abogado junior con IA privada. Redacción automática y análisis de expedientes.
-              </p>
-              
-              <div class="space-y-2 mb-6">
-                <div class="flex items-center gap-2 text-xs text-gray-300">
-                  <Icon name="tabler:check" class="w-4 h-4 text-commit-light flex-shrink-0" />
-                  <span>Privacidad Local</span>
-                </div>
-                <div class="flex items-center gap-2 text-xs text-gray-300">
-                  <Icon name="tabler:check" class="w-4 h-4 text-commit-light flex-shrink-0" />
-                  <span>RAG Expedientes</span>
-                </div>
-                <div class="flex items-center gap-2 text-xs text-gray-300">
-                  <Icon name="tabler:check" class="w-4 h-4 text-commit-light flex-shrink-0" />
-                  <span>Integración MCP</span>
-                </div>
-              </div>
-              
-              <div class="flex items-center text-commit-light font-semibold text-sm group-hover:translate-x-2 transition-transform">
-                Ver más
-                <Icon name="tabler:arrow-right" class="w-4 h-4 ml-2" />
-              </div>
+            <h3 class="text-xl font-bold mb-2">Consultorio Online</h3>
+            <p class="text-muted dark:text-slate-400 mb-4">
+              SaaS para profesionales de la salud, enfocado en el manejo de consultorios y clínicas para médicos. 
+              Gestión de turnos, pacientes y facturación.
+            </p>
+            <div class="flex items-center gap-4 text-sm text-muted">
+              <span>📊 Next.js + Python</span>
+              <span>☁️ Cloud Infrastructure</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <!-- EventPlanner Card -->
-        <a href="/productos/event-planning" class="group block">
-          <div class="relative h-full rounded-2xl overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-commit-lightest to-commit-light"></div>
-            
-            <!-- Icon Section -->
-            <div class="relative bg-gradient-to-br from-commit-lightest/10 to-commit-light/10 p-12 flex items-center justify-center border-b border-gray-200 dark:border-gray-700">
-              <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,186,0,0.08),transparent_70%)]"></div>
-              <Icon name="tabler:glass" class="relative w-24 h-24 text-commit-lightest opacity-80 group-hover:scale-110 transition-transform duration-500" />
+        <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
+          <Image
+            src={medifarImg}
+            alt="Medifar - Marketing landing"
+            class="w-full h-64 object-cover"
+            width={800}
+            height={256}
+          />
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-3 py-1 bg-commit-light/10 text-commit-medium text-xs font-medium rounded-full">Marketing</span>
+              <span class="px-3 py-1 bg-commit-light/10 text-commit-medium text-xs font-medium rounded-full">Landing</span>
             </div>
-            
-            <!-- Content Section -->
-            <div class="p-6 flex flex-col">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-commit-lightest/10 text-commit-dark text-xs font-medium mb-4 w-fit">
-                <Icon name="tabler:confetti" class="w-3.5 h-3.5" />
-                Eventos SaaS
-              </div>
-              
-              <h2 class="text-2xl font-bold font-heading mb-3 group-hover:text-commit-dark transition-colors">EventPlanner</h2>
-              
-              <p class="text-sm text-muted mb-6 flex-grow">
-                Plataforma integral para Wedding Planners. Seating planner visual y RSVP digital.
-              </p>
-              
-              <div class="space-y-2 mb-6">
-                <div class="flex items-center gap-2 text-xs text-muted">
-                  <Icon name="tabler:check" class="w-4 h-4 text-commit-lightest flex-shrink-0" />
-                  <span>Seating Drag & Drop</span>
-                </div>
-                <div class="flex items-center gap-2 text-xs text-muted">
-                  <Icon name="tabler:check" class="w-4 h-4 text-commit-lightest flex-shrink-0" />
-                  <span>RSVP con QR</span>
-                </div>
-                <div class="flex items-center gap-2 text-xs text-muted">
-                  <Icon name="tabler:check" class="w-4 h-4 text-commit-lightest flex-shrink-0" />
-                  <span>Landing Generator</span>
-                </div>
-              </div>
-              
-              <div class="flex items-center text-commit-dark font-semibold text-sm group-hover:translate-x-2 transition-transform">
-                Ver más
-                <Icon name="tabler:arrow-right" class="w-4 h-4 ml-2" />
-              </div>
+            <h3 class="text-xl font-bold mb-2">Medifar</h3>
+            <p class="text-muted dark:text-slate-400 mb-4">
+              Marketing landing para empresa de venta de insumos hospitalarios. 
+              Diseño moderno y optimizado para conversión.
+            </p>
+            <div class="flex items-center gap-4 text-sm text-muted">
+              <span>🎨 Astro + Tailwind</span>
+              <span>⚡ High Performance</span>
             </div>
           </div>
-        </a>
+        </div>
 
+        <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
+          <div class="w-full h-64 bg-gradient-to-br from-commit-light to-commit-dark flex items-center justify-center">
+            <span class="text-white text-6xl font-bold">Picky</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-3 py-1 bg-commit-light/10 text-commit-medium text-xs font-medium rounded-full">E-commerce</span>
+              <span class="px-3 py-1 bg-commit-light/10 text-commit-medium text-xs font-medium rounded-full">Mobile</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Picky</h3>
+            <p class="text-muted dark:text-slate-400 mb-4">
+              Sistema integral para tiendas y mayoristas, revolucionario por su sistema de compra en local 
+              a través de celular. Experiencia de compra innovadora.
+            </p>
+            <div class="flex items-center gap-4 text-sm text-muted">
+              <span>📱 React Native</span>
+              <span>🛒 E-commerce Innovation</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

@@ -1,8 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Logo from '~/components/Logo.astro';
-// import ToggleTheme from '~/components/common/ToggleTheme.astro'; // COMENTADO TEMPORALMENTE
-// import ToggleLanguage from '~/components/common/ToggleLanguage.astro'; // COMENTADO TEMPORALMENTE
+// TODO: Reactivar ToggleTheme y ToggleLanguage en futuro sprint (actualmente desactivados temporalmente)
+// import ToggleTheme from '~/components/common/ToggleTheme.astro';
+// import ToggleLanguage from '~/components/common/ToggleLanguage.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
 
 import { getHomePermalink } from '~/utils/permalinks';
@@ -212,3 +213,40 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
   </div>
 </header>
+
+<script>
+  // Ocultar header cuando el footer es visible
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
+    
+    if (!header || !footer) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Footer visible - ocultar header
+            header.style.opacity = '0';
+            header.style.pointerEvents = 'none';
+          } else {
+            // Footer no visible - mostrar header
+            header.style.opacity = '1';
+            header.style.pointerEvents = 'auto';
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Se activa cuando el 10% del footer es visible
+      }
+    );
+    
+    observer.observe(footer);
+  });
+</script>
+
+<style>
+  header {
+    transition: opacity 300ms ease-in-out;
+  }
+</style>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { initEmailJS, sendBudgetEmail } from '~/utils/email';
 
 interface Selections {
   basics: string[];
@@ -13,8 +14,15 @@ export default function BudgetBuilder() {
     type: '',
     modules: [],
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   const totalSteps = 4;
+
+  // Inicializar EmailJS al montar el componente
+  useState(() => {
+    initEmailJS();
+  });
 
   const nextStep = () => {
     if (currentStep === 2 && !selections.type) {
@@ -45,15 +53,43 @@ export default function BudgetBuilder() {
     setSelections(prev => ({ ...prev, type: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage(null);
+    
     const formData = new FormData(e.currentTarget);
     const data = {
-      ...Object.fromEntries(formData),
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      company: formData.get('company') as string,
       selections
     };
-    console.log('Budget request:', data);
-    alert('¡Gracias! Nos pondremos en contacto contigo pronto con tu presupuesto personalizado.');
+
+    try {
+      await sendBudgetEmail(data);
+      setSubmitMessage({
+        type: 'success',
+        text: '¡Gracias! Tu solicitud de presupuesto fue enviada exitosamente. Nos pondremos en contacto contigo pronto.'
+      });
+      
+      // Resetear formulario después de 3 segundos
+      setTimeout(() => {
+        setSelections({ basics: [], type: '', modules: [] });
+        setCurrentStep(1);
+        setSubmitMessage(null);
+      }, 3000);
+      
+    } catch (error) {
+      console.error('Error sending budget request:', error);
+      setSubmitMessage({
+        type: 'error',
+        text: 'Hubo un error al enviar tu solicitud. Por favor, intenta nuevamente o contáctanos directamente por WhatsApp.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const summaryLabels = {
@@ -99,13 +135,13 @@ export default function BudgetBuilder() {
 
         {/* Step 1: Initial Setup */}
         {currentStep === 1 && (
-          <div className="step-content space-y-6">
+          <div className="step-content space-y-6 animate-in fade-in slide-in-from-right duration-500">
             <div>
               <h2 className="text-3xl font-bold font-heading mb-2">¿Qué tenés ya preparado?</h2>
               <p className="text-muted">Esto nos ayuda a entender desde dónde partimos y ajustar el presupuesto</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
                 { value: 'branding', emoji: '🎨', title: 'Branding Definido', desc: 'Ya tengo logo, colores corporativos e identidad visual', color: 'commit' },
                 { value: 'designs', emoji: '📐', title: 'Diseños UI/UX', desc: 'Tengo mockups o wireframes del proyecto', color: 'commit-light' },
@@ -144,7 +180,7 @@ export default function BudgetBuilder() {
 
         {/* Step 2: Project Type */}
         {currentStep === 2 && (
-          <div className="step-content space-y-6">
+          <div className="step-content space-y-6 animate-in fade-in slide-in-from-right duration-500">
             <div>
               <h2 className="text-3xl font-bold font-heading mb-2">¿Qué tipo de proyecto necesitás?</h2>
               <p className="text-muted">Seleccioná la opción que mejor describa tu necesidad</p>
@@ -191,7 +227,7 @@ export default function BudgetBuilder() {
 
         {/* Step 3: Modules */}
         {currentStep === 3 && (
-          <div className="step-content space-y-6">
+          <div className="step-content space-y-6 animate-in fade-in slide-in-from-right duration-500">
             <div>
               <h2 className="text-3xl font-bold font-heading mb-2">¿Qué funcionalidades necesitás?</h2>
               <p className="text-muted">Seleccioná todos los módulos que tu proyecto requiera</p>
@@ -235,7 +271,7 @@ export default function BudgetBuilder() {
 
         {/* Step 4: Summary */}
         {currentStep === 4 && (
-          <div className="step-content space-y-6">
+          <div className="step-content space-y-6 animate-in fade-in slide-in-from-right duration-500">
             <div>
               <h2 className="text-3xl font-bold font-heading mb-2">Resumen de tu proyecto</h2>
               <p className="text-muted">Revisá tu selección y solicitá tu presupuesto personalizado</p>
@@ -294,6 +330,17 @@ export default function BudgetBuilder() {
 
             <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
               <h3 className="font-bold mb-4">Datos de contacto</h3>
+              
+              {submitMessage && (
+                <div className={`mb-4 p-4 rounded-lg ${
+                  submitMessage.type === 'success' 
+                    ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100' 
+                    : 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100'
+                }`}>
+                  {submitMessage.text}
+                </div>
+              )}
+              
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input 
@@ -301,33 +348,48 @@ export default function BudgetBuilder() {
                     name="name" 
                     placeholder="Nombre completo" 
                     required
-                    className="px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-commit focus:ring-2 focus:ring-commit/20 outline-none transition-all"
+                    disabled={isSubmitting}
+                    className="px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-commit focus:ring-2 focus:ring-commit/20 outline-none transition-all disabled:opacity-50"
                   />
                   <input 
                     type="email" 
                     name="email" 
                     placeholder="Email" 
                     required
-                    className="px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-commit focus:ring-2 focus:ring-commit/20 outline-none transition-all"
+                    disabled={isSubmitting}
+                    className="px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-commit focus:ring-2 focus:ring-commit/20 outline-none transition-all disabled:opacity-50"
                   />
                 </div>
-                <input 
-                  type="tel" 
-                  name="phone" 
-                  placeholder="Teléfono (opcional)" 
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-commit focus:ring-2 focus:ring-commit/20 outline-none transition-all"
-                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input 
+                    type="tel" 
+                    name="phone" 
+                    placeholder="Teléfono" 
+                    required
+                    disabled={isSubmitting}
+                    className="px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-commit focus:ring-2 focus:ring-commit/20 outline-none transition-all disabled:opacity-50"
+                  />
+                  <input 
+                    type="text" 
+                    name="company" 
+                    placeholder="Empresa (opcional)" 
+                    disabled={isSubmitting}
+                    className="px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-commit focus:ring-2 focus:ring-commit/20 outline-none transition-all disabled:opacity-50"
+                  />
+                </div>
                 <textarea 
                   name="message" 
                   placeholder="Contanos más sobre tu proyecto..." 
                   rows={4}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-commit focus:ring-2 focus:ring-commit/20 outline-none transition-all"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-commit focus:ring-2 focus:ring-commit/20 outline-none transition-all disabled:opacity-50"
                 />
                 <button 
                   type="submit"
-                  className="w-full px-6 py-4 bg-gradient-commit text-white font-bold rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all"
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-4 bg-gradient-commit text-white font-bold rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  Solicitar Presupuesto
+                  {isSubmitting ? 'Enviando...' : 'Solicitar Presupuesto'}
                 </button>
               </form>
             </div>

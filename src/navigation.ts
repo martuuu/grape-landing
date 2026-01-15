@@ -6,24 +6,24 @@ export const headerData = {
       text: 'Inicio',
       href: getPermalink('/'),
     },
-    {
-      text: 'Productos',
-      href: getPermalink('/productos'),
-      links: [
-        {
-          text: 'Laneko - Gestión Integral',
-          href: getPermalink('/productos/laneko'),
-        },
-        {
-          text: 'Consultorio Online',
-          href: getPermalink('/productos/consultorio-online'),
-        },
-        {
-          text: 'Picky - Gestión de Tiendas',
-          href: getPermalink('/productos/picky'),
-        },
-      ],
-    },
+    // {
+    //   text: 'Productos',
+    //   href: getPermalink('/productos'),
+    //   links: [
+    //     {
+    //       text: 'Laneko - Gestión Integral',
+    //       href: getPermalink('/productos/laneko'),
+    //     },
+    //     {
+    //       text: 'Consultorio Online',
+    //       href: getPermalink('/productos/consultorio-online'),
+    //     },
+    //     {
+    //       text: 'Picky - Gestión de Tiendas',
+    //       href: getPermalink('/productos/picky'),
+    //     },
+    //   ],
+    // },
     {
       text: 'Servicios',
       links: [
@@ -206,9 +206,8 @@ export const footerData = {
     {
       title: 'Empresa',
       links: [
-        { text: 'Sobre la Agencia', href: getPermalink('/about') },
-        { text: 'Quiénes Somos', href: getPermalink('/quienes-somos') },
-        { text: 'Trabajos', href: getPermalink('/trabajos') },
+        { text: 'Sobre Nosotros', href: getPermalink('/about') },
+        { text: 'Productos', href: getPermalink('/productos') },
         { text: 'Contacto', href: getPermalink('/contact') },
       ],
     },

@@ -1,4 +1,4 @@
-# Open Graph Images - Grape Agency
+# Open Graph Images - COMMIT Landing
 
 ## 📐 Especificaciones Técnicas
 
@@ -18,35 +18,169 @@
 - **Peso**: < 5 MB (idealmente < 300 KB)
 - **Nombre**: `twitter-card-[page].jpg`
 
-#### LinkedIn
-- **Tamaño**: 1200 x 627 px
-- **Ratio**: 1.91:1
-- **Formato**: JPG o PNG
-
 ---
 
-## 🎨 Guía de Diseño para Imágenes OG
+## 🎨 Guía de Diseño para Imágenes OG - COMMIT
+
+### Paleta de Colores COMMIT
+```css
+/* Tonos principales */
+--commit-darkest: #052832
+--commit-dark: #1283a5
+--commit-default: #138bae
+--commit-light: #1ba1c9
+--commit-lighter: #26bce9
+--commit-pale: #ade4f7
+
+/* Gradiente recomendado */
+background: linear-gradient(135deg, #052832 0%, #138bae 50%, #26bce9 100%);
+```
 
 ### Elementos Clave
 
-1. **Logo de Grape**
+1. **Logo de COMMIT**
    - Posición: Superior izquierda
-   - Tamaño: ~100-150 px de ancho
+   - Tamaño: ~120 px de ancho
    - Margen: 60 px desde bordes
+   - Incluir "COMMIT" + "TECNOLOGÍAS DEL SUR"
 
 2. **Título Principal**
-   - Tipografía: Inter Bold / Similar sans-serif moderna
-   - Tamaño: 64-80 px
-   - Color: Azul primario (#1e40af) o blanco sobre fondo oscuro
-   - Posición: Centro-izquierda
-   - Max líneas: 2-3
+   - Tipografía: Inter Bold (ya cargada en el proyecto)
+   - Tamaño: 72-84 px
+   - Color: #052832 (sobre fondo claro) o blanco (sobre pattern ondulado)
+   - Posición: Centro-izquierda, vertical centrado
+   - Max líneas: 2
 
-3. **Subtítulo/Descripción**
-   - Tipografía: Inter Regular / Medium
-   - Tamaño: 32-40 px
-   - Color: Gris oscuro (#374151) o gris claro si fondo oscuro
+3. **Subtítulo/Tagline**
+   - Tipografía: Inter Medium
+   - Tamaño: 36-42 px
+   - Color: #1283a5 o gris claro
    - Posición: Debajo del título
-   - Max líneas: 1-2
+   - Max líneas: 1
+
+4. **Background**
+   - Opción 1: Pattern ondulado (como en Hero/CTA)
+   - Opción 2: Gradiente suave de la paleta
+   - Opción 3: Blanco con accent en esquinas
+
+---
+
+## 📋 Imágenes a Crear
+
+### Prioridad Alta
+1. **`og-image-home.jpg`** - Homepage
+   - Título: "Desarrollo de Software para Startups"
+   - Subtítulo: "Apps Web y Móviles | COMMIT"
+
+2. **`og-image-presupuesto.jpg`** - Budget Builder
+   - Título: "Presupuesto Personalizado"
+   - Subtítulo: "Cotizá tu proyecto en minutos"
+
+3. **`og-image-contacto.jpg`** - Contacto
+   - Título: "Hablemos de tu Proyecto"
+   - Subtítulo: "Equipo especializado en desarrollo"
+
+### Prioridad Media
+4. **`og-image-servicios.jpg`** - Servicios
+5. **`og-image-productos.jpg`** - Productos
+6. **`og-image-about.jpg`** - Sobre nosotros
+
+---
+
+## 🛠️ Herramientas Recomendadas
+
+### Online (Gratis)
+- **Canva** (plantillas pre-diseñadas)
+- **Figma** (diseño profesional)
+- **OG Image Generator** by Vercel
+
+### Automatización
+```javascript
+// TODO: Implementar generación automática con @vercel/og
+// Permite crear OG images dinámicamente con React/JSX
+```
+
+---
+
+## 📝 Template Básico (HTML + CSS para Figma/Canva)
+
+```html
+<div style="width: 1200px; height: 630px; background: linear-gradient(135deg, #052832 0%, #138bae 50%, #26bce9 100%); padding: 60px; display: flex; flex-direction: column; justify-content: space-between;">
+  
+  <!-- Logo -->
+  <div style="width: 120px; height: auto;">
+    <!-- Logo SVG aquí -->
+  </div>
+  
+  <!-- Contenido Central -->
+  <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 800px;">
+    <h1 style="font-family: Inter, sans-serif; font-weight: 800; font-size: 72px; color: white; line-height: 1.1; margin-bottom: 20px;">
+      Desarrollo de Software
+    </h1>
+    <p style="font-family: Inter, sans-serif; font-weight: 500; font-size: 38px; color: #ade4f7;">
+      Apps Web y Móviles | COMMIT
+    </p>
+  </div>
+  
+  <!-- Footer -->
+  <div style="font-family: Inter, sans-serif; font-size: 24px; color: #ade4f7;">
+    commit.ar
+  </div>
+</div>
+```
+
+---
+
+## ✅ Checklist de Validación
+
+Antes de publicar cada imagen:
+
+- [ ] Tamaño exacto: 1200 x 630 px
+- [ ] Peso < 300 KB (optimizada)
+- [ ] Logo visible y nítido
+- [ ] Texto legible en móvil (mínimo 28px)
+- [ ] Colores de marca correctos
+- [ ] Sin elementos cortados en bordes
+- [ ] Testing en:
+  - [ ] Facebook Debugger
+  - [ ] Twitter Card Validator
+  - [ ] LinkedIn Post Inspector
+
+---
+
+## 📂 Estructura de Archivos
+
+```
+/public/og-images/
+├── README.md (este archivo)
+├── og-image-home.jpg
+├── og-image-presupuesto.jpg
+├── og-image-contacto.jpg
+├── og-image-servicios.jpg
+├── og-image-productos.jpg
+└── og-image-about.jpg
+```
+
+---
+
+## 🔗 Implementación en Código
+
+Una vez creadas las imágenes, actualizar en cada página:
+
+```astro
+---
+const metadata = {
+  title: "Título de la página",
+  openGraph: {
+    images: [{
+      url: "https://commit.ar/og-images/og-image-home.jpg",
+      width: 1200,
+      height: 630,
+    }],
+  },
+};
+---
+```
 
 4. **Elemento Visual**
    - Ilustración o patrón de fondo sutil
