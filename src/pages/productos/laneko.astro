@@ -1,0 +1,208 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import PremiumCard from '~/components/ui/PremiumCard.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import lanekoDashImg from '~/assets/images/laneko-dash.png';
+import lanekoLandingImg from '~/assets/images/laneko-landing.png';
+
+const metadata = {
+  title: 'Laneko - Gestión de Medicina Laboral | COMMIT',
+  description: 'Sistema integral para la gestión de medicina laboral. Turnos, historia clínica, portal de empresas y facturación en una sola plataforma.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-20 md:py-32 bg-gradient-to-b from-commit-lighter/10 to-white dark:from-commit-darkest dark:to-gray-900">
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+      <div class="absolute top-20 right-0 w-96 h-96 bg-commit-light/20 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-20 w-72 h-72 bg-commit-lighter/30 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-commit/15 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-commit-lighter/20 border border-commit-lighter/30 text-commit-darker text-sm font-medium mb-6">
+            <Icon name="tabler:activity" class="w-4 h-4" />
+            Medicina Laboral 2.0
+          </div>
+          <h1 class="text-4xl md:text-6xl font-bold font-heading leading-tight mb-6">
+            Gestión Integral de <span class="text-transparent bg-clip-text bg-gradient-to-r from-commit to-commit-light">Laneko</span>
+          </h1>
+          <p class="text-lg md:text-xl text-muted mb-8 leading-relaxed">
+            La plataforma definitiva para centros de medicina laboral. Simplifica la gestión de turnos, historias clínicas y la comunicación con tus empresas clientes.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#contacto" class="px-8 py-4 bg-gradient-commit text-white font-bold rounded-xl shadow-lg shadow-commit/20 hover:scale-105 transition-transform text-center">
+              Solicitar Demo
+            </a>
+            <a href="#features" class="px-8 py-4 bg-white dark:bg-gray-800 border-2 border-commit-light dark:border-gray-700 font-bold rounded-xl hover:bg-commit-pale/20 dark:hover:bg-gray-700 transition-colors text-center">
+              Ver Características
+            </a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+            <Image
+              src={lanekoLandingImg}
+              alt="Laneko - Landing Page"
+              class="w-full h-auto"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section id="features" class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">Todo lo que necesitas en un solo lugar</h2>
+        <p class="text-muted text-lg">Laneko centraliza todas las operaciones de tu centro médico, eliminando el papel y optimizando tiempos.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <PremiumCard
+          title="Gestión de Turnos"
+          description="Agenda inteligente con recordatorios automáticos por WhatsApp y Email. Evita el ausentismo y optimiza la ocupación."
+          icon="tabler:calendar-time"
+          gradient="blue"
+          tags={['WhatsApp API', 'Recordatorios']}
+        />
+        <PremiumCard
+          title="Historia Clínica Digital"
+          description="Registro completo de pacientes, antecedentes y evoluciones. Acceso seguro y rápido a la información médica."
+          icon="tabler:clipboard-text"
+          gradient="blue"
+          tags={['Seguridad', 'Digitalización']}
+        />
+        <PremiumCard
+          title="Portal de Empresas"
+          description="Tus clientes pueden solicitar turnos, ver el estado de sus empleados y descargar informes en tiempo real."
+          icon="tabler:building"
+          gradient="purple"
+          tags={['Autogestión', 'B2B']}
+        />
+        <PremiumCard
+          title="Visualización de Estudios"
+          description="Visor DICOM integrado y soporte para adjuntar PDFs, imágenes y laboratorios directamente en la ficha."
+          icon="tabler:file-search"
+          gradient="blue"
+          tags={['DICOM', 'Multimedia']}
+        />
+        <PremiumCard
+          title="Facturación y Caja"
+          description="Control de ingresos, facturación a obras sociales y empresas. Reportes financieros detallados."
+          icon="tabler:receipt"
+          gradient="yellow"
+          tags={['Finanzas', 'Reportes']}
+        />
+        <PremiumCard
+          title="Soporte y Mesa de Ayuda"
+          description="Sistema de tickets integrado para resolver dudas y problemas de tus usuarios de forma eficiente."
+          icon="tabler:help"
+          gradient="red"
+          tags={['Tickets', 'SLA']}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+            <Image
+              src={lanekoDashImg}
+              alt="Laneko - Panel de Administración"
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+        <div class="order-1 md:order-2">
+          <h2 class="text-3xl md:text-4xl font-bold font-heading mb-6">Tecnología Robusta y Segura</h2>
+          <p class="text-muted mb-6">
+            Construido con las últimas tecnologías web para garantizar velocidad, seguridad y escalabilidad. Tus datos están protegidos con los más altos estándares.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm text-commit">
+                <Icon name="tabler:cloud-lock" class="w-6 h-6" />
+              </div>
+              <div>
+                <h4 class="font-bold">Cloud-Native</h4>
+                <p class="text-sm text-muted">Acceso desde cualquier lugar, sin instalaciones.</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm text-commit-light">
+                <Icon name="tabler:shield-check" class="w-6 h-6" />
+              </div>
+              <div>
+                <h4 class="font-bold">Encriptación de Datos</h4>
+                <p class="text-sm text-muted">Información sensible protegida punto a punto.</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm text-commit-lighter">
+                <Icon name="tabler:device-mobile" class="w-6 h-6" />
+              </div>
+              <div>
+                <h4 class="font-bold">Diseño Responsive</h4>
+                <p class="text-sm text-muted">Funciona perfecto en tablets y móviles.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tech Stack Logos -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center text-center hover:scale-105 transition-transform">
+          <Icon name="tabler:brand-nextjs" class="w-12 h-12 mb-3 text-gray-800 dark:text-white" />
+          <span class="font-bold">Next.js</span>
+        </div>
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center text-center hover:scale-105 transition-transform">
+          <Icon name="tabler:brand-react" class="w-12 h-12 mb-3 text-commit" />
+          <span class="font-bold">React</span>
+        </div>
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center text-center hover:scale-105 transition-transform">
+          <Icon name="tabler:database" class="w-12 h-12 mb-3 text-commit-light" />
+          <span class="font-bold">PostgreSQL</span>
+        </div>
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center text-center hover:scale-105 transition-transform">
+          <Icon name="tabler:brand-aws" class="w-12 h-12 mb-3 text-commit-lighter" />
+          <span class="font-bold">AWS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div id="contacto">
+    <CallToAction
+      title="Moderniza tu Centro Médico"
+      subtitle="Agenda una demostración hoy mismo y descubre cómo Laneko puede transformar tu gestión."
+      actions={[
+        {
+          variant: 'primary',
+          text: 'Contactar Ventas',
+          href: '/contact',
+          icon: 'tabler:mail',
+        },
+        {
+          variant: 'secondary',
+          text: 'Ver otros productos',
+          href: '/productos',
+        },
+      ]}
+    />
+  </div>
+</Layout>

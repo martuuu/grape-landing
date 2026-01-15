@@ -25,41 +25,98 @@ import "@fontsource-variable/inter";
     --aw-font-serif: "Inter Variable";
     --aw-font-heading: "Inter Variable";
 
-    --aw-color-primary: 90 13 251;
-    --aw-color-secondary: 151 41 235;
-    --aw-color-accent: 109 40 217;
-    --aw-color-bg-light: 252 250 255; /* Morado ultra claro - 99% blanco con apenas un toque lila */
+    /* COMMIT Brand Colors - Light Mode */
+    --aw-color-primary: 248 28 85; /* c-red #f81c55 */
+    --aw-color-secondary: 184 61 210; /* c-purple #b83dd2 */
+    --aw-color-accent: 0 174 235; /* c-blue #00aeeb */
+    --aw-color-bg-light: 255 250 252; /* Very light pink tint */
 
-    --aw-color-text-heading: rgb(0 0 0);
+    --aw-color-text-heading: rgb(42 47 74); /* commit-darkblue */
     --aw-color-text-default: rgb(16 16 16);
     --aw-color-text-muted: rgb(16 16 16 / 66%);
     --aw-color-bg-page: rgb(255 255 255);
 
-    --aw-color-bg-page-dark: rgb(3 6 32);
+    --aw-color-bg-page-dark: rgb(42 47 74); /* commit-darkblue */
 
     ::selection {
-      background-color: lavender;
+      background-color: #cc4be7; /* c-purple-light */
+      color: white;
     }
   }
+
+  /* Custom Animations */
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes wave {
+    0%, 100% {
+      transform: translateX(0) translateY(0);
+    }
+    50% {
+      transform: translateX(-25px) translateY(15px);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
 
   .dark {
     --aw-font-sans: "Inter Variable";
     --aw-font-serif: "Inter Variable";
     --aw-font-heading: "Inter Variable";
 
-    --aw-color-primary: 1 97 239;
-    --aw-color-secondary: 1 84 207;
-    --aw-color-accent: 109 40 217;
-    --aw-color-bg-light: 0 0 0; /* Transparente en dark mode */
+    /* COMMIT Brand Colors - Dark Mode */
+    /* TODO: Verificar contraste de colores según WCAG AA para accesibilidad */
+    --aw-color-primary: 255 37 91; /* c-red-light #ff255b */
+    --aw-color-secondary: 204 75 231; /* c-purple-light #cc4be7 */
+    --aw-color-accent: 0 208 255; /* commit-blue #00D0FF */
+    --aw-color-bg-light: 42 47 74; /* commit-darkblue */
 
-    --aw-color-text-heading: rgb(247, 248, 248);
+    --aw-color-text-heading: rgb(247 248 248);
     --aw-color-text-default: rgb(229 236 246);
     --aw-color-text-muted: rgb(229 236 246 / 66%);
-    --aw-color-bg-page: rgb(3 6 32);
+    --aw-color-bg-page: rgb(42 47 74); /* commit-darkblue */
 
     ::selection {
-      background-color: black;
-      color: snow;
+      background-color: #f81c55; /* c-red */
+      color: white;
     }
   }
 </style>

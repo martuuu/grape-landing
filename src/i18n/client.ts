@@ -15,17 +15,12 @@ const translations = {
 };
 
 /**
- * Obtiene el idioma actual del localStorage o detecta del navegador
+ * Obtiene el idioma actual - FORZADO A ESPAÑOL ÚNICAMENTE
+ * El sitio solo opera en español, multi-idioma deshabilitado
  */
 export function getCurrentLanguage(): Language {
-  const stored = localStorage.getItem('language') as Language;
-  if (stored && (stored === 'es' || stored === 'en')) {
-    return stored;
-  }
-  
-  // Detectar del navegador
-  const browserLang = navigator.language.toLowerCase();
-  return browserLang.startsWith('en') ? 'en' : 'es';
+  // FORZAR ESPAÑOL SIEMPRE - No respetar preferencias de usuario ni navegador
+  return 'es';
 }
 
 /**
@@ -74,9 +69,10 @@ export function updatePageTranslations(lang: Language) {
 }
 
 /**
- * Inicializar idioma al cargar la página
+ * Inicializar idioma al cargar la página - FORZADO A ESPAÑOL
  */
 export function initLanguage() {
-  const lang = getCurrentLanguage();
+  // Forzar español, ignorar cualquier otra configuración
+  const lang = 'es';
   updatePageTranslations(lang);
 }

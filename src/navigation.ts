@@ -6,6 +6,24 @@ export const headerData = {
       text: 'Inicio',
       href: getPermalink('/'),
     },
+    // {
+    //   text: 'Productos',
+    //   href: getPermalink('/productos'),
+    //   links: [
+    //     {
+    //       text: 'Laneko - Gestión Integral',
+    //       href: getPermalink('/productos/laneko'),
+    //     },
+    //     {
+    //       text: 'Consultorio Online',
+    //       href: getPermalink('/productos/consultorio-online'),
+    //     },
+    //     {
+    //       text: 'Picky - Gestión de Tiendas',
+    //       href: getPermalink('/productos/picky'),
+    //     },
+    //   ],
+    // },
     {
       text: 'Servicios',
       links: [
@@ -21,10 +39,6 @@ export const headerData = {
           text: 'Desarrollo a Medida',
           href: getPermalink('/servicios/desarrollo-medida'),
         },
-        {
-          text: 'Presupuestos',
-          href: getPermalink('/presupuestos'),
-        },
       ],
     },
     {
@@ -32,17 +46,21 @@ export const headerData = {
       links: [
         {
           text: 'Sobre la Agencia',
-          href: getPermalink('/about'),
+          href: getPermalink('/about#agency'),
         },
         {
           text: 'Quiénes Somos',
-          href: getPermalink('/quienes-somos'),
+          href: getPermalink('/about#team'),
         },
         {
           text: 'Trabajos',
-          href: getPermalink('/trabajos'),
+          href: getPermalink('/about#work'),
         },
       ],
+    },
+    {
+      text: 'Presupuesto',
+      href: getPermalink('/presupuesto'),
     },
     {
       text: 'Contacto',
@@ -168,20 +186,28 @@ export const headerData = {
 export const footerData = {
   links: [
     {
+      title: 'Productos',
+      links: [
+        { text: 'Laneko - Medicina Laboral', href: getPermalink('/productos/laneko') },
+        { text: 'Buffet-IA - LegalTech', href: getPermalink('/productos/buffet-ia') },
+        { text: 'EventPlanner - Eventos', href: getPermalink('/productos/event-planning') },
+        { text: 'Todos los Productos', href: getPermalink('/productos') },
+      ],
+    },
+    {
       title: 'Servicios',
       links: [
         { text: 'Marketing & Landings', href: getPermalink('/servicios/marketing-landings') },
         { text: 'Sistemas para PyMEs', href: getPermalink('/servicios/sistemas-pymes') },
         { text: 'Desarrollo a Medida', href: getPermalink('/servicios/desarrollo-medida') },
-        { text: 'Presupuestos', href: getPermalink('/presupuestos') },
+        { text: 'Solicitar Presupuesto', href: getPermalink('/presupuesto') },
       ],
     },
     {
       title: 'Empresa',
       links: [
-        { text: 'Sobre la Agencia', href: getPermalink('/about') },
-        { text: 'Quiénes Somos', href: getPermalink('/quienes-somos') },
-        { text: 'Trabajos', href: getPermalink('/trabajos') },
+        { text: 'Sobre Nosotros', href: getPermalink('/about') },
+        { text: 'Productos', href: getPermalink('/productos') },
         { text: 'Contacto', href: getPermalink('/contact') },
       ],
     },
@@ -206,9 +232,9 @@ export const footerData = {
     { text: 'Privacidad', href: getPermalink('/privacy') },
   ],
   socialLinks: [
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://instagram.com/grape.dev' },
-    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://linkedin.com/company/grape-dev' },
-    { ariaLabel: 'WhatsApp', icon: 'tabler:brand-whatsapp', href: 'https://wa.me/5491234567890' },
+    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://instagram.com/commit.ar' },
+    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://linkedin.com/company/commit-ar' },
+    { ariaLabel: 'WhatsApp', icon: 'tabler:brand-whatsapp', href: 'https://wa.me/5492915278982' },
     // { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `

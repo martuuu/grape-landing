@@ -1,8 +1,7 @@
 ---
-import type { ScrollSnapContent as Props, Item } from '~/types';
+import type { ScrollSnapContent as Props } from '~/types';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Headline from '~/components/ui/Headline.astro';
-import Image from '~/components/common/Image.astro';
 import { Icon } from 'astro-icon/components';
 
 const {
@@ -11,121 +10,248 @@ const {
   tagline = await Astro.slots.render('tagline'),
   content = await Astro.slots.render('content'),
   items = [],
-  image = await Astro.slots.render('image'),
   id,
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
-
-// Dividir los items en grupos de 2
-const itemSlides: Item[][] = [];
-for (let i = 0; i < items.length; i += 2) {
-  itemSlides.push(items.slice(i, i + 2));
-}
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl ${classes?.container ?? ''}`} bg={bg}>
   <style>
-    /* Configuración base */
-    .scroll-snap-wrapper {
-      padding: 4rem 0;
+    .timeline-section {
+      padding: 4rem 1rem;
+      position: relative;
     }
 
-    /* Header con título */
     .section-header {
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
+      text-align: center;
     }
 
-    /* Layout de dos columnas en desktop */
-    .content-layout {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
+    .timeline-container {
+      position: relative;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 2rem 0;
+      display: flex;
+      gap: 3rem;
     }
 
-    @media (min-width: 768px) {
-      .content-layout {
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: start;
-      }
+    /* Columna izquierda: Timeline compacta */
+    .timeline-track {
+      position: relative;
+      width: 60px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    /* Columna izquierda - Imagen */
-    .image-column {
-      order: 2;
+    /* Línea vertical del timeline con gradiente */
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, #ade4f7, #26bce9, #138bae, #1283a5, #117999, #052832);
+      opacity: 0.2;
+      border-radius: 2px;
     }
 
-    @media (min-width: 768px) {
-      .image-column {
-        order: 1;
-      }
+    /* Línea de progreso que se llena */
+    .timeline-progress {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      width: 4px;
+      height: 0%;
+      background: linear-gradient(to bottom, #59cbee, #26bce9, #1ba1c9, #138bae, #1283a5, #117999);
+      border-radius: 2px;
+      transition: height 0.3s ease-out; /* Transición suave para el fill */
+      box-shadow: 0 0 20px rgba(38, 188, 233, 0.5);
     }
 
-    .image-wrapper {
+    /* Columna derecha: Cards */
+    .timeline-cards {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(40px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0s linear 0.6s;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item.in-view {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0s;
+    }
+
+    /* Dot/Hito en la columna izquierda */
+    .timeline-dot {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: transparent;
+      border: 3px solid rgba(89, 203, 238, 0.3);
+      z-index: 10;
+      flex-shrink: 0;
+      margin-top: 1.5rem;
+      transition: all 0.4s ease-out;
+      opacity: 0.6;
+      overflow: hidden;
+    }
+
+    /* Fill interno del dot que crece */
+    .timeline-dot::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0%;
+      height: 0%;
+      background: #26bce9;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease-out, height 0.4s ease-out;
+    }
+
+    .timeline-dot.active {
+      opacity: 1;
+      border-color: #26bce9;
+      box-shadow: 0 0 20px rgba(38, 188, 233, 0.4);
+    }
+
+    .timeline-dot.active::before {
       width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
+      height: 100%;
     }
 
-    /* Columna derecha - Contenido */
-    .content-column {
-      order: 1;
-    }
-
-    @media (min-width: 768px) {
-      .content-column {
-        order: 2;
-      }
-    }
-
-    /* Grid para los items */
-    .items-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    /* Tarjetas de items */
-    .item-card {
-      background: var(--aw-color-bg-page);
+    /* Card a la derecha - Sin border, con sombreado sutil */
+    .timeline-content {
+      flex: 1;
+      padding: 2rem;
       border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(89, 203, 238, 0.03);
+      border: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease-out;
     }
 
-    .item-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    .timeline-item.active .timeline-content {
+      background: rgba(89, 203, 238, 0.08);
+      box-shadow: 0 8px 24px rgba(38, 188, 233, 0.2);
+    }
+
+    /* Colores para dot activo - Todos del mismo color celeste */
+    .timeline-dot.active {
+      opacity: 1;
+      border-color: #26bce9;
+      box-shadow: 0 0 20px rgba(38, 188, 233, 0.4);
+    }
+
+    .timeline-dot.active::before {
+      width: 100%;
+      height: 100%;
     }
 
     .item-icon {
       width: 2.5rem;
       height: 2.5rem;
-      color: var(--aw-color-primary);
-      flex-shrink: 0;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      color: var(--aw-color-text-muted);
+    }
+
+    .timeline-item.active .item-icon {
+      color: #26bce9;
+      filter: drop-shadow(0 0 12px rgba(38, 188, 233, 0.5));
     }
 
     .item-title {
-      font-size: 1.125rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
       color: var(--aw-color-text-heading);
+      transition: color 0.3s ease;
+    }
+
+    .timeline-item.active .item-title {
+      color: #26bce9;
     }
 
     .item-description {
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: var(--aw-color-text-muted);
-      line-height: 1.6;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-container {
+        gap: 1.5rem;
+      }
+
+      .timeline-track {
+        width: 40px;
+      }
+
+      .timeline-dot {
+        width: 16px;
+        height: 16px;
+        border-width: 2px;
+        margin-top: 1rem;
+      }
+
+      .timeline-item.active .timeline-dot {
+        box-shadow: 0 0 12px rgba(38, 188, 233, 0.3);
+      }
+
+      .timeline-content {
+        padding: 1.5rem;
+      }
+
+      .item-title {
+        font-size: 1.25rem;
+      }
+
+      .item-description {
+        font-size: 0.95rem;
+      }
+
+      .timeline-cards {
+        gap: 2rem;
+      }
+    }
+
+    /* Respect user motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      .timeline-item,
+      .timeline-progress,
+      .timeline-dot,
+      .timeline-dot::before {
+        transition: opacity 0.2s ease;
+      }
     }
   </style>
 
-  <div class="scroll-snap-wrapper">
+  <div class="timeline-section">
     <!-- Header con título y subtítulo -->
     <div class="section-header">
       <Headline
@@ -141,51 +267,167 @@ for (let i = 0; i < items.length; i += 2) {
       {content && <div class="mt-4 text-center max-w-3xl mx-auto text-lg dark:text-slate-400" set:html={content} />}
     </div>
 
-    <!-- Contenedor principal -->
-    <div class="content-layout">
-      <!-- Columna izquierda: Imagen -->
-      <div class="image-column">
-        {image && (
-          <div class="image-wrapper">
-            {typeof image === 'string' ? (
-              <Fragment set:html={image} />
-            ) : (
-              <Image
-                class="w-full rounded-lg shadow-lg"
-                width={500}
-                height={500}
-                widths={[400, 768]}
-                sizes="(max-width: 768px) 100vw, 432px"
-                layout="responsive"
-                loading="lazy"
-                {...image}
-              />
-            )}
-          </div>
-        )}
+    <!-- Timeline -->
+    <div class="timeline-container">
+      <!-- Columna izquierda: Timeline track -->
+      <div class="timeline-track">
+        <div class="timeline-line"></div>
+        <div class="timeline-progress" id="timeline-progress"></div>
       </div>
 
-      <!-- Columna derecha: Todos los items -->
-      <div class="content-column">
-        <div class="items-grid">
-          {items.map((item) => (
-            <div class="item-card">
-              <div class="flex items-start gap-3">
-                {item.icon && (
-                  <Icon name={item.icon} class="item-icon" />
-                )}
-                <div class="flex-1">
-                  {item.title && <h3 class="item-title">{item.title}</h3>}
-                  {item.description && (
-                    <p class="item-description" set:html={item.description} />
-                  )}
-                </div>
-              </div>
+      <!-- Columna derecha: Cards -->
+      <div class="timeline-cards">
+        {items.map((item, index) => (
+          <div 
+            class="timeline-item animate-in fade-in-50 duration-700" 
+            data-index={index}
+            style={`animation-delay: ${index * 200}ms;`}
+          >
+            <div class="timeline-content">
+              {item.icon && <Icon name={item.icon} class="item-icon" />}
+              {item.title && <h3 class="item-title">{item.title}</h3>}
+              {item.description && (
+                <p class="item-description" set:html={item.description} />
+              )}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
+
+    <!-- Dots se generan dinámicamente con JS para sincronizar con cards -->
   </div>
+
+  <!-- Script para Timeline con Intersection Observer -->
+  <script>
+    function initTimeline() {
+      const items = document.querySelectorAll('.timeline-item');
+      const progressBar = document.getElementById('timeline-progress');
+      const timelineTrack = document.querySelector('.timeline-track');
+      const timelineCards = document.querySelector('.timeline-cards');
+      
+      if (!items.length || !progressBar || !timelineTrack || !timelineCards) return;
+
+      // Crear dots dinámicamente para cada card
+      const dotsContainer = document.createElement('div');
+      dotsContainer.style.position = 'absolute';
+      dotsContainer.style.top = '0';
+      dotsContainer.style.left = '50%';
+      dotsContainer.style.transform = 'translateX(-50%)';
+      dotsContainer.style.width = '100%';
+      dotsContainer.style.height = '100%';
+      dotsContainer.style.zIndex = '10';
+      
+      const dots: HTMLElement[] = [];
+      items.forEach((item, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'timeline-dot';
+        dot.dataset.index = String(index);
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+      });
+      
+      timelineTrack.appendChild(dotsContainer);
+
+      // Función para posicionar dots
+      function positionDots() {
+        items.forEach((item, index) => {
+          const itemRect = item.getBoundingClientRect();
+          const cardsRect = timelineCards!.getBoundingClientRect();
+          const trackRect = (timelineTrack as HTMLElement).getBoundingClientRect();
+          
+          // Calcular posición relativa al scroll
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const itemTop = itemRect.top + scrollTop;
+          const trackTop = trackRect.top + scrollTop;
+          const relativeTop = itemTop - trackTop;
+          
+          if (dots[index]) {
+            dots[index].style.position = 'absolute';
+            dots[index].style.top = `${relativeTop + 24}px`;
+            dots[index].style.left = '50%';
+            dots[index].style.transform = 'translateX(-50%)';
+          }
+        });
+      }
+
+      // Actualizar timeline en scroll - FILL CONTINUO
+      function updateTimeline() {
+        const viewportHeight = window.innerHeight;
+        const triggerPoint = viewportHeight * 0.75; // 3/4 del viewport
+        const trackRect = (timelineTrack as HTMLElement).getBoundingClientRect();
+        const trackTop = trackRect.top;
+        const trackHeight = trackRect.height;
+        
+        // Calcular progreso continuo basado en scroll
+        const scrollProgress = triggerPoint - trackTop;
+        const progressPercent = Math.max(0, Math.min(100, (scrollProgress / trackHeight) * 100));
+        
+        // Actualizar barra de progreso de forma CONTINUA
+        (progressBar as HTMLElement).style.height = `${progressPercent}%`;
+        
+        // Activar cards y dots según su posición
+        items.forEach((item, index) => {
+          const itemElement = item as HTMLElement;
+          const dotElement = dots[index];
+          
+          if (!dotElement) return;
+          
+          const dotRect = dotElement.getBoundingClientRect();
+          const dotCenter = dotRect.top + dotRect.height / 2;
+          
+          // Cuando el dot cruza el punto trigger (3/4 del viewport)
+          if (dotCenter <= triggerPoint) {
+            // Activar dot y mostrar card
+            if (!dotElement.classList.contains('active')) {
+              dotElement.classList.add('active');
+            }
+            if (!itemElement.classList.contains('in-view')) {
+              itemElement.classList.add('in-view');
+              itemElement.classList.add('active');
+            }
+          } else {
+            // Desactivar dot y ocultar card
+            dotElement.classList.remove('active');
+            itemElement.classList.remove('in-view');
+            itemElement.classList.remove('active');
+          }
+        });
+      }
+
+      // Posicionar dots inicialmente
+      positionDots();
+      
+      // Actualizar en scroll con requestAnimationFrame para suavidad
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateTimeline();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+      
+      window.addEventListener('resize', () => {
+        positionDots();
+        updateTimeline();
+      }, { passive: true });
+      
+      // Ejecutar una vez al inicio
+      updateTimeline();
+    }
+
+    // Inicializar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTimeline);
+    } else {
+      initTimeline();
+    }
+
+    // Re-inicializar después de View Transitions
+    document.addEventListener('astro:page-load', initTimeline);
+  </script>
 </WidgetWrapper>
 

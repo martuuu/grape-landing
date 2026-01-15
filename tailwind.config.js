@@ -1,18 +1,32 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import plugin from 'tailwindcss/plugin';
 import typographyPlugin from '@tailwindcss/typography';
+import tailwindcssAnimate from 'tailwindcss-animate';
 
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,json,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
       colors: {
-        primary: 'rgb(var(--aw-color-primary) / <alpha-value>)',
-        secondary: 'rgb(var(--aw-color-secondary) / <alpha-value>)',
-        accent: 'rgb(var(--aw-color-accent) / <alpha-value>)',
-        'bg-light': 'rgb(var(--aw-color-bg-light))',
-        default: 'var(--aw-color-text-default)',
-        muted: 'var(--aw-color-text-muted)',
+        // Base colors mapped to COMMIT palette
+        primary: '#138bae', // commit default
+        secondary: '#1ba1c9', // commit light
+        accent: '#26bce9', // commit lighter
+        'bg-light': '#ade4f7', // commit pale
+        default: '#052832', // commit darkest (for text)
+        muted: '#1283a5', // commit dark (for muted text)
+        
+        // COMMIT Brand Colors - New Cyan/Teal Palette
+        'commit': {
+          darkest: '#052832',
+          darker: '#117999',
+          dark: '#1283a5',
+          DEFAULT: '#138bae',
+          light: '#1ba1c9',
+          lighter: '#26bce9',
+          lightest: '#59cbee',
+          pale: '#ade4f7',
+        },
       },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
@@ -30,10 +44,18 @@ export default {
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
       },
+      
+      // COMMIT Gradient Utilities
+      backgroundImage: {
+        'gradient-commit': 'linear-gradient(to right, #138bae, #26bce9)',
+        'gradient-commit-dark': 'linear-gradient(to right, #052832, #117999)',
+        'gradient-commit-light': 'linear-gradient(to right, #59cbee, #ade4f7)',
+      },
     },
   },
   plugins: [
     typographyPlugin,
+    tailwindcssAnimate,
     plugin(({ addVariant }) => {
       addVariant('intersect', '&:not([no-intersect])');
     }),

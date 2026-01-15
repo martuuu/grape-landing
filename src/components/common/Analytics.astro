@@ -3,6 +3,34 @@ import { GoogleAnalytics } from '@astrolib/analytics';
 import { ANALYTICS } from 'astrowind:config';
 ---
 
+<!-- 
+  TODO: Configurar Google Analytics para COMMIT Landing
+  
+  Opción 1: Google Analytics (GA4)
+  1. Crear cuenta en https://analytics.google.com/
+  2. Crear propiedad para commit.ar
+  3. Obtener Measurement ID (formato: G-XXXXXXXXXX)
+  4. Agregar en astro.config.mjs:
+     analytics: {
+       vendors: {
+         googleAnalytics: { id: 'G-XXXXXXXXXX' }
+       }
+     }
+  
+  Opción 2: Plausible Analytics (Recomendado - Privacy-focused)
+  - Sin cookies, GDPR compliant
+  - Más simple de configurar
+  - Sin banner de consentimiento necesario
+  - Script: <script defer data-domain="commit.ar" src="https://plausible.io/js/script.js"></script>
+  
+  Eventos Custom a trackear:
+  - Budget Builder completado
+  - Formulario de contacto enviado
+  - CTAs clickeados
+  - Tiempo en página
+  - Scroll depth
+-->
+
 {
   ANALYTICS?.vendors?.googleAnalytics?.id ? (
     <GoogleAnalytics

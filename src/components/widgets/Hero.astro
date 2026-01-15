@@ -16,25 +16,65 @@ const {
 
   id,
   bg = await Astro.slots.render('bg'),
+  class: className = '',
 } = Astro.props;
 ---
 
-<section class="relative md:-mt-[76px] not-prose overflow-hidden" {...id ? { id } : {}}>
-  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+<section class:list={["relative md:-mt-[76px] not-prose overflow-hidden min-h-screen md:min-h-[120vh] flex items-center", className]} {...id ? { id } : {}}>
+  <!-- Background base -->
+  <div class="absolute inset-0 md:top-[76px] z-0 pointer-events-none" aria-hidden="true">
     <slot name="bg">
       {bg ? <Fragment set:html={bg} /> : null}
     </slot>
-    <!-- Fireflies Effect -->
+  </div>
+
+  <!-- Background Pattern - Ondas COMMIT (encima del bg) -->
+  <div class="absolute inset-0 md:top-[76px] z-1 pointer-events-none">
+    <svg class="w-full h-full opacity-50 dark:opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="hero-wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#052832;stop-opacity:0.5" />
+          <stop offset="50%" style="stop-color:#117999;stop-opacity:0.4" />
+          <stop offset="100%" style="stop-color:#138bae;stop-opacity:0.35" />
+        </linearGradient>
+        <linearGradient id="hero-wave-gradient-2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#1ba1c9;stop-opacity:0.4" />
+          <stop offset="50%" style="stop-color:#26bce9;stop-opacity:0.35" />
+          <stop offset="100%" style="stop-color:#59cbee;stop-opacity:0.3" />
+        </linearGradient>
+        <linearGradient id="hero-wave-gradient-3" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#1283a5;stop-opacity:0.35" />
+          <stop offset="50%" style="stop-color:#138bae;stop-opacity:0.3" />
+          <stop offset="100%" style="stop-color:#ade4f7;stop-opacity:0.25" />
+        </linearGradient>
+      </defs>
+      
+      <!-- Onda 1 - Cubre toda la altura -->
+      <path d="M0,150 Q300,200 600,150 T1200,150 L1200,0 L0,0 Z" fill="url(#hero-wave-gradient-1)" class="animate-[wave_15s_ease-in-out_infinite]" />
+      
+      <!-- Onda 2 - Más amplia -->
+      <path d="M0,350 Q400,420 800,350 T1200,350 L1200,0 L0,0 Z" fill="url(#hero-wave-gradient-2)" class="animate-[wave_20s_ease-in-out_infinite_reverse]" />
+      
+      <!-- Onda 3 - Cubre hasta abajo -->
+      <path d="M0,550 Q350,630 700,550 T1200,550 L1200,0 L0,0 Z" fill="url(#hero-wave-gradient-3)" class="animate-[wave_25s_ease-in-out_infinite]" />
+      
+      <!-- Onda 4 - Extra para cobertura completa -->
+      <path d="M0,750 Q300,800 600,750 T1200,750 L1200,0 L0,0 Z" fill="url(#hero-wave-gradient-1)" opacity="0.3" class="animate-[wave_30s_ease-in-out_infinite]" />
+    </svg>
+  </div>
+  
+  <!-- Fireflies Effect -->
+  <div class="absolute inset-0 md:top-[76px] z-2 pointer-events-none" aria-hidden="true">
     <Fireflies quantity={15} />
   </div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 z-10">
     <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
-    <div class="py-12 md:py-20">
-      <div class="text-center pb-10 md:pb-16 max-w-5xl mx-auto">
+    <div class="py-16 md:py-20">
+      <div class="text-center pb-12 md:pb-16 max-w-5xl mx-auto">
         {
           tagline && (
             <p
-              class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase animate-in fade-in slide-in-from-bottom duration-700 delay-100"
               set:html={tagline}
             />
           )
@@ -42,7 +82,7 @@ const {
         {
           title && (
             <h1
-              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              class="text-4xl md:text-6xl font-bold leading-tight md:leading-tighter tracking-tighter mb-6 font-heading dark:text-gray-200 animate-in fade-in slide-in-from-bottom duration-1000 delay-300"
               set:html={title}
             />
           )
@@ -51,15 +91,14 @@ const {
           {
             subtitle && (
               <p
-                class="text-xl text-muted mb-6 dark:text-slate-300 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+                class="text-lg md:text-xl text-muted mb-8 dark:text-slate-300 animate-in fade-in slide-in-from-bottom duration-700 delay-500"
                 set:html={subtitle}
               />
             )
           }
           {
             actions && (
-              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-                {Array.isArray(actions) ? (
+              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 animate-in fade-in slide-in-from-bottom duration-700 delay-700">{Array.isArray(actions) ? (
                   actions.map((action) => (
                     <div class="flex w-full sm:w-auto">
                       <Button {...(action || {})} class="w-full sm:mb-0" />
@@ -77,12 +116,12 @@ const {
       <div id="hero-image-container">
         {
           image && (
-            <div class="relative m-auto max-w-5xl">
+            <div class="relative m-auto max-w-5xl mt-8 md:mt-0">
               {typeof image === 'string' ? (
                 <Fragment set:html={image} />
               ) : (
                 <Image
-                  class="mx-auto rounded-md w-full"
+                  class="mx-auto rounded-lg w-full shadow-2xl"
                   widths={[400, 768, 1024, 2040]}
                   sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
                   loading="eager"

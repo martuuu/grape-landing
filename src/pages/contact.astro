@@ -6,10 +6,10 @@ import Features2 from '~/components/widgets/Features2.astro';
 
 const metadata = {
   title: 'Contacto - Hablemos de tu proyecto',
-  description: 'Contacta con Grape para desarrollar tu aplicación web o móvil. Respuesta en 24 horas. Presupuesto gratuito y sin compromiso.',
-  canonical: 'https://grape.agency/contact',
+  description: 'Contacta con COMMIT para desarrollar tu aplicación web o móvil. Respuesta en 24 horas. Presupuesto gratuito y sin compromiso.',
+  canonical: 'https://commit.agency/contact',
   openGraph: {
-    title: 'Contacto | Grape Agency',
+    title: 'Contacto | COMMIT',
     description: 'Cuéntanos tu proyecto. Te respondemos en 24 horas con un presupuesto personalizado.',
     type: 'website',
   },
@@ -19,66 +19,78 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+  <HeroText 
+    tagline="Contacto" 
+    title="¡Hablemos de tu proyecto!" 
+    subtitle="Transformamos ideas en soluciones digitales. Cuéntanos qué necesitas y te responderemos en menos de 24 horas."
+  />
 
   <ContactUs
     id="form"
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
+    title="Envíanos un mensaje"
+    subtitle="¿Tienes dudas? Revisa nuestra sección de preguntas frecuentes o escríbenos directamente. Nuestro equipo está listo para ayudarte."
     inputs={[
       {
         type: 'text',
         name: 'name',
-        label: 'Name',
+        label: 'Nombre completo',
+        placeholder: 'Juan Pérez',
       },
       {
         type: 'email',
         name: 'email',
         label: 'Email',
+        placeholder: 'tu@email.com',
       },
     ]}
     textarea={{
-      label: 'Message',
+      label: 'Mensaje',
+      placeholder: 'Cuéntanos sobre tu proyecto, idea o consulta...',
+      rows: 4,
     }}
     disclaimer={{
       label:
-        'By submitting this contact form, you acknowledge and agree to the collection of your personal information.',
+        'Al enviar este formulario, aceptas que recopilemos tu información de contacto para responder tu consulta.',
     }}
-    description="Our support team typically responds within 24 business hours."
+    description="Nuestro equipo responde en menos de 24 horas hábiles."
   />
 
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="We are here to help!"
+    title="Estamos para ayudarte"
+    subtitle="Múltiples formas de contactarnos"
     items={[
       {
-        title: 'General support',
-        description: `Chat with us for inquiries related to account management, website navigation, payment issues, accessing purchased templates or general questions about the website's functionality.`,
+        title: 'Consultas Generales',
+        description: `¿Preguntas sobre nuestros servicios, metodología de trabajo o pricing? Escríbenos y te orientamos.`,
+        icon: 'tabler:help',
       },
       {
-        title: 'Contact sales',
+        title: 'Hablar con Ventas',
         description:
-          'Chat with us for questions about purchases, customization options, licensing for commercial use, inquiries about specific template, etc.',
+          'Interesado en un proyecto o producto? Conversemos sobre cómo podemos ayudarte a alcanzar tus objetivos.',
+        icon: 'tabler:briefcase',
       },
       {
-        title: 'Technical support',
+        title: 'Soporte Técnico',
         description:
-          'Chat with us when facing issues like template installation, problems editing difficulties, compatibility issues with software or download errors, or other technical challenges related to using the templates.',
+          'Si ya eres cliente y necesitas ayuda con alguno de nuestros productos, estamos para asistirte.',
+        icon: 'tabler:tool',
       },
       {
-        title: 'Phone',
-        description: '+1 (234) 567-890',
-        icon: 'tabler:headset',
+        title: 'Teléfono / WhatsApp',
+        description: '+54 9 291 527-8982',
+        icon: 'tabler:phone',
       },
       {
         title: 'Email',
-        description: 'contact@support.com',
+        description: 'martin.navarro.dev@gmail.com',
         icon: 'tabler:mail',
       },
       {
-        title: 'Location',
-        description: '1234 Lorem Ipsum St, 12345, Miami, EEUU',
+        title: 'Ubicación',
+        description: 'Bahía Blanca, Buenos Aires, Argentina',
         icon: 'tabler:map-pin',
       },
     ]}

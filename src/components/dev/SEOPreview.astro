@@ -9,7 +9,7 @@
  * <SEOPreview 
  *   title="Título de la página"
  *   description="Descripción meta"
- *   url="https://grape.agency/ruta"
+ *   url="https://commit.agency/ruta"
  * />
  */
 
@@ -37,7 +37,7 @@ if (title.length > 60) warnings.push(`⚠️ Title es muy largo (${title.length}
 if (title.length < 30) warnings.push(`⚠️ Title es muy corto (${title.length}/30-60 caracteres)`);
 if (description.length > 160) warnings.push(`⚠️ Description es muy larga (${description.length}/160 caracteres)`);
 if (description.length < 120) warnings.push(`⚠️ Description es muy corta (${description.length}/120-160 caracteres)`);
-if (!title.toLowerCase().includes('grape')) warnings.push('💡 Considera incluir "Grape" en el título');
+if (!title.toLowerCase().includes('commit')) warnings.push('💡 Considera incluir "COMMIT" en el título');
 
 // Solo mostrar en desarrollo
 const isDev = import.meta.env.DEV;

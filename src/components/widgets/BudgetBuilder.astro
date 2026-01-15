@@ -1,0 +1,11 @@
+---
+import BudgetBuilderReact from './BudgetBuilder.tsx';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<BudgetBuilderReact client:load class={className} />

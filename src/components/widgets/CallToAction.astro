@@ -27,32 +27,71 @@ const {
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <div
-    class="max-w-3xl mx-auto text-center p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600"
+    class="relative max-w-3xl mx-auto text-center p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600 overflow-hidden group"
   >
-    <Headline
-      title={title}
-      subtitle={subtitle}
-      tagline={tagline}
-      classes={{
-        container: 'mb-0 md:mb-0',
-        title: 'text-4xl md:text-4xl font-bold tracking-tighter mb-4 font-heading',
-        subtitle: 'text-xl text-muted dark:text-slate-400',
-      }}
-    />
-    {
-      actions && (
-        <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6">
-          {Array.isArray(actions) ? (
-            actions.map((action) => (
-              <div class="flex w-full sm:w-auto">
-                <Button {...(action || {})} class="w-full sm:mb-0" />
-              </div>
-            ))
-          ) : (
-            <Fragment set:html={actions} />
-          )}
-        </div>
-      )
-    }
+    <!-- Background Pattern - Ondas COMMIT (usando paleta oficial) -->
+    <div class="absolute inset-0 z-0">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="cta-wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#052832;stop-opacity:0.9" />
+            <stop offset="50%" style="stop-color:#138bae;stop-opacity:0.8" />
+            <stop offset="100%" style="stop-color:#26bce9;stop-opacity:0.7" />
+          </linearGradient>
+          <linearGradient id="cta-wave-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#1ba1c9;stop-opacity:0.7" />
+            <stop offset="50%" style="stop-color:#59cbee;stop-opacity:0.6" />
+            <stop offset="100%" style="stop-color:#ade4f7;stop-opacity:0.5" />
+          </linearGradient>
+          <linearGradient id="cta-wave-gradient-3" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#117999;stop-opacity:0.6" />
+            <stop offset="50%" style="stop-color:#1283a5;stop-opacity:0.5" />
+            <stop offset="100%" style="stop-color:#138bae;stop-opacity:0.4" />
+          </linearGradient>
+        </defs>
+        
+        <!-- Onda 1 - Más oscura -->
+        <path d="M0,100 Q300,150 600,100 T1200,100 L1200,0 L0,0 Z" fill="url(#cta-wave-gradient-1)" class="animate-[wave_8s_ease-in-out_infinite]" />
+        
+        <!-- Onda 2 - Tonos medios -->
+        <path d="M0,200 Q300,250 600,200 T1200,200 L1200,0 L0,0 Z" fill="url(#cta-wave-gradient-2)" class="animate-[wave_10s_ease-in-out_infinite_reverse]" />
+        
+        <!-- Onda 3 - Tonos claros -->
+        <path d="M0,300 Q300,350 600,300 T1200,300 L1200,0 L0,0 Z" fill="url(#cta-wave-gradient-3)" class="animate-[wave_12s_ease-in-out_infinite]" />
+      </svg>
+    </div>
+    
+    <!-- Overlay para mejor legibilidad -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white/40 to-white/60 dark:from-gray-900/40 dark:to-gray-900/60 z-10"></div>
+
+    <!-- Content -->
+    <div class="relative z-20">
+      <Headline
+        title={title}
+        subtitle={subtitle}
+        tagline={tagline}
+        classes={{
+          container: 'mb-0 md:mb-0',
+          title: 'text-4xl md:text-4xl font-bold tracking-tighter mb-4 font-heading text-gray-900 dark:text-white drop-shadow-md',
+          subtitle: 'text-xl text-gray-800 dark:text-gray-100 drop-shadow-sm',
+        }}
+      />
+      {
+        actions && (
+          <div class="max-w-xl m-auto flex flex-wrap justify-center gap-3 mt-6">
+            {Array.isArray(actions) ? (
+              actions.map((action) => (
+                <Button 
+                  {...(action || {})} 
+                  class="px-6 py-3 text-sm font-semibold bg-white dark:bg-gray-900 text-commit-dark dark:text-commit-lighter hover:bg-gray-50 dark:hover:bg-gray-800 border-2 border-commit dark:border-commit-lighter shadow-lg hover:shadow-xl transition-all duration-300"
+                />
+              ))
+            ) : (
+              <Fragment set:html={actions} />
+            )}
+          </div>
+        )
+      }
+    </div>
   </div>
 </WidgetWrapper>

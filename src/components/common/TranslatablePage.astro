@@ -33,7 +33,10 @@
   }
 
   function updatePageContent() {
-    const lang = (localStorage.getItem('language') || 'es') as Language;
+    // FORZAR SIEMPRE ESPAÑOL - Sobrescribir cualquier preferencia guardada
+    localStorage.setItem('language', 'es');
+    const lang = 'es' as Language;
+    
     console.log('🔄 [TRANSLATE] Updating page content to:', lang);
 
     // Actualizar elementos con data-i18n-key
