@@ -381,10 +381,14 @@ const metadata = {
     ]}
     textarea={{
       label: t(lang, "contact.message_label"),
+      name: "message",
+      placeholder: t(lang, "contact.message_placeholder"),
+      rows: 4,
     }}
     disclaimer={{
       label: t(lang, "contact.disclaimer"),
     }}
+    button={t(lang, "contact.button")}
   >
     <Fragment slot="title">
       <span data-i18n-key="contact.title">{t(lang, "contact.title")}</span>

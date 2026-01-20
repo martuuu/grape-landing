@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { initEmailJS, sendBudgetEmail } from '~/utils/email';
+import { useState, useEffect } from 'react';
+import { initEmailJS, sendBudgetEmail, generateBudgetWhatsAppMessage, openWhatsApp } from '~/utils/email';
 
 interface Selections {
   basics: string[];
@@ -14,15 +14,16 @@ export default function BudgetBuilder() {
     type: '',
     modules: [],
   });
+  const [contactMethod, setContactMethod] = useState<'email' | 'whatsapp'>('email');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   const totalSteps = 4;
 
   // Inicializar EmailJS al montar el componente
-  useState(() => {
+  useEffect(() => {
     initEmailJS();
-  });
+  }, []);
 
   const nextStep = () => {
     if (currentStep === 2 && !selections.type) {
@@ -59,16 +60,57 @@ export default function BudgetBuilder() {
     setSubmitMessage(null);
     
     const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      phone: formData.get('phone') as string,
-      company: formData.get('company') as string,
-      selections
-    };
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const phone = formData.get('phone') as string;
+    const company = formData.get('company') as string;
+    const comments = formData.get('message') as string;
 
+    // Mapear las selecciones a labels legibles
+    const basicsLabels = selections.basics.map(id => summaryLabels.basics[id as keyof typeof summaryLabels.basics]);
+    const modulesLabels = selections.modules.map(id => summaryLabels.modules[id as keyof typeof summaryLabels.modules]);
+    const projectTypeLabel = selections.type ? summaryLabels.type[selections.type as keyof typeof summaryLabels.type] : '';
+
+    if (contactMethod === 'whatsapp') {
+      // Enviar por WhatsApp
+      const message = generateBudgetWhatsAppMessage({
+        name,
+        company: company || undefined,
+        projectType: projectTypeLabel,
+        basics: basicsLabels,
+        modules: modulesLabels,
+        comments: comments || undefined,
+      });
+      openWhatsApp(message);
+      
+      setSubmitMessage({
+        type: 'success',
+        text: 'Te redirigimos a WhatsApp para completar tu consulta de presupuesto.'
+      });
+      
+      setTimeout(() => {
+        setSelections({ basics: [], type: '', modules: [] });
+        setCurrentStep(1);
+        setSubmitMessage(null);
+      }, 3000);
+      
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Enviar por Email
     try {
-      await sendBudgetEmail(data);
+      await sendBudgetEmail({
+        name,
+        email,
+        phone,
+        company: company || undefined,
+        projectType: projectTypeLabel,
+        basics: basicsLabels,
+        modules: modulesLabels,
+        comments: comments || undefined,
+      });
+      
       setSubmitMessage({
         type: 'success',
         text: '¡Gracias! Tu solicitud de presupuesto fue enviada exitosamente. Nos pondremos en contacto contigo pronto.'
@@ -329,6 +371,42 @@ export default function BudgetBuilder() {
             </div>
 
             <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
+              <h3 className="font-bold mb-4">¿Cómo preferís que te contactemos?</h3>
+              
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <button
+                  type="button"
+                  onClick={() => setContactMethod('email')}
+                  className={`p-4 rounded-xl border-2 transition-all duration-300 ${
+                    contactMethod === 'email'
+                      ? 'border-commit bg-commit/5 scale-[1.02]'
+                      : 'border-gray-200 dark:border-gray-700 hover:border-commit/50'
+                  }`}
+                >
+                  <div className="flex flex-col items-center gap-2">
+                    <span className="text-3xl">📧</span>
+                    <span className="font-bold">Email</span>
+                    <span className="text-xs text-muted">Respuesta en 24-48hs</span>
+                  </div>
+                </button>
+                
+                <button
+                  type="button"
+                  onClick={() => setContactMethod('whatsapp')}
+                  className={`p-4 rounded-xl border-2 transition-all duration-300 ${
+                    contactMethod === 'whatsapp'
+                      ? 'border-green-500 bg-green-500/5 scale-[1.02]'
+                      : 'border-gray-200 dark:border-gray-700 hover:border-green-500/50'
+                  }`}
+                >
+                  <div className="flex flex-col items-center gap-2">
+                    <span className="text-3xl">💬</span>
+                    <span className="font-bold">WhatsApp</span>
+                    <span className="text-xs text-muted">Respuesta inmediata</span>
+                  </div>
+                </button>
+              </div>
+
               <h3 className="font-bold mb-4">Datos de contacto</h3>
               
               {submitMessage && (
@@ -387,9 +465,18 @@ export default function BudgetBuilder() {
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-6 py-4 bg-gradient-commit text-white font-bold rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className={`w-full px-6 py-4 text-white font-bold rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 ${
+                    contactMethod === 'whatsapp' 
+                      ? 'bg-green-500 hover:bg-green-600' 
+                      : 'bg-gradient-commit'
+                  }`}
                 >
-                  {isSubmitting ? 'Enviando...' : 'Solicitar Presupuesto'}
+                  {isSubmitting 
+                    ? 'Enviando...' 
+                    : contactMethod === 'whatsapp' 
+                      ? '💬 Abrir WhatsApp' 
+                      : '📧 Solicitar Presupuesto por Email'
+                  }
                 </button>
               </form>
             </div>
